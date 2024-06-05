@@ -1,0 +1,9 @@
+@startmindmap
++ Taro
+-- Taro
+-- tailwindcss
+++ React Native
++++  Yoga 
++++ React Native Layout Props
++++ BEM
+@endmindmap
