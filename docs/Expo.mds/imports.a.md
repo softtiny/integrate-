@@ -1,11 +1,11 @@
+## expo-router ~3.5.15
 ```jsx
-import { Stack } from 'expo-router';
+import { Link, Stack, Tabs } from 'expo-router';
 ```
 
 ```mermaid
 graph TD;
+    expo-router -->Link;
     expo-router -->Stack;
-    A-->C;
-    B-->D;
-    C-->D;
+    expo-router -->Tabs;
 ```
