@@ -36,5 +36,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             # download auto zip
-            name: apps/showcase/web
+            name: apps/showcase/dist
             path: dist
