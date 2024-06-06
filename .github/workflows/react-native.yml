@@ -31,10 +31,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - name: Build project
-        run: pnpm i && pnpm run build:showcase
+        run: pnpm i && pnpm run build:showcase && ls
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
             # download auto zip
-            name: qrcode
+            name: build
             path: dist
