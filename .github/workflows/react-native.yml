@@ -14,10 +14,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '20'
-      - name: Install dependencies
-        run: npm install
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: true
       - name: Build project
-        run: npm run build
+        run: pnpm run build:showcase
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
