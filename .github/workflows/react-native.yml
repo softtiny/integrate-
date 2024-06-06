@@ -1,0 +1,26 @@
+name: React Native
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+        with:
+          repository: 'mrzachnugent/react-native-reusables'
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Build project
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+            # download auto zip
+            name: qrcode
+            path: dist
