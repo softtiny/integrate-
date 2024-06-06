@@ -18,6 +18,19 @@ def useExpo [] {
     # To create a new project, run the following command:
     npx create-expo-app@latest
 
+    #not easy use demo
+    #React Native Expo Template Twitter
+    #https://github.com/expo-starter/expo-template
+    npx create-expo-app --template @launchtrack/expo-starter  # fail not ok
+
+    #React Native Reusables
+    #https://github.com/mrzachnugent/react-native-reusables
+
+    git clone https://github.com/mrzachnugent/react-native-reusables.git
+    cd react-native-reusables
+
+    pnpm i
+
     # build h5 dist,android
     expo export
 }
@@ -25,4 +38,8 @@ def useExpo [] {
 def main [] {
     echo 'Get Started Without a Framework (fail)'
     echo "Start a new React Native project with Expo"
+    echo "find [tempalte](https://github.com/expo-starter/expo-template)" "then not ok"
+    echo "npx create-expo-app --template @launchtrack/expo-starter" "build time too long" "pc down"
+    echo "ok maybe" "[tempalte](https://github.com/mrzachnugent/react-native-reusables)" "run dev error end it...."
+    echo "Fuck!"
 }
