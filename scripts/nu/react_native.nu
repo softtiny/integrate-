@@ -40,6 +40,6 @@ def main [] {
     echo "Start a new React Native project with Expo"
     echo "find [tempalte](https://github.com/expo-starter/expo-template)" "then not ok"
     echo "npx create-expo-app --template @launchtrack/expo-starter" "build time too long" "pc down"
-    echo "ok maybe" "[tempalte](https://github.com/mrzachnugent/react-native-reusables)" "run dev error end it...."
+    echo "ok maybe" "[tempalte](https://github.com/mrzachnugent/react-native-reusables)" "node < 20.x run dev error end it...."
     echo "Fuck!"
 }
