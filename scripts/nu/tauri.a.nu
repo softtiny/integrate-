@@ -30,6 +30,19 @@ def tauri_nextjs{
 
 }
 
+#Using JavaScript Library
+def tauri_api [] {
+    npm install @tauri-apps/api
+    pnpm add @tauri-apps/api
+}
+
+#Running Your App
+def tauri_run [] {
+    npm run tauri dev
+    pnpm tauri dev
+    cargo tauri dev
+}
+
 def main [] {
     echo "Build an optimized, secure, and frontend-independent application for multi-platform deployment."
 }
