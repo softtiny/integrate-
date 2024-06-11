@@ -15,10 +15,37 @@ def capacitor_add [] {
     npx cap add android
     npx cap add ios
 
+    #Syncing your web code to your Capacitor project
+    npx cap sync
+
     #... test
     pnpm add @capacitor/core @capacitor/cli  @capacitor/android
     pnpm cap init
     pnpm cap add android
+    pnpm cap sync
+    cd android && ./gradlew.bat assembleDebug
+    #or
+    cd android && ./gradlew.bat assembleRelease
+}
+
+#Capacitor Workflow
+def capacitor_workflow [] {
+    #Building your web code
+    echo "Building your web code"
+    #Syncing your web code to your Capacitor project
+    npx cap sync
+    #Testing your Capacitor app
+    npx cap run ios
+    npx cap run android
+
+    #Open your Native IDE
+    npx cap open ios
+    npx cap open android
+    #Compiling your native binary
+    echo "Compiling your native binary"
+    cd android && ./gradlew.bat assembleDebug
+    #or
+    cd android && ./gradlew.bat assembleRelease
 }
 
 def install_capacitor [] {
