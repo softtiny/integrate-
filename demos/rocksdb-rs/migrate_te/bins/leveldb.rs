@@ -17,22 +17,18 @@ fn main() {
             match db.get(b"my key") {
                 Some(value) => println!("retrieved value {}", String::from_utf8(value).unwrap()),
                 None => println!("value not found"),
-                Err(e) => println!("operational problem encountered: {}", e),
              }
              match db.get(b"POSSIGNDATA") {
                 Some(value) => println!("POSSIGNDATA : {}", String::from_utf8(value).unwrap()),
                 None => println!("POSSIGNDATA value not found"),
-                Err(e) => println!("operational problem encountered: {}", e),
              }
              match db.get(b"PERMISIONOCDE") {
                  Some(value) => println!("PERMISIONOCDE : {}", String::from_utf8(value).unwrap()),
                  None => println!("PERMISIONOCDE value not found"),
-                 Err(e) => println!("operational problem encountered: {}", e),
              }
              match db.get(b"LOCALSERVERURL") {
                  Some(value) => println!("LOCALSERVERURL : {}", String::from_utf8(value).unwrap()),
                  None => println!("LOCALSERVERURL value not found"),
-                 Err(e) => println!("operational problem encountered: {}", e),
              } 
         }
     } else {
