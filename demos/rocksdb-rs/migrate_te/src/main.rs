@@ -23,6 +23,21 @@ fn main() {
 			   Ok(None) => println!("value not found"),
 			   Err(e) => println!("operational problem encountered: {}", e),
 			}
+			match db.get(b"POSSIGNDATA") {
+			  Ok(Some(value)) => println!("POSSIGNDATA : {}", String::from_utf8(value).unwrap()),
+			   Ok(None) => println!("POSSIGNDATA value not found"),
+			   Err(e) => println!("operational problem encountered: {}", e),
+			}
+			match db.get(b"PERMISIONOCDE") {
+				Ok(Some(value)) => println!("PERMISIONOCDE : {}", String::from_utf8(value).unwrap()),
+				Ok(None) => println!("PERMISIONOCDE value not found"),
+				Err(e) => println!("operational problem encountered: {}", e),
+			}
+			match db.get(b"LOCALSERVERURL") {
+				Ok(Some(value)) => println!("LOCALSERVERURL : {}", String::from_utf8(value).unwrap()),
+				Ok(None) => println!("LOCALSERVERURL value not found"),
+				Err(e) => println!("operational problem encountered: {}", e),
+			}
 			//db.delete(b"my key").unwrap();
 		}
 		//let _ = DB::destroy(&Options::default(), path);
