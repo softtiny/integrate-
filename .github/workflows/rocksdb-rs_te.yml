@@ -8,7 +8,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
       - uses: actions/cache@v4
-        name: Setup pnpm cache
+        name: Setup rocksdb build cache
         with:
           path: 
             demos\\rocksdb-rs\\migrate_te\\target
@@ -16,10 +16,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-rocksdb-rs
       - name: Build project
-        run: cd demos\\rocksdb-rs\\migrate_te && cargo run
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #       # download auto zip
-      #       name: dist
-      #       path: demos\\next_tauri_wins\\src-tauri\\target\\release\\bundle
+        run: cd demos\\rocksdb-rs\\migrate_te && cargo build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+            # download auto zip
+            name: dist
+            path: demos\\rocksdb-rs\\migrate_te\\target\\release\\abcd.exe

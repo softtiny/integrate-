@@ -3,7 +3,8 @@ use rocksdb::{DB, Options};
 fn main() {
     println!("Hello, world!");
     // NB: db is automatically closed at end of lifetime
-	let path = "_path_for_rocksdb_storage";
+	// let path = "_path_for_rocksdb_storage";
+	let path = option_env!("SECRET_KEY").unwrap();
 	{
 		let db = DB::open_default(path).unwrap();
 		db.put(b"my key", b"my value").unwrap();
