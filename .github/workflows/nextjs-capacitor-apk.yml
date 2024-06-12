@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-pnpm-gradle-
       - name: Build project
         run: |
-          cd demos/next_capacitor_apk && pnpm i && pnpm run build
+          cd demos/next_capacitor_apk && pnpm i && pnpm run build && npx cap sync
           cd android && ./gradlew --no-daemon assembleDebug
       - name: Upload artifact
         uses: actions/upload-artifact@v2
