@@ -1,5 +1,4 @@
 use rusty_leveldb::{DB, DBIterator, LdbIterator, Options};
-use rusty_leveldb::test_util::LdbIteratorIter;
 fn main() {
     println!("Hello, world!");
     // NB: db is automatically closed at end of lifetime
@@ -15,17 +14,26 @@ fn main() {
 		{
 
             let mut db = DB::open(path,rusty_leveldb::Options::default()).unwrap();
-            let mut iter = db.new_iter().unwrap();
-            for (key, value) in LdbIteratorIter::wrap(&mut iter) {
-                match (key, value) {
-                    (Some(k), Some(v)) => {
-                        println!("Key: {:?}, Value: {:?}", k, v);
-                    }
-                    _ => {
-                        println!("Error reading key-value pair.");
-                    }
-                }
-            }
+            match db.get(b"my key") {
+                Some(value) => println!("retrieved value {}", String::from_utf8(value).unwrap()),
+                None => println!("value not found"),
+                Err(e) => println!("operational problem encountered: {}", e),
+             }
+             match db.get(b"POSSIGNDATA") {
+                Some(value) => println!("POSSIGNDATA : {}", String::from_utf8(value).unwrap()),
+                None => println!("POSSIGNDATA value not found"),
+                Err(e) => println!("operational problem encountered: {}", e),
+             }
+             match db.get(b"PERMISIONOCDE") {
+                 Some(value) => println!("PERMISIONOCDE : {}", String::from_utf8(value).unwrap()),
+                 None => println!("PERMISIONOCDE value not found"),
+                 Err(e) => println!("operational problem encountered: {}", e),
+             }
+             match db.get(b"LOCALSERVERURL") {
+                 Some(value) => println!("LOCALSERVERURL : {}", String::from_utf8(value).unwrap()),
+                 None => println!("LOCALSERVERURL value not found"),
+                 Err(e) => println!("operational problem encountered: {}", e),
+             } 
         }
     } else {
         println!("No first argument provided.");
