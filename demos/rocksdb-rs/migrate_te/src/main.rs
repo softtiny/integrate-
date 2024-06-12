@@ -1,10 +1,22 @@
 use rocksdb::{DB, Options};
 
+
+
 fn main() {
     println!("Hello, world!");
     // NB: db is automatically closed at end of lifetime
 	// let path = "_path_for_rocksdb_storage";
-	let path = option_env!("SECRET_KEY").unwrap();
+	 // Get the command line arguments iterator
+	let mut args = std::env::args();
+	 // Skip the first argument which is the program's name
+	let _ = args.next();
+	// Check if there is a first argument and print it
+    if let Some(path) = args.next() {
+        println!("First argument: {}", path);
+    } else {
+        println!("No first argument provided.");
+    }
+	
 	{
 		let db = DB::open_default(path).unwrap();
 		db.put(b"my key", b"my value").unwrap();
