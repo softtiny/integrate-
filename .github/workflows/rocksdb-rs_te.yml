@@ -16,10 +16,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-rocksdb-rs
       - name: Build project
-        run: cd demos\\rocksdb-rs\\migrate_te && cargo build
+        run: cd demos\\rocksdb-rs\\migrate_te && cargo build --bin leveldb
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
             # download auto zip
             name: dist
-            path: demos\\rocksdb-rs\\migrate_te\\target\\debug\\abcd.exe
+            path: demos\\rocksdb-rs\\migrate_te\\target\\debug\\leveldb.exe
