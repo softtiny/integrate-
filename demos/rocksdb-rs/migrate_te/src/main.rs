@@ -11,9 +11,11 @@ fn main() {
 	 // Skip the first argument which is the program's name
 	let _ = args.next();
 	// Check if there is a first argument and print it
-    if let Some(path) = args.next() {
-        println!("First argument: {}", path);
+    if let Some(pathS) = args.next() {
+        println!("First argument: {}", pathS);
+		let path = &pathS;
 		{
+			
 			let db = DB::open_default(path).unwrap();
 			db.put(b"my key", b"my value").unwrap();
 			match db.get(b"my key") {
