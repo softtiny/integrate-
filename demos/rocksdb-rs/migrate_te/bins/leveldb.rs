@@ -15,8 +15,8 @@ fn main() {
 		{
 
             let mut db = DB::open(path,rusty_leveldb::Options::default()).unwrap();
-            let iter = db.new_iter().unwrap();
-            for (key, value) in iter {
+            let mut iter = db.new_iter().unwrap();
+            for (key, value) in LdbIteratorIter::wrap(&mut iter) {
                 match (key, value) {
                     (Some(k), Some(v)) => {
                         println!("Key: {:?}, Value: {:?}", k, v);
