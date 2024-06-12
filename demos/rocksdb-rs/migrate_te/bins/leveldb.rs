@@ -14,7 +14,7 @@ fn main() {
 		let path = &pathS;
 		{
 
-            let mut db = DB::open_default(path).unwrap();
+            let mut db = DB::open(path,rusty_leveldb::Options::default()).unwrap();
             let iter = db.iter();
             for (key, value) in iter {
                 match (key, value) {
