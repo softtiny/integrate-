@@ -1,5 +1,5 @@
 use rusty_leveldb::{DB, DBIterator, LdbIterator, Options};
-
+use rusty_leveldb::test_util::LdbIteratorIter;
 fn main() {
     println!("Hello, world!");
     // NB: db is automatically closed at end of lifetime
