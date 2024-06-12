@@ -43,6 +43,19 @@ def tauri_run [] {
     cargo tauri dev
 }
 
+#Using the Inspector in Production
+def tarui_build_debug [] {
+    cargo tauri build --debug
+    pnpm tauri build --debug
+    #Enable Devtools Feature
+    #src-tauri/Cargo.toml
+    echo '[dependencies]
+tauri = { version = "...", features = ["...", "devtools"] }'
+
+    #Debugging the Core Proces
+    #The Core process is powered by Rust so you can use GDB or LLDB to debug it. 
+}
+
 def main [] {
     echo "Build an optimized, secure, and frontend-independent application for multi-platform deployment."
 }
