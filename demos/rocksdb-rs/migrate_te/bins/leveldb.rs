@@ -15,7 +15,7 @@ fn main() {
 		{
 
             let mut db = DB::open(path,rusty_leveldb::Options::default()).unwrap();
-            let iter = db.iter();
+            let iter = db.new_iter().unwrap();
             for (key, value) in iter {
                 match (key, value) {
                     (Some(k), Some(v)) => {
