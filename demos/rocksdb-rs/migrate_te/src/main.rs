@@ -23,9 +23,9 @@ fn main() {
 			   Ok(None) => println!("value not found"),
 			   Err(e) => println!("operational problem encountered: {}", e),
 			}
-			db.delete(b"my key").unwrap();
+			//db.delete(b"my key").unwrap();
 		}
-		let _ = DB::destroy(&Options::default(), path);
+		//let _ = DB::destroy(&Options::default(), path);
     } else {
         println!("No first argument provided.");
     }
