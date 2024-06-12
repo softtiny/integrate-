@@ -23,9 +23,9 @@ def capacitor_add [] {
     pnpm cap init
     pnpm cap add android
     pnpm cap sync
-    cd android && ./gradlew.bat assembleDebug
+    cd android; ./gradlew.bat --no-daemon assembleDebug
     #or
-    cd android && ./gradlew.bat assembleRelease
+    cd android; ./gradlew.bat --no-daemon assembleRelease
 }
 
 #Capacitor Workflow
@@ -43,9 +43,9 @@ def capacitor_workflow [] {
     npx cap open android
     #Compiling your native binary
     echo "Compiling your native binary"
-    cd android && ./gradlew.bat assembleDebug
+    cd android; ./gradlew.bat --no-daemon assembleDebug
     #or
-    cd android && ./gradlew.bat assembleRelease
+    cd android; ./gradlew.bat --no-daemon assembleRelease
 }
 
 def install_capacitor [] {
