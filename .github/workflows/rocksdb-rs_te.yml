@@ -1,4 +1,4 @@
-name: Windows Tauri Nextjs
+name: Windows Rocksdb-rs
 on:
   workflow_dispatch:
 jobs:
