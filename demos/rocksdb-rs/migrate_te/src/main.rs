@@ -13,19 +13,18 @@ fn main() {
 	// Check if there is a first argument and print it
     if let Some(path) = args.next() {
         println!("First argument: {}", path);
+		{
+			let db = DB::open_default(path).unwrap();
+			db.put(b"my key", b"my value").unwrap();
+			match db.get(b"my key") {
+			   Ok(Some(value)) => println!("retrieved value {}", String::from_utf8(value).unwrap()),
+			   Ok(None) => println!("value not found"),
+			   Err(e) => println!("operational problem encountered: {}", e),
+			}
+			db.delete(b"my key").unwrap();
+		}
+		let _ = DB::destroy(&Options::default(), path);
     } else {
         println!("No first argument provided.");
     }
-	
-	{
-		let db = DB::open_default(path).unwrap();
-		db.put(b"my key", b"my value").unwrap();
-		match db.get(b"my key") {
-		   Ok(Some(value)) => println!("retrieved value {}", String::from_utf8(value).unwrap()),
-		   Ok(None) => println!("value not found"),
-		   Err(e) => println!("operational problem encountered: {}", e),
-		}
-		db.delete(b"my key").unwrap();
-	}
-	let _ = DB::destroy(&Options::default(), path);
 }
