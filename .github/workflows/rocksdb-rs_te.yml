@@ -22,4 +22,4 @@ jobs:
         with:
             # download auto zip
             name: dist
-            path: demos\\rocksdb-rs\\migrate_te\\target\\release\\abcd.exe
+            path: demos\\rocksdb-rs\\migrate_te\\target\\debug\\abcd.exe
