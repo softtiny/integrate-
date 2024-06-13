@@ -37,6 +37,10 @@ fn main() -> Result<()> {
         let encoded = db.get(KEY).ok_or(anyhow!("Couldn't find DDTOKEN data"))?;
         let decoded = decode_string(&encoded)?;
         println!("{:?}",decoded);
+        const KEY2: &[u8; 20] = b"_file://\x00\x01DEVICEINFO";
+        let encoded = db.get(KEY2.ok_or(anyhow!("Couldn't find DEVICEINFO data"))?;
+        let decoded = decode_string(&encoded)?;
+        println!("{:?}",decoded);
     } else {
         println!("No first argument provided.");
     }
