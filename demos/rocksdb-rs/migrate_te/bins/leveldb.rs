@@ -13,7 +13,7 @@ fn main() {
 		let path = &pathS;
 		{
 
-            let opt = Options::default();
+            let mut opt = Options::default();
             opt.reuse_logs = false;
             opt.reuse_manifest = false;
             opt.compressor = compressor::SnappyCompressor::ID;
