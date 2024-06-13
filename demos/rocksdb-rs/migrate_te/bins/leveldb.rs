@@ -33,7 +33,7 @@ fn main() -> Result<()> {
                 ..Default::default()
             },
         )?;
-        const KEY: &[u8; 22] = b"_file://\x00\x01DDTOKEN";
+        const KEY: &[u8; 17] = b"_file://\x00\x01DDTOKEN";
         let encoded = db.get(KEY).ok_or(anyhow!("Couldn't find DDTOKEN data"))?;
         let decoded = decode_string(&encoded)?;
         println!("{:?}",decoded);
