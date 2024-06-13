@@ -56,6 +56,10 @@ tauri = { version = "...", features = ["...", "devtools"] }'
     #The Core process is powered by Rust so you can use GDB or LLDB to debug it. 
 }
 
+def electron_leveldb_migrate [] {
+    echo "leveldb-rs: called `Result::unwrap()` on an `Err` value: Status { code: Corruption, err: 'Corruption: no meta-lognumber entry in descriptor' }"
+}
+
 def main [] {
     echo "Build an optimized, secure, and frontend-independent application for multi-platform deployment."
 }

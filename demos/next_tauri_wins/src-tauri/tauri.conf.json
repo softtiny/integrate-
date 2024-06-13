@@ -16,8 +16,9 @@
     },
     "bundle": {
       "active": true,
+      "targetsBundleTarget":["nsis"],
       "category": "DeveloperTool",
-      "copyright": "",
+      "copyright": "Business",
       "deb": {
         "depends": []
       },
@@ -30,7 +31,9 @@
         "icons/icon.ico"
       ],
       "identifier": "com.tips.pay",
-      "longDescription": "",
+      "shortDescriptionstring":"123",
+      "longDescription":"123 123 123 123 123123 12 3231 123132",
+      "allowDowngrades": true,
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -44,7 +47,10 @@
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
-        "timestampUrl": ""
+        "timestampUrl": "",
+        "nsis": {
+          "installerIcon":"icons/32x32.png"
+        }
       }
     },
     "security": {
@@ -55,11 +61,9 @@
     },
     "windows": [
       {
-        "fullscreen": false,
-        "height": 600,
-        "resizable": true,
-        "title": "next_20240607",
-        "width": 800
+        "fullscreen": true,
+        "resizable": false,
+        "title": "next_20240607"
       }
     ]
   }
