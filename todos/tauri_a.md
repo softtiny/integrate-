@@ -6,4 +6,4 @@
 Check server version, update if new version.
 ====> server cdn fresh..........
 ```
-- [ ] `Migrate Leveldb from electron/localstorage`
+- [x] `read data from Leveldb from electron/localstorage`
