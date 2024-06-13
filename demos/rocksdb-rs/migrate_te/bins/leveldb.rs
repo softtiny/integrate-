@@ -13,7 +13,7 @@ fn main() {
 		let path = &pathS;
 		{
 
-            let opt = rusty_leveldb::Options::default();
+            let opt = Options::default();
             opt.reuse_logs = false;
             opt.reuse_manifest = false;
             opt.compressor = compressor::SnappyCompressor::ID;
