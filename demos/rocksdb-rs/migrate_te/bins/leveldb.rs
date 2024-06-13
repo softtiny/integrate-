@@ -1,4 +1,4 @@
-use rusty_leveldb::{DB, DBIterator, LdbIterator, Options};
+use rusty_leveldb::{compressor, CompressorId, DB, DBIterator, LdbIterator, Options};
 fn main() {
     println!("Hello, world!");
     // NB: db is automatically closed at end of lifetime
@@ -13,7 +13,11 @@ fn main() {
 		let path = &pathS;
 		{
 
-            let mut db = DB::open(path,rusty_leveldb::Options::default()).unwrap();
+            let opt = rusty_leveldb::Options::default();
+            opt.reuse_logs = false;
+            opt.reuse_manifest = false;
+            opt.compressor = compressor::SnappyCompressor::ID;
+            let mut db = DB::open(path, opt).unwrap();
             match db.get(b"my key") {
                 Some(value) => println!("retrieved value {}", String::from_utf8(value).unwrap()),
                 None => println!("value not found"),
