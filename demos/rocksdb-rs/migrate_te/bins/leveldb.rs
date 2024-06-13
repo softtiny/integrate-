@@ -29,7 +29,7 @@ impl Wootility {
             },
         )?;
 
-        const KEY: &[u8; 22] = b"_file://\x00\x01persist:root";
+        const KEY: &[u8; 22] = b"_file://\x00\x01DDTOKEN";
         let encoded = db.get(KEY).ok_or(anyhow!("Couldn't find Wootility data"))?;
         let decoded = Self::decode_string(&encoded)?;
 
