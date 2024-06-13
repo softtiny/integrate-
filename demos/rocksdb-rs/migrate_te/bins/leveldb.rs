@@ -3,6 +3,7 @@ use std::{borrow::Cow, path::PathBuf};
 use anyhow::{anyhow, bail, Result};
 use encoding_rs::{UTF_16LE, WINDOWS_1252};
 use rusty_leveldb::{compressor, Options, DB};
+use rusty_leveldb::compressor::CompressorId;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
