@@ -58,6 +58,8 @@ tauri = { version = "...", features = ["...", "devtools"] }'
 
 def electron_leveldb_migrate [] {
     echo "leveldb-rs: called `Result::unwrap()` on an `Err` value: Status { code: Corruption, err: 'Corruption: no meta-lognumber entry in descriptor' }"
+    echo "the folder is dirty. replace by source. okkkkk"
+    echo "testing"
 }
 
 def main [] {
