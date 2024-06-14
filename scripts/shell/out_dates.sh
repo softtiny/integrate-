@@ -1,13 +1,17 @@
 #!/bin/bash
 set -e
+dateutc () {
+    date -u $*
+}
 op_apm () {
-    mmm=$(date +"%H")
+    mmm=$(dateutc "+%H")
+    mmm=${mmm#0}
     if [ $mmm -gt 12 ]; then
         for ((i = $mmm; i < 24; i++)); do
             echo $i
         done
     else
-        for ((i = $mmm; i <=12; i++)); do
+        for ((i = $mmm; i < 24; i++)); do
             nni=$(printf "%0*d" 2 $i)
             echo $nni
         done
@@ -15,26 +19,26 @@ op_apm () {
     fi
 }
 op_day () {
-    ddd=$(date +"%Y-%m-%d")
+    ddd=$(dateutc "+%Y-%m-%d")
     add=`op_apm`
     for as in $add;do
         echo "${ddd}-${as}"
     done
-    date=$(date +%d)
-    start=$((date + 1))
-    npre=$(date +"%Y-%m")
+    dateutc=$(dateutc +%d)
+    start=$((dateutc + 1))
+    npre=$(dateutc +"%Y-%m")
     for ((i = $start; i <= 31; i++)); do
         nni=$(printf "%0*d" 2 $i)
         echo "${npre}-${nni}"
     done
-    amon=$(date +%m)
+    amon=$(dateutc +%m)
     start=$((amon + 1))
-    npre=$(date +"%Y")
+    npre=$(dateutc +"%Y")
     for ((i = $start; i <= 12; i++)); do
         nni=$(printf "%0*d" 2 $i)
         echo "${npre}-${nni}"
     done
-    ayear=$(date +%Y)
+    ayear=$(dateutc +%Y)
     start=$((ayear + 1))
     end=$((start + 4))
     for ((i = $start; i <= $end; i++)); do
