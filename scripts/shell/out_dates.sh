@@ -15,24 +15,24 @@ op_apm () {
     fi
 }
 op_day () {
-    ddd=$(date +"%Y%m%d")
+    ddd=$(date +"%Y-%m-%d")
     add=`op_apm`
     for as in $add;do
-        echo "${ddd}${as}"
+        echo "${ddd}-${as}"
     done
     date=$(date +%d)
     start=$((date + 1))
-    npre=$(date +"%Y%m")
+    npre=$(date +"%Y-%m")
     for ((i = $start; i <= 31; i++)); do
         nni=$(printf "%0*d" 2 $i)
-        echo "${npre}${nni}"
+        echo "${npre}-${nni}"
     done
     amon=$(date +%m)
     start=$((amon + 1))
     npre=$(date +"%Y")
     for ((i = $start; i <= 12; i++)); do
         nni=$(printf "%0*d" 2 $i)
-        echo "${npre}${nni}"
+        echo "${npre}-${nni}"
     done
     ayear=$(date +%Y)
     start=$((ayear + 1))
@@ -45,4 +45,3 @@ add=`op_day`
 for as in $add;do
     echo $as
 done
-
