@@ -21,6 +21,7 @@ op_apm () {
 op_day () {
     ddd=$(dateutc "+%Y-%m-%d")
     add=`op_apm`
+    echo $ddd
     for as in $add;do
         echo "${ddd}-${as}"
     done
