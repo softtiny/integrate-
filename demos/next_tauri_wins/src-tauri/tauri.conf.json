@@ -58,7 +58,7 @@
       "active": true,
       "pubkey":"tauri",
       "endpoints": [
-        "http://127.0.0.1:8000/aa/kds"
+        "https://kunkka.proxy/aa/kds"
       ],
       "windows": {
         "installMode": "passive"
