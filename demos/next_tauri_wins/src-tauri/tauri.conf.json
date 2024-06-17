@@ -16,7 +16,6 @@
     },
     "bundle": {
       "active": true,
-      "targetsBundleTarget":["nsis"],
       "category": "DeveloperTool",
       "copyright": "Business",
       "deb": {
@@ -31,9 +30,7 @@
         "icons/icon.ico"
       ],
       "identifier": "com.tips.pay",
-      "shortDescriptionstring":"123",
       "longDescription":"123 123 123 123 123123 12 3231 123132",
-      "allowDowngrades": true,
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
