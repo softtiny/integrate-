@@ -56,6 +56,7 @@
     "updater": {
       "dialog": true,
       "active": true,
+      "pubkeystring":"tauri",
       "endpoints": [
         "http://127.0.0.1:8000/aa/kds"
       ],
