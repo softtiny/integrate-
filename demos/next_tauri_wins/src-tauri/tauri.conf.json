@@ -57,7 +57,14 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "dialog": true,
+      "active": true,
+      "endpoints": [
+        "http://127.0.0.1:8000/aa/kds"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
     },
     "windows": [
       {
