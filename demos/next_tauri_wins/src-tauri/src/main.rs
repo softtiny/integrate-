@@ -4,7 +4,7 @@
 fn main() {
   let app = tauri::Builder::default()
     .plugin(tauri_plugin_log::Builder::default().build())
-    .run(tauri::generate_context!())
+    .build(tauri::generate_context!())
     .expect("error while running tauri application");
   app.run(|_app_handle, event| match event {
       tauri::RunEvent::Updater(updater_event) => {
