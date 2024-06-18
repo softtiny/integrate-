@@ -52,7 +52,7 @@
     "updater": {
       "dialog": true,
       "active": true,
-      "pubkey":"tauri",
+      "pubkey":"dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDgzNTYyNzg2N0U4M0MyRjQKUldUMHdvTitoaWRXZzVkMjFCVlg2bUVKMkRjUmMvQVhTVlRBSTh5OVBKVytnOGVWK3hoeHFQN2kK",
       "endpoints": [
         "https://kunkka.proxy/aa/kds"
       ],

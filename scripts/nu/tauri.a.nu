@@ -121,6 +121,10 @@ Options:
       --ci                       Skip prompting for values
   -h, --help                     Print help
   -V, --version                  Print version"
+  cat no.password.key.pub
+  "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDgzNTYyNzg2N0U4M0MyRjQKUldUMHdvTitoaWRXZzVkMjFCVlg2bUVKMkRjUmMvQVhTVlRBSTh5OVBKVytnOGVWK3hoeHFQN2kK"
+  cat no.password.key
+  "dW50cnVzdGVkIGNvbW1lbnQ6IHJzaWduIGVuY3J5cHRlZCBzZWNyZXQga2V5ClJXUlRZMEl5YmRLNjVmQzlWTU4vNDBmN2FsaVQ2OVJsNjBPNkVWZ3hrbXBPTGtueTgwQUFBQkFBQUFBQUFBQUFBQUlBQUFBQXJFRURPUW1mbG9zZ29zRXNFbXhwTkNieEovZzA5azNSakdKNktaZnB4K0RLSzMxclVHMW0ra2tIOXFWUWh2SmJBN2JhdzZtb2hlc25lQ1JFY0ozWW84MUNSVnNVeHlXS2dnV01NVDJUdFlzT0xEYzFrMVlpajdXczJIS28ybjJ5VVMzOWdnbU5qSXM9Cg=="
 
 }
 
