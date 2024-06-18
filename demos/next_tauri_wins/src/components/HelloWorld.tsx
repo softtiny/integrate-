@@ -9,7 +9,7 @@ const HelloWorld = () => {
     useEffect(() => {
             setTimeout(()=>{
 
-                setValue(localStorage.getItem('complete'));
+                setValue(localStorage.getItem('complete')||"........");
                 localStorage.setItem('complete', Date.now().toString());
                     },10000)
     }, []);
