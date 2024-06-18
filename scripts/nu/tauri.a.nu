@@ -54,6 +54,56 @@ tauri = { version = "...", features = ["...", "devtools"] }'
 
     #Debugging the Core Proces
     #The Core process is powered by Rust so you can use GDB or LLDB to debug it. 
+
+
+    pnpm tauri build --help                                                                     2 ⨯
+    echo "Tauri build
+
+Usage: node node_modules/@tauri-apps/cli/tauri.js build [OPTIONS] [ARGS]...
+
+Arguments:
+  [ARGS]...
+          Command line arguments passed to the runner. Use `--` to explicitly mark the start of the arguments
+
+Options:
+  -r, --runner <RUNNER>
+          Binary to use to build the application, defaults to `cargo`
+
+  -v, --verbose...
+          Enables verbose logging
+
+  -d, --debug
+          Builds with the debug flag
+
+  -t, --target <TARGET>
+          Target triple to build against.
+
+          It must be one of the values outputted by `$rustc --print target-list` or `universal-apple-darwin` for an universal macOS application.
+
+          Note that compiling an universal macOS application requires both `aarch64-apple-darwin` and `x86_64-apple-darwin` targets to be installed.
+
+  -f, --features [<FEATURES>...]
+          Space or comma separated list of features to activate
+
+  -b, --bundles [<BUNDLES>...]
+          Space or comma separated list of bundles to package.
+
+          Each bundle must be one of `deb`, `appimage`, `msi`, `app` or `dmg` on MacOS and `updater` on all platforms. If `none` is specified, the bundler will be skipped.
+
+          Note that the `updater` bundle is not automatically added so you must specify it if the updater is enabled.
+
+  -c, --config <CONFIG>
+          JSON string or path to JSON file to merge with tauri.conf.json
+
+      --ci
+          Skip prompting for values
+
+  -h, --help
+          Print help (see a summary with '-h')
+
+  -V, --version
+          Print version"
+
 }
 
 def electron_leveldb_migrate [] {
