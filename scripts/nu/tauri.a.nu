@@ -106,6 +106,12 @@ Options:
 
 }
 
+def tarui_runtime_info [] {
+    echo "C:\Program Files (x86)\Microsoft\EdgeWebView\Application\121.0.2277.112\msedgewebview2.exe" --embedded-browser-webview=1 --webview-exe-name=next_20240607.exe --webview-exe-version=0.1.0 --user-data-dir="C:\Users\xxx\AppData\Local\com.tips.pay\EBWebView" --noerrdialogs --embedded-browser-webview-dpi-awareness=2 --disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --enable-features=MojoIpcz --lang=en-US --accept-lang=en-US --mojo-named-platform-channel-pipe=7624.9732.8868706037916860524
+    echo "local storage:location"
+    echo "C:\Users\xxx\AppData\Local\com.tips.pay\EBWebView\Default\Local Storage"
+}
+
 def electron_leveldb_migrate [] {
     echo "leveldb-rs: called `Result::unwrap()` on an `Err` value: Status { code: Corruption, err: 'Corruption: no meta-lognumber entry in descriptor' }"
     echo "the folder is dirty. replace by source. okkkkk"
