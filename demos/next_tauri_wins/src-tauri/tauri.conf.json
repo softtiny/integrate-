@@ -15,7 +15,7 @@
       "all": false
     },
     "bundle": {
-      "active": true,
+      "active": false,
       "category": "DeveloperTool",
       "copyright": "Business",
       "deb": {
@@ -43,11 +43,7 @@
       "targets": "all",
       "windows": {
         "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": "",
-        "nsis": {
-          "installerIcon":"icons/32x32.png"
-        }
+        "digestAlgorithm": "sha256"
       }
     },
     "security": {
