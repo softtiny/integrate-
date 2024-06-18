@@ -31,12 +31,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - name: Build project
+        env:
+          RUST_BACKTRACE: 1
         run: cd demos\\next_tauri_wins && pnpm i && pnpm tauri build -d -v
       - name: Help list build out
         shell: bash
         run: |
-          ls demos/next_tauri_wins/src-tauri/target/release
-          ls demos/next_tauri_wins/src-tauri/target/debug
+          ls demos/next_tauri_wins/src-tauri/target/release || echo "no release"
+          ls demos/next_tauri_wins/src-tauri/target/debug || echo "no debug"
       # - name: Upload artifact release
       #   uses: actions/upload-artifact@v2
       #   with:
