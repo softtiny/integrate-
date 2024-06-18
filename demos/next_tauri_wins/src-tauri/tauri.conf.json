@@ -62,6 +62,7 @@
     },
     "windows": [
       {
+        "userAgent":"bestfoodAPP KDS/ADS",
         "fullscreen": true,
         "resizable": false,
         "title": "next_20240607"
