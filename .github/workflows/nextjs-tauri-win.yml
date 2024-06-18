@@ -32,9 +32,13 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Build project
         run: cd demos\\next_tauri_wins && pnpm i && pnpm tauri build
+      - name: Help list build out
+        shell: bash
+        run: |
+          ls demos/next_tauri_wins/src-tauri/target/release
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
             # download auto zip
             name: dist
-            path: demos\\next_tauri_wins\\src-tauri\\target\\release\\bundle
+            path: demos\\next_tauri_wins\\src-tauri\\target\\release\\app.exe
