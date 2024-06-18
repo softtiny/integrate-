@@ -41,4 +41,9 @@ jobs:
         with:
             # download auto zip
             name: dist
-            path: demos\\next_tauri_wins\\src-tauri\\target\\release\\app.exe
+            path: |
+              demos\\next_tauri_wins\\src-tauri\\target\\release\\next_20240607.exe
+              demos\\next_tauri_wins\\src-tauri\\target\\release\\nsis
+              demos\\next_tauri_wins\\src-tauri\\target\\release\\resources
+              demos\\next_tauri_wins\\src-tauri\\target\\release\\wix
+              demos\\next_tauri_wins\\src-tauri\\target\\release\\bundle
