@@ -36,6 +36,7 @@ jobs:
         shell: bash
         run: |
           ls demos/next_tauri_wins/src-tauri/target/release
+          ls demos/next_tauri_wins/src-tauri/target/debug
       # - name: Upload artifact release
       #   uses: actions/upload-artifact@v2
       #   with:
