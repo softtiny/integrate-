@@ -1,4 +1,5 @@
-
+# rust debu
+#RUST_BACKTRACE=1
 
 def tauri2_0 {
     echo "While Tauri 2.0 is still in the prerelease stage people follow these guidelines for writing documentation:"
