@@ -31,19 +31,30 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - name: Build project
-        run: cd demos\\next_tauri_wins && pnpm i && pnpm tauri build
+        run: cd demos\\next_tauri_wins && pnpm i && pnpm tauri build -d -v
       - name: Help list build out
         shell: bash
         run: |
           ls demos/next_tauri_wins/src-tauri/target/release
-      - name: Upload artifact
+      # - name: Upload artifact release
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     # download auto zip
+      #     name: dist
+      #     path: |
+      #       demos\\next_tauri_wins\\src-tauri\\target\\release\\next_20240607.exe
+      #       demos\\next_tauri_wins\\src-tauri\\target\\release\\nsis
+      #       demos\\next_tauri_wins\\src-tauri\\target\\release\\resources
+      #       demos\\next_tauri_wins\\src-tauri\\target\\release\\wix
+      #       demos\\next_tauri_wins\\src-tauri\\target\\release\\bundle
+      - name: Upload artifact debug
         uses: actions/upload-artifact@v2
         with:
             # download auto zip
             name: dist
             path: |
-              demos\\next_tauri_wins\\src-tauri\\target\\release\\next_20240607.exe
-              demos\\next_tauri_wins\\src-tauri\\target\\release\\nsis
-              demos\\next_tauri_wins\\src-tauri\\target\\release\\resources
-              demos\\next_tauri_wins\\src-tauri\\target\\release\\wix
-              demos\\next_tauri_wins\\src-tauri\\target\\release\\bundle
+              demos\\next_tauri_wins\\src-tauri\\target\\debug\\next_20240607.exe
+              demos\\next_tauri_wins\\src-tauri\\target\\debug\\nsis
+              demos\\next_tauri_wins\\src-tauri\\target\\debug\\resources
+              demos\\next_tauri_wins\\src-tauri\\target\\debug\\wix
+              demos\\next_tauri_wins\\src-tauri\\target\\debug\\bundle
