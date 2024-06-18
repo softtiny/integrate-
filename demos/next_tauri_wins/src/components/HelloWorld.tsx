@@ -1,15 +1,19 @@
 'use client'
 // components/HelloWorld.jsx
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 
 const HelloWorld = () => {
+    const [value, setValue] = useState('');
 
     useEffect(() => {
-        window.alert(localStorage.getItem('complete'));
-        localStorage.setItem('complete', Date.now().toString());
+            setTimeout(()=>{
+
+                setValue(localStorage.getItem('complete'));
+                localStorage.setItem('complete', Date.now().toString());
+                    },10000)
     }, []);
-    return <div>Hello World!</div>;
+    return <div>Hello World!{value}</div>;
 };
 
 export default HelloWorld;
