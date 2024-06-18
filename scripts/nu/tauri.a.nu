@@ -106,6 +106,23 @@ Options:
 
 }
 
+def tarui_sign_update [] {
+    pnpm tauri signer generate --help
+    echo "Generate keypair to sign files
+
+Usage: node node_modules/@tauri-apps/cli/tauri.js signer generate [OPTIONS]
+
+Options:
+  -p, --password <PASSWORD>      Set private key password when signing
+  -v, --verbose...               Enables verbose logging
+  -w, --write-keys <WRITE_KEYS>  Write private key to a file
+  -f, --force                    Overwrite private key even if it exists on the specified path
+      --ci                       Skip prompting for values
+  -h, --help                     Print help
+  -V, --version                  Print version"
+
+}
+
 def tarui_runtime_info [] {
     echo "C:\Program Files (x86)\Microsoft\EdgeWebView\Application\121.0.2277.112\msedgewebview2.exe" --embedded-browser-webview=1 --webview-exe-name=next_20240607.exe --webview-exe-version=0.1.0 --user-data-dir="C:\Users\xxx\AppData\Local\com.tips.pay\EBWebView" --noerrdialogs --embedded-browser-webview-dpi-awareness=2 --disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --enable-features=MojoIpcz --lang=en-US --accept-lang=en-US --mojo-named-platform-channel-pipe=7624.9732.8868706037916860524
     echo "local storage:location"
