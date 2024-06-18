@@ -130,6 +130,13 @@ def tarui_runtime_info [] {
     echo "C:\Users\xxx\AppData\Local\com.tips.pay\EBWebView\Default\Local Storage"
 }
 
+def tarui_test_run [] {
+   echo 'let app = tauri::Builder::default()
+  // on an actual app, remove the string argument
+  .build(tauri::generate_context!("test/fixture/src-tauri/tauri.conf.json"))
+  .expect("error while building tauri application");'
+}
+
 def electron_leveldb_migrate [] {
     echo "leveldb-rs: called `Result::unwrap()` on an `Err` value: Status { code: Corruption, err: 'Corruption: no meta-lognumber entry in descriptor' }"
     echo "the folder is dirty. replace by source. okkkkk"
