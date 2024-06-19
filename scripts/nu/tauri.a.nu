@@ -106,6 +106,15 @@ Options:
           Print version"
 
 }
+
+def tarui_update_download_and_run [] {
+    echo "downlaod json then then download zip file with stored method "
+    echo "downlaod zip file to memory then extract to AppData\Local\temp"
+    echo 'then run xxx.nsis.exe or xxx.msi'
+    echo "Command line:"
+    xxx.exe  /P /R /ARGS
+    
+}
 def tarui_update_zip_extract_into [] {
     unzip -lv xx.zip
     echo "
@@ -117,7 +126,7 @@ Archive:  cmd1.zip
       28               28   0%                            1 file
 
     "
-    echo "look the method Stored"
+    echo "look the Method Stored"
 
     7z a -mx=0 abc.zip abc
     zip -0 abc.zip abc
