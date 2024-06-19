@@ -1,3 +1,6 @@
+//note: inner attributes, like `#![no_std]`, annotate the item enclosing them, and are usually found at the beginning of source files
+// Prevents additional console window on Windows in release, DO NOT REMOVE!!
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use tauri::{Manager};
 
 
@@ -7,8 +10,8 @@ struct Payload {
   cwd: String,
 }
 
-// Prevents additional console window on Windows in release, DO NOT REMOVE!!
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
+
 fn main() {
   let app = tauri::Builder::default()
     .plugin(tauri_plugin_log::Builder::default().build())
