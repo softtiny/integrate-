@@ -1,9 +1,14 @@
+use tauri::{Manager};
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
   let app = tauri::Builder::default()
     .plugin(tauri_plugin_log::Builder::default().build())
+    .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
+      println!("{}, {argv:?}, {cwd}", app.package_info().name);
+      app.emit_all("single-instance", Payload { args: argv, cwd }).unwrap();
+    }))
     .build(tauri::generate_context!())
     .expect("error while running tauri application");
   app.run(|_app_handle, event| match event {
