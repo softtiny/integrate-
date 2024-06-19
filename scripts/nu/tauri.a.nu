@@ -106,6 +106,22 @@ Options:
           Print version"
 
 }
+def tarui_update_zip_extract_into [] {
+    unzip -lv xx.zip
+    echo "
+Archive:  cmd1.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+      28  Stored       28   0% 2024-06-19 10:31 91f78c8f  xx.zip
+--------          -------  ---                            -------
+      28               28   0%                            1 file
+
+    "
+    echo "look the method Stored"
+
+    7z a -mx=0 abc.zip abc
+    zip -0 abc.zip abc
+}
 
 def tarui_sign_update [] {
     pnpm tauri signer generate --help
@@ -126,6 +142,7 @@ Options:
   cat no.password.key
   "dW50cnVzdGVkIGNvbW1lbnQ6IHJzaWduIGVuY3J5cHRlZCBzZWNyZXQga2V5ClJXUlRZMEl5YmRLNjVmQzlWTU4vNDBmN2FsaVQ2OVJsNjBPNkVWZ3hrbXBPTGtueTgwQUFBQkFBQUFBQUFBQUFBQUlBQUFBQXJFRURPUW1mbG9zZ29zRXNFbXhwTkNieEovZzA5azNSakdKNktaZnB4K0RLSzMxclVHMW0ra2tIOXFWUWh2SmJBN2JhdzZtb2hlc25lQ1JFY0ozWW84MUNSVnNVeHlXS2dnV01NVDJUdFlzT0xEYzFrMVlpajdXczJIS28ybjJ5VVMzOWdnbU5qSXM9Cg=="
 
+  pnpm tauri signer sign -k dW50cnVzdGVkIGNvbW1lbnQ6IHJzaWduIGVuY3J5cHRlZCBzZWNyZXQga2V5ClJXUlRZMEl5YmRLNjVmQzlWTU4vNDBmN2FsaVQ2OVJsNjBPNkVWZ3hrbXBPTGtueTgwQUFBQkFBQUFBQUFBQUFBQUlBQUFBQXJFRURPUW1mbG9zZ29zRXNFbXhwTkNieEovZzA5azNSakdKNktaZnB4K0RLSzMxclVHMW0ra2tIOXFWUWh2SmJBN2JhdzZtb2hlc25lQ1JFY0ozWW84MUNSVnNVeHlXS2dnV01NVDJUdFlzT0xEYzFrMVlpajdXczJIS28ybjJ5VVMzOWdnbU5qSXM9Cg== -v xxx.exe
 }
 
 def tarui_runtime_info [] {
