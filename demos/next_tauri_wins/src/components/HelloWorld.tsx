@@ -15,9 +15,9 @@ const HelloWorld = () => {
                     },10000)
                 setHref(window.location.href);
     }, []);
-    return <div>
+    return (<div>
         <div>{href}--Hello World!{value}</div>
-    </div>;
+    </div>);
 };
 
 export default HelloWorld;
