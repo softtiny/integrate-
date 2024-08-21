@@ -3,9 +3,9 @@
 ### Kitchen Display Systems (KDS)
 
 - [ ] set interval time refresh user token and log out status
-- [ ] order timer clock
+- [x] order timer clock
 - [ ] ADS
-- [ ] Pagination
+- [x] Pagination
 - [ ] dishs display
 - [x] pages login,store,device ui.
 - [ ] page history, config
