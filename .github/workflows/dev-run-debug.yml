@@ -1,0 +1,13 @@
+name: Debug demo view development
+on:
+  workflow_dispatch:
+jobs:
+  
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pnpm/action-setup@v4
+      - name: Turbo Create
+        run: |
+          pnpm dlx create-turbo@latest --example https://github.com/vercel/turborepo/tree/main/examples/with-svelte --skip-install 
+          tree --gitignore
