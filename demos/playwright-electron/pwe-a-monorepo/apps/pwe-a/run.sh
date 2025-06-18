@@ -9,4 +9,5 @@ pwd
 #https://github.com/electron/electron/issues/20731 The path.txt is missing.
 node node_modules/electron/install.js
 pnpm exec playwright test --list example.spec.ts
+pnpm exec electron
 pnpm exec playwright test example.spec.ts --reporter json
