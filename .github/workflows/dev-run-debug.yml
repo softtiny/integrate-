@@ -19,17 +19,8 @@ jobs:
           rm -fr pwe-a/build
           cp -r web/build pwe-a/build
           cd pwe-a
+          chmod +x run.sh
       - name: Playwright Test
         uses: GabrielBB/xvfb-action@v1
         with: 
-          run: |
-            cd demos/playwright-electron/pwe-a-monorepo/
-            cd apps
-            cd pwe-a
-            pwd
-            #rm -fr node_modules
-            #pnpm install --ignore-workspace
-            #https://github.com/electron/electron/issues/20731 The path.txt is missing.
-            node node_modules/electron/install.js
-            pnpm exec playwright test --list example.spec.ts
-            xvfb-run --auto-servernum pnpm exec playwright test example.spec.ts --reporter json
+          run: demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/run.sh
