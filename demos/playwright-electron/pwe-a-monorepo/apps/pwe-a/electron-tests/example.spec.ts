@@ -8,7 +8,9 @@ test('Launch Electron App Headless', async () => {
   // Launch Electron app.
   const electronApp = await electron.launch({ 
     args: ['./demo_a/electron_main.mjs'],
-    headless: true,
+    env: {
+      IS_TEST_ENV: true,
+    },
   });
 
   // Evaluation expression in the Electron context.
