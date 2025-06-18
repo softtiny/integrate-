@@ -19,7 +19,16 @@ jobs:
           rm -fr pwe-a/build
           cp -r web/build pwe-a/build
           cd pwe-a
+          
+      - name: Playwright Test
+        run: |
+          cd demos/playwright-electron/pwe-a-monorepo/
+          cd pwe-a
+          pwd
+          ls node_modules
           rm -fr node_modules
           pnpm install
+          ls -l node_modules
+          ls -l ../../node_modules
           npx playwright test --list example.spec.ts
           npx playwright test example.spec.ts
