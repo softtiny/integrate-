@@ -19,19 +19,16 @@ jobs:
           rm -fr pwe-a/build
           cp -r web/build pwe-a/build
           cd pwe-a
-          
+      - name: Install Xvfb and dependencies
+        run: sudo apt-get update && sudo apt-get install -y xvfb libxkbcommon-x11-0 libgtk-3-0 libgbm-dev
+
       - name: Playwright Test
         run: |
           cd demos/playwright-electron/pwe-a-monorepo/
           cd apps
           cd pwe-a
           pwd
-          ls node_modules
-          rm -fr node_modules
-          pnpm install --ignore-workspace
-          #https://github.com/electron/electron/issues/20731 The path.txt is missing.
-          node node_modules/electron/install.js
-          ls -l node_modules
-          ls -l ../../node_modules
-          npx playwright test --list example.spec.ts
-          npx playwright test example.spec.ts --reporter json
+          pnpm exec playwright test --list example.spec.ts
+          xvfb-run --auto-servernum pnpm exec playwright test example.spec.ts --reporter json
+        env:
+          DISPLAY: ':99' # Set DISPLAY for Xvfb

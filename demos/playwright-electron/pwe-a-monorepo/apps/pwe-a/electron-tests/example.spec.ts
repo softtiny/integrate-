@@ -6,7 +6,10 @@ test('Launch Electron App Headless', async () => {
   test.setTimeout(100000 * 1000);
   console.log('Current working directory:', cwd());
   // Launch Electron app.
-  const electronApp = await electron.launch({ args: ['./demo_a/electron_main.mjs'] });
+  const electronApp = await electron.launch({ 
+    args: ['./demo_a/electron_main.mjs'],
+    headless: true,
+  });
 
   // Evaluation expression in the Electron context.
   const appPath = await electronApp.evaluate(async ({ app }) => {
