@@ -1,9 +1,11 @@
 import { test } from '@playwright/test';
+import { cwd } from 'node:process';
 const { _electron: electron } = require('playwright');
 
 test('Launch Electron App Headless', async () => {
+  console.log('Current working directory:', cwd());
   // Launch Electron app.
-  const electronApp = await electron.launch({ args: ['demo_a/electron_main.js'] });
+  const electronApp = await electron.launch({ args: ['../demo_a/electron_main.mjs'] });
 
   // Evaluation expression in the Electron context.
   const appPath = await electronApp.evaluate(async ({ app }) => {
