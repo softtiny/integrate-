@@ -28,6 +28,7 @@ jobs:
           cd apps
           cd pwe-a
           pwd
+          rm -fr node_modules
           pnpm install --ignore-workspace
           pnpm exec playwright test --list example.spec.ts
           xvfb-run --auto-servernum pnpm exec playwright test example.spec.ts --reporter json
