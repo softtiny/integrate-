@@ -6,17 +6,22 @@ jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
-          version: latest
-      - name: boot
+            version: latest
+      - name: Turbo Create
         run: |
-          pnpm init
-          pnpm install electron
-          node node_modules/electron/install.js
-          sudo chown root:root node_modules/.pnpm/electron@36.4.0/node_modules/electron/dist/chrome-sandbox
-          sudo chmod 4755 node_modules/.pnpm/electron@36.4.0/node_modules/electron/dist/chrome-sandbox
+          cd demos/playwright-electron/pwe-a-monorepo/
+          pnpm install
+          pnpm run build
+          cd apps
+          rm -fr pwe-a/build
+          cp -r web/build pwe-a/build
+          cd pwe-a
+          chmod +x run.sh
       - name: Playwright Test
         uses: GabrielBB/xvfb-action@v1
         with: 
-          run: pnpm exec electron
+          run: sudo demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/run.sh
+
