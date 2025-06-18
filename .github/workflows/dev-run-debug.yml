@@ -14,6 +14,8 @@ jobs:
           pnpm init
           pnpm install electron
           node node_modules/electron/install.js
+          sudo chown root:root node_modules/.pnpm/electron@36.4.0/node_modules/electron/dist/chrome-sandbox
+          sudo chmod 4755 node_modules/.pnpm/electron@36.4.0/node_modules/electron/dist/chrome-sandbox
       - name: Playwright Test
         uses: GabrielBB/xvfb-action@v1
         with: 
