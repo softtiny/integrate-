@@ -1,6 +1,7 @@
+import { test } from '@playwright/test';
 const { _electron: electron } = require('playwright');
 
-(async () => {
+test('Launch Electron App Headless', async () => {
   // Launch Electron app.
   const electronApp = await electron.launch({ args: ['demo_a/electron_main.js'] });
 
@@ -24,4 +25,4 @@ const { _electron: electron } = require('playwright');
   await window.getByRole('button').click();
   // Exit app.
   await electronApp.close();
-})();
+});

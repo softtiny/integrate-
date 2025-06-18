@@ -19,5 +19,7 @@ jobs:
           rm -fr pwe-a/build
           cp -r web/build pwe-a/build
           cd pwe-a
-          npx playwright test --list ./electron-tests/example.spec.ts
-          npx playwright test ./electron-tests/example.spec.ts
+          rm -fr node_modules
+          pnpm install
+          npx playwright test --list example.spec.ts
+          npx playwright test example.spec.ts
