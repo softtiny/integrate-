@@ -3,6 +3,7 @@ import { cwd } from 'node:process';
 const { _electron: electron } = require('playwright');
 
 test('Launch Electron App Headless', async () => {
+  test.setTimeout(100000 * 1000);
   console.log('Current working directory:', cwd());
   // Launch Electron app.
   const electronApp = await electron.launch({ args: ['./demo_a/electron_main.mjs'] });
@@ -18,9 +19,12 @@ test('Launch Electron App Headless', async () => {
   // Get the first window that the app opens, wait if necessary.
   const window = await electronApp.firstWindow();
   // Print the title.
+  console.log("await window.title()")
   console.log(await window.title());
+  //await (new Promise((res,rej)=>{setTimeout(res,1000*3600*12)}));
+  console.log("Capture a screenshot.")
   // Capture a screenshot.
-  await window.screenshot({ path: 'intro.png' });
+  await window.screenshot({ path: 'test-results/intro.png' });
   // Direct Electron console to Node terminal.
   window.on('console', console.log);
   // Click button.

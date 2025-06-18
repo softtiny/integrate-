@@ -34,4 +34,4 @@ jobs:
           ls -l node_modules
           ls -l ../../node_modules
           npx playwright test --list example.spec.ts
-          npx playwright test example.spec.ts
+          npx playwright test example.spec.ts --reporter json
