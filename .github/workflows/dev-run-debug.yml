@@ -23,5 +23,5 @@ jobs:
       - name: Playwright Test
         uses: GabrielBB/xvfb-action@v1
         with: 
-          run: sudo demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/run.sh
+          run: demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/run.sh
 
