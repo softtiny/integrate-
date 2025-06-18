@@ -23,6 +23,7 @@ jobs:
       - name: Playwright Test
         run: |
           cd demos/playwright-electron/pwe-a-monorepo/
+          cd apps
           cd pwe-a
           pwd
           ls node_modules
