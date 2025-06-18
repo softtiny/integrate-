@@ -30,13 +30,16 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    headless: true, // Default to headless mode
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'electron',
+      use: { 
+        //...devices['Desktop Chrome'] 
+      },
     },
 
     {

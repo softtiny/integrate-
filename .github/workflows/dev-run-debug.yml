@@ -6,10 +6,18 @@ jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
             version: latest
       - name: Turbo Create
         run: |
-          pnpm dlx create-turbo@latest --skip-install --package-manager pnpm --example https://github.com/vercel/turborepo/tree/main/examples/with-svelte lols
-          tree --gitignore
+          cd demos/playwright-electron/pwe-a-monorepo/
+          pnpm install
+          pnpm run build
+          cd apps
+          rm -fr pwe-a/build
+          cp -r web/build pwe-a/build
+          cd pwe-a
+          npx playwright test --list ./electron-tests/example.spec.ts
+          npx playwright test ./electron-tests/example.spec.ts
