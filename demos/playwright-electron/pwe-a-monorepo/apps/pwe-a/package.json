@@ -12,6 +12,6 @@
     "@types/node": "^24.0.3"
   },
   "dependencies": {
-    "electron": "36.4.0"
+    "electron": "^36.4.0"
   }
 }

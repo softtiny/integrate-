@@ -8,8 +8,8 @@ pwd
 #pnpm install --ignore-workspace
 #https://github.com/electron/electron/issues/20731 The path.txt is missing.
 node node_modules/electron/install.js
-sudo chown root:root node_modules/.pnpm/electron@36.4.0/node_modules/electron/dist/chrome-sandbox
-sudo chmod 4755 node_modules/.pnpm/electron@36.4.0/node_modules/electron/dist/chrome-sandbox
+# sudo chown root:root node_modules/.pnpm/electron@36.4.0/node_modules/electron/dist/chrome-sandbox
+# sudo chmod 4755 node_modules/.pnpm/electron@36.4.0/node_modules/electron/dist/chrome-sandbox
 pnpm exec playwright test --list example.spec.ts
 pnpm exec electron
 pnpm exec playwright test example.spec.ts --reporter json
