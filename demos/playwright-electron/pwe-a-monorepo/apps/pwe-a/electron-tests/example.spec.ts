@@ -20,7 +20,7 @@ test('Launch Electron App Headless', async () => {
   const appPath = await electronApp.evaluate(async ({ app }) => {
     // This runs in the main Electron process, parameter here is always
     // the result of the require('electron') in the main app script.
-    return new Promise((resolve,reject)=>{});
+    //return new Promise((resolve,reject)=>{});
     return app.getAppPath();
   });
   console.log(appPath);
