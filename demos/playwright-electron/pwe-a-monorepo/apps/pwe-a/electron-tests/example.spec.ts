@@ -1,4 +1,5 @@
 import { test } from '@playwright/test';
+import { resolve } from 'node:path';
 import { cwd,env } from 'node:process';
 const { _electron: electron } = require('playwright');
 
@@ -7,7 +8,7 @@ test('Launch Electron App Headless', async () => {
   console.log('Current working directory:', cwd());
   console.log('Current working env:', env);
   console.log(electron)
-  return 
+  
   // Launch Electron app.
   const electronApp = await electron.launch({ 
     args: ['./demo_a/electron_main.mjs'],
@@ -21,6 +22,7 @@ test('Launch Electron App Headless', async () => {
   const appPath = await electronApp.evaluate(async ({ app }) => {
     // This runs in the main Electron process, parameter here is always
     // the result of the require('electron') in the main app script.
+    return new Promise((resolve,reject)=>{});
     return app.getAppPath();
   });
   console.log(appPath);
