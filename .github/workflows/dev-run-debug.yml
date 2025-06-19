@@ -17,7 +17,8 @@ jobs:
           rm -fr pwe-a/build
           cp -r web/build pwe-a/build
           cd pwe-a
-          pnpm exec playwright install --with-deps electron
+          pnpm add electron
+          node node_modules/electron/install.js
       - name: Install additional Electron dependencies
         run: |
           sudo apt-get update
