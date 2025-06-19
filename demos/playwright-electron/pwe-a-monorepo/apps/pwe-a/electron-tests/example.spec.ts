@@ -11,11 +11,9 @@ test('Launch Electron App Headless', async () => {
   
   // Launch Electron app.
   const electronApp = await electron.launch({ 
-    args: ['./demo_a/electron_main.mjs'],
+    args: ['./demo_a/electron_main.mjs', '--no-sandbox'],
     headless: true,
-    env: {
-      IS_TEST_ENV: true,
-    },
+    env: { ...process.env, ELECTRON_DISABLE_SANDBOX: '1' },
   });
 
   // Evaluation expression in the Electron context.

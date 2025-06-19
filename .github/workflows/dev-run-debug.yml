@@ -48,4 +48,5 @@ jobs:
           export DISPLAY=:99
           pnpm exec playwright test example.spec.ts
         env:
+          ELECTRON_DISABLE_SANDBOX: '1' # Ensure sandbox is disabled
           DEBUG: pw:api,pw:browser
