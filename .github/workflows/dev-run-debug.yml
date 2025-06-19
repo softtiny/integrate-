@@ -4,7 +4,7 @@ on:
 jobs:
   
   debug:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -23,10 +23,10 @@ jobs:
           sudo apt install -y imagemagick ### command "import" to take screenshot.
           #### playwright with electron eror about that  https://github.com/electron/electron/issues/47419#issuecomment-2955392579
           # ubuntu latest libgconf-2-4 gone.  response empty if apt search it
-          #sudo apt install libgconf-2-4 libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libgbm-dev libnss3-dev libxss-dev libasound2 -y
-          apt search libasound2
-          sudo apt install libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libgbm-dev libnss3-dev libxss-dev -y
-          sudo apt install libasound2t64 libasound2-data libasound2-dev libasound2-doc  libasound2-plugins -y
+          sudo apt install libgconf-2-4 libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libgbm-dev libnss3-dev libxss-dev libasound2 -y
+          
+         
+         
       - name: Playwright Test
         uses: GabrielBB/xvfb-action@v1
         with: 
