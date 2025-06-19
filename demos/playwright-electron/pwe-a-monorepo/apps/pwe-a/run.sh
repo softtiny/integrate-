@@ -21,5 +21,5 @@ pnpm exec playwright test --list example.spec.ts
 echo ".........................................................................."
 echo $DISPLAY
 echo ".........................................................................."
-pnpm exec electron "--inspect=0" "--remote-debugging-port=0" "./demo_a/electron_main.mjs" & ( sleep 10 && xwd -root -display :99 -silent -out screenshot.xwd && ls && exit)
+pnpm exec electron "--inspect=0" "--remote-debugging-port=0" "./demo_a/electron_main.mjs" & ( sleep 10 && import -window root screenshot.png && ls && exit)
 #pnpm exec playwright test example.spec.ts #--reporter json

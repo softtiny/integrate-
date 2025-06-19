@@ -29,5 +29,5 @@ jobs:
         with:
             # download auto zip
             name: debug
-            path: demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/screenshot.xwd
+            path: demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/screenshot.png
 
