@@ -16,4 +16,4 @@ sudo chmod 4755  node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/c
 
 pnpm exec playwright test --list example.spec.ts
 #pnpm exec electron
-pnpm exec playwright test example.spec.ts --reporter json
+pnpm exec playwright test example.spec.ts #--reporter json
