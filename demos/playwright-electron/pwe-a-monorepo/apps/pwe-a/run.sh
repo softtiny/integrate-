@@ -15,5 +15,8 @@ sudo chmod 4755  node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/c
 #node_modules/.bin/electron || (pwd && ls /home/runner/work/integrate-/integrate-/demos/playwright-electron/pwe-a-monorepo/node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox && sudo chown root:root node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox  )
 
 pnpm exec playwright test --list example.spec.ts
-pnpm exec electron "--inspect=0" "--remote-debugging-port=0" "./demo_a/electron_main.mjs" & ( sleep 10 &&  xvfb-run import -window root screenshot.png && ls && exit)
+echo ".........................................................................."
+echo $DISPLAY
+echo ".........................................................................."
+pnpm exec electron "--inspect=0" "--remote-debugging-port=0" "./demo_a/electron_main.mjs" & ( sleep 10 && xwd -root -display :0 -silent -out screenshot.xwd && ls && exit)
 #pnpm exec playwright test example.spec.ts #--reporter json
