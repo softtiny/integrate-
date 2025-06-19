@@ -24,4 +24,10 @@ jobs:
         uses: GabrielBB/xvfb-action@v1
         with: 
           run: demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/run.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+            # download auto zip
+            name: debug
+            path: demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/screenshot.png
 
