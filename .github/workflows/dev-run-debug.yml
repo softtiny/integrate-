@@ -1,8 +1,6 @@
 name: Debug demo view development
-on:
-  workflow_dispatch:
+on: [push]
 jobs:
-  
   debug:
     runs-on: ubuntu-latest
     steps:
@@ -19,22 +17,33 @@ jobs:
           rm -fr pwe-a/build
           cp -r web/build pwe-a/build
           cd pwe-a
-          chmod +x run.sh
-          sudo apt install -y imagemagick ### command "import" to take screenshot.
-          #### playwright with electron eror about that  https://github.com/electron/electron/issues/47419#issuecomment-2955392579
-          # ubuntu latest libgconf-2-4 gone.  response empty if apt search it
-          sudo apt install libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libgbm-dev libnss3-dev libxss-dev -y
-          
-         
-         
-      - name: Playwright Test
-        uses: GabrielBB/xvfb-action@v1
-        with: 
-          run: demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/run.sh
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-            # download auto zip
-            name: debug
-            path: demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/screenshot.png
-
+          pnpm exec playwright install --with-deps electron
+      - name: Install additional Electron dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-3-0 \
+            libnss3 \
+            libxss1 \
+            libasound2 \
+            libx11-xcb1 \
+            libxcomposite1 \
+            libxcursor1 \
+            libxdamage1 \
+            libxi6 \
+            libxtst6 \
+            libxrandr2 \
+            libgbm-dev \
+            xvfb # For headless GUI support
+          # Install libgconf-2-4 from Ubuntu 20.04 repository
+          sudo apt-get install -y software-properties-common
+          sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu focal main universe'
+          sudo apt-get update
+          sudo apt-get install -y libgconf-2-4
+      - name: Run tests with Electron
+        run: |
+          cd demos/playwright-electron/pwe-a-monorepo/apps/pwe-a
+          # Start xvfb for headless GUI
+          Xvfb :99 -screen 0 1280x720x24 &
+          export DISPLAY=:99
+          pnpm exec playwright test example.spec.ts
