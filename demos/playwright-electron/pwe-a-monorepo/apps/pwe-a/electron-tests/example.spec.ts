@@ -8,6 +8,7 @@ test('Launch Electron App Headless', async () => {
   // Launch Electron app.
   const electronApp = await electron.launch({ 
     args: ['./demo_a/electron_main.mjs'],
+    headless: true,
     env: {
       IS_TEST_ENV: true,
     },
@@ -29,11 +30,14 @@ test('Launch Electron App Headless', async () => {
   //await (new Promise((res,rej)=>{setTimeout(res,1000*3600*12)}));
   console.log("Capture a screenshot.")
   // Capture a screenshot.
-  await window.screenshot({ path: 'test-results/intro.png' });
+  await window.screenshot({ path: 'test-results/intro1.png' });
   // Direct Electron console to Node terminal.
   window.on('console', console.log);
   // Click button.
   await window.getByRole('button').click();
+  console.log("Capture a screenshot.")
+  // Capture a screenshot.
+  await window.screenshot({ path: 'test-results/intro2.png' });
   // Exit app.
   await electronApp.close();
 });

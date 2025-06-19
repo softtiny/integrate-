@@ -15,5 +15,5 @@ sudo chmod 4755  node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/c
 #node_modules/.bin/electron || (pwd && ls /home/runner/work/integrate-/integrate-/demos/playwright-electron/pwe-a-monorepo/node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox && sudo chown root:root node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox  )
 
 pnpm exec playwright test --list example.spec.ts
-pnpm exec electron
+#pnpm exec electron
 pnpm exec playwright test example.spec.ts --reporter json
