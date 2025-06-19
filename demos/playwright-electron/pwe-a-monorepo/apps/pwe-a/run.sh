@@ -9,6 +9,7 @@ pwd
 #https://github.com/electron/electron/issues/20731 The path.txt is missing.
 node node_modules/electron/install.js
 ls -l node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox
+echo "llll................."
 #node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox
 #node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox
 sudo chown root:root node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox
