@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "where":"where electron"
+    "where":"which electron"
   },
   "keywords": [],
   "author": "",
