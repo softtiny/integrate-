@@ -14,6 +14,5 @@ node node_modules/electron/install.js
 #node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox
 sudo chown root:root ../../node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox
 sudo chmod 4755  ../../node_modules/.pnpm/electron@36.5.0/node_modules/electron/dist/chrome-sandbox
-node_modules/.bin/electron
 pnpm exec playwright test --list example.spec.ts
 pnpm exec playwright test example.spec.ts --reporter json
