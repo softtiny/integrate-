@@ -5,8 +5,6 @@ const { _electron: electron } = require('playwright');
 
 test('Launch Electron App Headless', async () => {
   test.setTimeout(100000 * 1000);
-  console.log(electron)
-  
   // Launch Electron app.
   const electronApp = await electron.launch({ 
     args: ['./demo_a/electron_main.mjs', '--no-sandbox'],
