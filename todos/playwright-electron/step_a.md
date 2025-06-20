@@ -19,4 +19,6 @@ flowchart LR
 ```shell
 pnpm init
 pnpm install electron
+# when Electron failed to install correctly, please delete node_modules/electron and try installing again
+node node_modules/electron/install.js
 ```

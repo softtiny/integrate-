@@ -5,8 +5,6 @@ const { _electron: electron } = require('playwright');
 
 test('Launch Electron App Headless', async () => {
   test.setTimeout(100000 * 1000);
-  console.log('Current working directory:', cwd());
-  console.log('Current working env:', env);
   console.log(electron)
   
   // Launch Electron app.

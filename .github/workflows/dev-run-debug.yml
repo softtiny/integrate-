@@ -1,5 +1,6 @@
 name: Debug demo view development
-on: [push]
+on:
+  workflow_dispatch:
 jobs:
   debug:
     runs-on: ubuntu-latest
