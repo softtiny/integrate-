@@ -58,5 +58,5 @@ jobs:
             name: dist
             path: |
               demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/playwright-report
-              demos/playwright-electron/pwe-a-monorepo/apps/test-results/intro1.png
-              demos/playwright-electron/pwe-a-monorepo/apps/test-results/intro2.png
+              demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/test-results/intro1.png
+              demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/test-results/intro2.png
