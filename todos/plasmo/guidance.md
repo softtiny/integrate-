@@ -29,5 +29,10 @@ ext-dir
 ...
 ```
 
+### dev firefox
+```
+plasmo dev --target=firefox-mv2
+```
+
 ### firefox
 In Firefox: Open the about:debugging#/runtime/this-firefox page. button "Load Temporary Add-on"
