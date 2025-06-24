@@ -28,3 +28,6 @@ ext-dir
 |   └───site-three.ts
 ...
 ```
+
+### firefox
+In Firefox: Open the about:debugging#/runtime/this-firefox page. button "Load Temporary Add-on"
