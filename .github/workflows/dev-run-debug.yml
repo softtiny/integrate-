@@ -6,57 +6,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-            version: latest
-      - name: Turbo Create
+      - name: Call Reusable Setup
+        uses: ./.github/utils/pnpm-setup.yml
+      - name: Install and set
         run: |
-          cd demos/playwright-electron/pwe-a-monorepo/
+          cd demos/Plasmo/plasmo-a
           pnpm install
-          pnpm run build
-          cd apps
-          rm -fr pwe-a/build
-          cp -r web/build pwe-a/build
-          cd pwe-a
-          pnpm add electron
-          node node_modules/electron/install.js
-      - name: Install additional Electron dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libgtk-3-0 \
-            libnss3 \
-            libxss1 \
-            libx11-xcb1 \
-            libxcomposite1 \
-            libxcursor1 \
-            libxdamage1 \
-            libxi6 \
-            libxtst6 \
-            libxrandr2 \
-            libgbm-dev \
-            xvfb # For headless GUI support
-          # Install libgconf-2-4 from Ubuntu 20.04 repository
-          sudo apt-get install -y software-properties-common
-          sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu focal main universe'
-          sudo apt-get update
-          sudo apt-get install -y libgconf-2-4 libasound2
-      - name: Run tests with Electron
-        run: |
-          cd demos/playwright-electron/pwe-a-monorepo/apps/pwe-a
-          # Start xvfb for headless GUI
-          Xvfb :99 -screen 0 1280x720x24 &
-          export DISPLAY=:99
-          pnpm exec playwright test example.spec.ts
-        env:
-          ELECTRON_DISABLE_SANDBOX: '1' # Ensure sandbox is disabled
-          DEBUG: pw:api,pw:browser
+          pnpm exec plasmo build --target=firefox-mv2
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
             # download auto zip
-            name: dist
-            path: |
-              demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/playwright-report
-              demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/test-results/intro1.png
-              demos/playwright-electron/pwe-a-monorepo/apps/pwe-a/test-results/intro2.png
+            name: firefox-ext
+            path: demos/Plasmo/plasmo-a/build/firefox-mv2-prod
+          
