@@ -7,8 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Call Reusable Setup
-        uses: ./.github/utils/pnpm-setup.yml
-      - name: Install and set
+        uses: ./.github/utils/pnpm-setup
+      - name: Install build plasmo firefox
         run: |
           cd demos/Plasmo/plasmo-a
           pnpm install
