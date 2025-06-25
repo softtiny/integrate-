@@ -1,9 +1,10 @@
 name: Setup Environment
-on:
-  workflow_call:
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      #- uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+description: 'pnpm'
+
+
+
+runs:
+  using: "composite"
+  steps:
+    #- uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
