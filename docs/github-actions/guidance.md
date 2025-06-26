@@ -59,3 +59,63 @@ jobs:
     steps:
       - run: npm run build
 ```
+
+```mermaid
+---
+title: Job step A Then Job Step b
+---
+flowchart LR
+    id0[JObs]
+    ida[Job Setup]
+    idb[Job Build]
+    idc[use: workflows/xx.yml]
+    idc --> ida
+    ida -- Job Build needs: Job Setup --> idb
+    id0 --> ida
+    id0 --> idb
+```
+
+## Include steps
+
+
+```yaml 
+# ../abcd/action.yml
+name: Setup Environment
+description: 'pnpm'
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
+      with:
+        version: latest
+```
+
+```yaml
+#.github/workflows/xx.yml
+name: Debug demo view development
+on:
+  workflow_dispatch:
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Call Reusable Setup
+        uses: ./.github/abcd
+```
+
+
+```mermaid
+---
+title: Job xx Include reuseable steps 
+---
+flowchart LR
+  id0[jobs]
+  id1[Builds]
+  id2[steps]
+  id3[Call Reusable Setup]
+  id4[abc/action.yml]
+  id0 --> id1 --> id2 --> id3
+  id4 -- use:'..x/abc' --> id3
+```
