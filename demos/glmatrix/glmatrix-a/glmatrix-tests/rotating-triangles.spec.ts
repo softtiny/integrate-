@@ -1,7 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect,chromium  } from '@playwright/test';
 
 
-test('Launch Dev Headless', async ({ page }) => {
+test('Launch Dev Headless', async ( ) => {
+    const browser = await chromium.launch();
+    const context = await browser.newContext();
+    const page = await context.newPage();
     await page.goto('http://localhost:9000');
     await expect(page).toHaveTitle(/Farm/);
     let i = 0;
@@ -12,5 +15,6 @@ test('Launch Dev Headless', async ({ page }) => {
         page.mainFrame().waitForFunction('window.innerWidth > 100');
         i++;
     }
-    await page.close();
+    await context.close();
+    await browser.close();
 });
