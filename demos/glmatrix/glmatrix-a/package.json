@@ -1,0 +1,21 @@
+{
+  "name": "glmatrix-a",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "farm",
+    "start": "farm",
+    "build": "farm build",
+    "preview": "farm preview",
+    "clean": "farm clean"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.0",
+    "@farmfe/cli": "^1.0.4",
+    "@farmfe/core": "^1.6.7",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "gl-matrix": "^3.4.3"
+  }
+}

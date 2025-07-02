@@ -10,13 +10,13 @@ jobs:
         uses: ./.github/utils/pnpm-setup
       - name: Install build plasmo firefox
         run: |
-          cd demos/Plasmo/plasmo-a
+          cd demos/glmatrix/glmatrix-a
           pnpm install
-          pnpm exec plasmo build --target=firefox-mv2
+          pnpm run dev & ( pnpm exec playwright test rotating-triangles.spec.ts  && pkill node )
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
             # download auto zip
-            name: firefox-ext
-            path: demos/Plasmo/plasmo-a/build/firefox-mv2-prod
+            name: rotating-triangles
+            path: demos/glmatrix/glmatrix-a/screenshot-*.png
           

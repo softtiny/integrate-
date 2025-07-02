@@ -1,0 +1,16 @@
+import { test, expect } from '@playwright/test';
+
+
+test('Launch Dev Headless', async ({ page }) => {
+    await page.goto('http://localhost:9000');
+    await expect(page).toHaveTitle(/Farm/);
+    let i = 0;
+    while (i<100) {
+        await page.screenshot({ path: `screenshot-${i}.png`, fullPage: true });
+        page.mainFrame().waitForFunction('window.innerWidth > 100');
+        page.mainFrame().waitForFunction('window.innerWidth > 100');
+        page.mainFrame().waitForFunction('window.innerWidth > 100');
+        i++;
+    }
+    await page.close();
+});
