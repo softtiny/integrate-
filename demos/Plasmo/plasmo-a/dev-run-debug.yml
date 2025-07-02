@@ -1,0 +1,22 @@
+name: Debug demo view development
+on:
+  workflow_dispatch:
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Call Reusable Setup
+        uses: ./.github/utils/pnpm-setup
+      - name: Install build plasmo firefox
+        run: |
+          cd demos/Plasmo/plasmo-a
+          pnpm install
+          pnpm exec plasmo build --target=firefox-mv2
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+            # download auto zip
+            name: firefox-ext
+            path: demos/Plasmo/plasmo-a/build/firefox-mv2-prod
+          
