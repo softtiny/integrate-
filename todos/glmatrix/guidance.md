@@ -22,6 +22,11 @@ flowchart LR
     canvas[canvas]
     gl["getContext('webgl')"]
     program[program]
+    vertexShaderSource["`aPosition
+    uModelMatrix
+    uViewMatrix
+    uProjectionMatrix
+    `"]
     VERTEX_SHADER["`shader=gl.createShader(VERTEX_SHADER)
     gl.shaderSource(shader, vertexShaderSource);
     gl.compileShader(shader)
@@ -39,6 +44,9 @@ flowchart LR
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer)
     gl.bufferData(gl.ARRAY_BUFFER, vertices:Float32Array, gl.STATIC_DRAW)
     `"]
+    positionLocation["`positionLocation = gl.getAttribLocation(program, 'aPosition')
+    `"]
+    mat4[4x4 Matrix]
     program_opt["`gl.attachShader(program, vertex_shader)
     gl.attachShader(program, fragment_shader)
     gl.linkProgram(program)
@@ -51,12 +59,28 @@ flowchart LR
     gl -- attachShader --> program
     gl -- attachShader --> VERTEX_SHADER
     gl -- attachShader --> FRAGMENT_SHADER
-    program -- attachShader --> VERTEX_SHADER
+    program -- attachShader --> VERTEX_SHADER --> vertexShaderSource
     program -- attachShader --> FRAGMENT_SHADER
     program --> program_opt
-    gl -- bindBuffer --> vertexBuffer
-    gl -- bufferData --> vertices
+    gl --> bindBuffer --> vertexBuffer
+    gl --> bufferData --> vertices
+    gl --> enableVertexAttribArray --> positionLocation
+    gl --> vertexAttribPointer --> positionLocation
+    positionLocation -- aPosition --> vertexShaderSource
+    mat4 --> modelMatrix
+    mat4 --> viewMatrix
+    mat4 --> projectionMatrix
+    gl -- getUniformLocation --> modelLocation
+    program -- getUniformLocation --> modelLocation
+    vertexShaderSource -- uModelMatrix --> modelLocation
 
+    gl -- getUniformLocation --> viewLocation
+    program -- getUniformLocation --> viewLocation
+    vertexShaderSource -- uViewMatrix --> viewLocation
+
+    gl -- getUniformLocation --> projLocation
+    program -- getUniformLocation --> projLocation
+    vertexShaderSource -- uProjectionMatrix --> projLocation
 
     gl_mothods["`gl.createShader(type:gl.VERTEX_SHADER|gl.FRAGMENT_SHADER)
     gl.shaderSource
@@ -79,4 +103,16 @@ flowchart LR
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     `"]
     gl --> gl_mothods
+    projectionMatrix -- uniformMatrix4fv --> gl_mothods
+    projLocation -- uniformMatrix4fv --> gl_mothods
+    viewMatrix -- uniformMatrix4fv --> gl_mothods
+    viewLocation -- uniformMatrix4fv --> gl_mothods
+    modelMatrix -- uniformMatrix4fv --> gl_mothods
+    modelLocation -- uniformMatrix4fv --> gl_mothods
+
+    mat4_mothods["`mat4.lookAt
+    mat4.perspective
+    `"]
+    mat4_mothods -- lookAt --> viewMatrix
+    mat4_mothods -- perspective --> projectionMatrix
 ```
