@@ -1,0 +1,22 @@
+name: Debug demo view development
+on:
+  workflow_dispatch:
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Call Reusable Setup
+        uses: ./.github/utils/pnpm-setup
+      - name: Install build glmatrix
+        run: |
+          cd demos/glmatrix/glmatrix-a
+          pnpm install
+          pnpm run dev & ( pnpm exec playwright test rotating-triangles.spec.ts  && pkill node )
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+            # download auto zip
+            name: rotating-triangles
+            path: demos/glmatrix/glmatrix-a/screenshot-*.png
+          
