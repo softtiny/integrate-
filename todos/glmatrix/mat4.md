@@ -17,6 +17,8 @@ classDiagram
 #### 4x4 Matrix
 
 
+
+
 ## Adjugate matrix
 todo
 - [ ] Minor 
@@ -53,3 +55,7 @@ d & -b \\
 
 ## Determinant
 todo
+
+## The Frobenius norm, sometimes also called the Euclidean norm 
+- Matrix Norm
+  - norms
