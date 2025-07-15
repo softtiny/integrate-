@@ -71,6 +71,10 @@ var positions = [
   0, 0,
   0, 0.5,
   0.7, 0,
+    // again count = 6
+    0.8, 0,
+    0,0.6,
+    0.8,0.6
 ];
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 var vao = gl.createVertexArray();
@@ -96,3 +100,7 @@ var primitiveType = gl.TRIANGLES;
 var offset = 0;
 var count = 3;
 gl.drawArrays(primitiveType, offset, count);
+setTimeout(function(){
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.drawArrays(primitiveType, offset, 6);
+},1500)
