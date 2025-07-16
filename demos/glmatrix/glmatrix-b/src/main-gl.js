@@ -25,15 +25,17 @@ var fragmentShaderSource = `#version 300 es
 // we need to declare an output for the fragment shader
 //out vec4 outColor;
 
-precision mediump float;
+//precision mediump float;
+precision highp float;
 
 uniform vec4 u_color;
+out vec4 outColor;
   
 void main() {
   // Just set the output to a constant reddish-purple
   //outColor = vec4(1, 0, 0.5, 1);
 
-  gl_FragColor = u_color;
+  outColor = u_color;
 }
 `;
 
@@ -112,20 +114,47 @@ gl.drawArrays(primitiveType, offset, count);
 //   gl.clear(gl.COLOR_BUFFER_BIT);
 //   gl.drawArrays(primitiveType, offset, 6);
 // },1500)
-let step = 0;
-function going(){
-  step+=1;
-  if(step%4==0){
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-      Math.random()*2-1 , Math.random()*2-1 ,
-      Math.random()*2-1 , Math.random()*2-1 ,
-      Math.random()*2-1 , Math.random()*2-1 ,
-    ]), gl.STATIC_DRAW);
-    gl.uniform4f(colorUniformLocation, Math.random(), Math.random(), Math.random(), 1);
-    gl.drawArrays(primitiveType, offset, count);
+
+if(new URLSearchParams(location.search).get('main')=='2'){
+  let step = 0;
+  function going(){
+    step+=1;
+    if(step%4==0){
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        Math.random()*2-1 , Math.random()*2-1 ,
+        Math.random()*2-1 , Math.random()*2-1 ,
+        Math.random()*2-1 , Math.random()*2-1 ,
+      ]), gl.STATIC_DRAW);
+      gl.uniform4f(colorUniformLocation, Math.random(), Math.random(), Math.random(), 1);
+      gl.drawArrays(primitiveType, offset, count);
+    }
+    if(step<200){
+      requestAnimationFrame(going);
+  
+    }
   }
-  if(step<200){
-    requestAnimationFrame(going);
+  requestAnimationFrame(going)
+  
+
+}else{
+  let step = 0;
+  function going(){
+    step+=1;
+    if(step%4==0){
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        Math.random()*2-1 , Math.random()*2-1 ,
+        Math.random()*2-1 , Math.random()*2-1 ,
+        Math.random()*2-1 , Math.random()*2-1 ,
+      ]), gl.STATIC_DRAW);
+      gl.uniform4f(colorUniformLocation, Math.random(), Math.random(), Math.random(), 1);
+      gl.drawArrays(primitiveType, offset, count);
+    }
+    if(step<200){
+      //requestAnimationFrame(going);
+      going();
+    }
   }
+  //requestAnimationFrame(going)
+  going()
+
 }
-requestAnimationFrame(going)
