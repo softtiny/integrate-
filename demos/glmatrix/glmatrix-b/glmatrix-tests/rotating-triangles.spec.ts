@@ -4,7 +4,7 @@ import { test, expect,chromium  } from '@playwright/test';
 test('Launch Dev Headless', async ( ) => {
     const browser = await chromium.launch();
     const context = await browser.newContext();
-    const page = await context.newPage();
+    let page = await context.newPage();
     await page.goto('http://localhost:9000');
     await expect(page).toHaveTitle(/Farm/);
     let i = 0;
@@ -15,6 +15,7 @@ test('Launch Dev Headless', async ( ) => {
         page.mainFrame().waitForFunction('window.innerWidth > 100');
         i++;
     }
+    page = await context.newPage();
     await page.goto("http://localhost:9000?main=2");
     await expect(page).toHaveTitle(/Farm/);
     i = 0;
