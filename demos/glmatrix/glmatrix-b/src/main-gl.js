@@ -20,14 +20,20 @@ var fragmentShaderSource = `#version 300 es
   
 // fragment shaders don't have a default precision so we need
 // to pick one. highp is a good default. It means "high precision"
-precision highp float;
+//precision highp float;
   
 // we need to declare an output for the fragment shader
-out vec4 outColor;
+//out vec4 outColor;
+
+precision mediump float;
+
+uniform vec4 u_color;
   
 void main() {
   // Just set the output to a constant reddish-purple
-  outColor = vec4(1, 0, 0.5, 1);
+  //outColor = vec4(1, 0, 0.5, 1);
+
+  gl_FragColor = u_color;
 }
 `;
 
@@ -64,6 +70,7 @@ function createProgram(gl, vertexShader, fragmentShader) {
 var program = createProgram(gl, vertexShader, fragmentShader);
 var positionAttributeLocation = gl.getAttribLocation(program, "a_position");
 var positionBuffer = gl.createBuffer();
+var colorUniformLocation = gl.getUniformLocation(program, "u_color");
 gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
 // three 2d points
@@ -99,8 +106,26 @@ gl.bindVertexArray(vao);
 var primitiveType = gl.TRIANGLES;
 var offset = 0;
 var count = 3;
+gl.uniform4f(colorUniformLocation, Math.random(), Math.random(), Math.random(), 1);
 gl.drawArrays(primitiveType, offset, count);
-setTimeout(function(){
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.drawArrays(primitiveType, offset, 6);
-},1500)
+// setTimeout(function(){
+//   gl.clear(gl.COLOR_BUFFER_BIT);
+//   gl.drawArrays(primitiveType, offset, 6);
+// },1500)
+let step = 0;
+function going(){
+  step+=1;
+  if(step%4==0){
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      Math.random()*2-1 , Math.random()*2-1 ,
+      Math.random()*2-1 , Math.random()*2-1 ,
+      Math.random()*2-1 , Math.random()*2-1 ,
+    ]), gl.STATIC_DRAW);
+    gl.uniform4f(colorUniformLocation, Math.random(), Math.random(), Math.random(), 1);
+    gl.drawArrays(primitiveType, offset, count);
+  }
+  if(step<200){
+    requestAnimationFrame(going);
+  }
+}
+requestAnimationFrame(going)
