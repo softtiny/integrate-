@@ -18,5 +18,7 @@ jobs:
         with:
             # download auto zip
             name: rotating-triangles
-            path: demos/glmatrix/glmatrix-b/screenshot-*.png
+            path: |
+              demos/glmatrix/glmatrix-b/screenshot-*.png
+              demos/glmatrix/glmatrix-b/screenshot2-*.png
           
