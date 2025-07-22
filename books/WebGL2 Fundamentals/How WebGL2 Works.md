@@ -28,6 +28,9 @@ stateDiagram-v2
     Vertex_Shader --> coordinates :gl_Position 
     state Fragment_Fhader {
          subsequent_interpolation
+         clip_space 
+
+
     }
     Vertex_Shader --> Fragment_Fhader :varying variables
 
