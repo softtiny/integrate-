@@ -37,3 +37,36 @@ stateDiagram-v2
  
 
 ```
+
+
+```mermaid
+stateDiagram-v2
+    [*] --> GPU
+    GPU --> vertex_shader : based
+    vertex_shader -->  clip_space_vertices : generated 
+    clip_space_vertices --> pixels
+    pixels --> triangle : belong to
+    triangle --> pixel : each
+    fragment_shader --> pixel : invoked 
+    pixel --> outColor :  output variable
+    clip_space_vertices --> Varying_Variables
+    Varying_Variables --> colors_or_texture_coordinates : interpolated 
+
+
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> draw : call
+    draw --> drawArrays 
+    draw --> drawElements
+    drawArrays --> GPU
+    drawElements --> GPU
+    render --> vertices : from triangles
+
+    GPU --> render
+    GPU --> vertices : group
+    render --> triangle
+    vertices --> triangle: group
+    triangle --> pixels : fragment_shader
+```
