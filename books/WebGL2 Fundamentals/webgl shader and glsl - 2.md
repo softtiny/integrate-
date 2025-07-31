@@ -131,7 +131,36 @@ How Varyings Work
 ---
 flowchart BT
     A@{ label: "Vertex Shader Execution" }
-    B@{ label: "Rasterization and Interpolation" }
+    B@{ label: "Rasterization and  GPU Interpolation" }
     C@{ label: "Fragment Shader Execution" }
     A --> B --> C
+```
+
+```glsl
+#version 300 es
+//Vertex Shader:
+in vec4 a_position;
+uniform vec4 u_offset;
+
+out vec4 v_positionWithOffset;
+
+void main() {
+  gl_Position = a_position + u_offset;
+  v_positionWithOffset = a_position + u_offset;
+}
+```
+```glsl
+#version 300 es
+//Fragment Shader:
+precision highp float;
+
+in vec4 v_positionWithOffset;
+
+out vec4 outColor;
+
+void main() {
+  // Convert from clip space (-1 to +1) to color space (0 to 1)
+  vec4 color = v_positionWithOffset * 0.5 + 0.5;
+  outColor = color;
+}
 ```
