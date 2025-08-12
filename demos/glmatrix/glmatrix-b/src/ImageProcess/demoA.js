@@ -28,8 +28,8 @@ void main() {
         gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([
             x1,y1,
             x2,y1,
-            y2,x1,
-            y2,x1,
+            x1,y2,
+            x1,y2,
             x2,y1,
             x2,y2,
         ]),gl.STATIC_DRAW)
@@ -81,12 +81,12 @@ void main() {
         const texCoordBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER,texCoordBuffer);
         gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([
-            0,0,1.0,
-            1,0,0.0,
-            0.0,1.0,
-            0,0,1.0,
+            0.0,0.0,
             1.0,0.0,
-            1,0,1,0
+            0.0,1.0,
+            0.0,1.0,
+            1.0,0.0,
+            1.0,1.0
         ]),gl.STATIC_DRAW);
         gl.enableVertexAttribArray(texCoordAttributeLocation)
         gl.vertexAttribPointer(texCoordAttributeLocation,size,type,normalize,stride,offset);
@@ -111,7 +111,7 @@ void main() {
 
         gl.canvas.width = canvas.offsetWidth
         gl.canvas.height = canvas.offsetHeight
-        gl.viewPort(0,0,gl.canvas.width,gl.canvas.height)
+        gl.viewport(0,0,gl.canvas.width,gl.canvas.height)
         gl.clearColor(0,0,0,0);
         gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
         gl.useProgram(program)
