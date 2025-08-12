@@ -23,6 +23,8 @@ gl.texParameteri()
 gl.texParameteri()
 gl.texParameteri()
 gl.texParameteri()
+gl.texImage2D(...)
+gl.uniform1i()
 ```
 
 ```mermaid
