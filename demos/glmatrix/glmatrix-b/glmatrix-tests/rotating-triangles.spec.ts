@@ -16,7 +16,7 @@ test('Launch Dev Headless', async ( ) => {
         i++;
     }
     page = await context.newPage();
-    await page.goto("http://localhost:9000?main=2");
+    await page.goto("http://localhost:9000?main=img_process_a");
     await expect(page).toHaveTitle(/Farm/);
     i = 0;
     while (i<100) {
