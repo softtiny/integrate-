@@ -127,7 +127,7 @@ void main() {
     }   
     function main() {
         const img = new Image();
-        img.src = "https://webgl2fundamentals.org/webgl/resources/leaves.jpg";  // MUST BE SAME DOMAIN!!!
+        img.src = "/leaves.jpg";  // MUST BE SAME DOMAIN!!!
         img.onload = function(){ 
             render(img);
         }
