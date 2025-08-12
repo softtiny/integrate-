@@ -13,7 +13,7 @@ void main() {
     v_texCoord = a_texCoord;
 }
 `
-    const framentShaderSource=`#version 300 es
+    const fragmentShaderSource=`#version 300 es
 precision highp float;
 uniform sampler2D u_image;
 in vec2 v_texCoord;
@@ -47,8 +47,8 @@ void main() {
     }
     function createProgram(gl,vertexShader,fragmentShader){
         const program = gl.createProgram()
-        gl.attachShader(program,shader)
-        gl.attachShader(program,shader)
+        gl.attachShader(program,vertexShader)
+        gl.attachShader(program,fragmentShader)
         gl.linkProgram(program)
         const success = gl.getProgramParameter(program,gl.LINK_STATUS)
         if (success) {
@@ -127,7 +127,7 @@ void main() {
     }   
     function main() {
         const img = new Image();
-        img.src = "https://webgl2.kunkka.proxy/webgl/resources/leaves.jpg";  // MUST BE SAME DOMAIN!!!
+        img.src = "https://webgl2fundamentals.org/webgl/resources/leaves.jpg";  // MUST BE SAME DOMAIN!!!
         img.onload = function(){ 
             render(img);
         }
