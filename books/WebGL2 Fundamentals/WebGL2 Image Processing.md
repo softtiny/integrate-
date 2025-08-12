@@ -15,6 +15,16 @@ flowchart
     vertices -- mapped to  --> part
 ```
 
+```js
+gl.createTexture()
+gl.activeTexture()
+gl.bindTexture()
+gl.texParameteri()
+gl.texParameteri()
+gl.texParameteri()
+gl.texParameteri()
+```
+
 ```mermaid
 ---
 title: Vertex and Fragment Shaders
