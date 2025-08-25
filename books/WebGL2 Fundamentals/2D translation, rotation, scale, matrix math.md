@@ -34,3 +34,12 @@
       vertex_shader --> uniform
       uniform --> position
   ```
+
+
+  # WebGL2 2D Rotation
+
+  ```math
+  |x_1,y_1|\\
+  |tx_1,ty_1|\\
+  |x_1*ty_1 + y_1*tx_1,y_1*ty_1-x_1*tx_1|
+  ```
