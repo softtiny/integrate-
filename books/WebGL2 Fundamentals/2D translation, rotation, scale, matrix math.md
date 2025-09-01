@@ -43,3 +43,9 @@
   |tx_1,ty_1|\\
   |x_1*ty_1 + y_1*tx_1,y_1*ty_1-x_1*tx_1|
   ```
+
+# Dot Product of a Matrix
+
+```math
+[a,b][x,y] = [ax+by]
+```
