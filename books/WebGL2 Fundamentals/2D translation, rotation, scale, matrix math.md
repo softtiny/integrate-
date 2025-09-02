@@ -50,3 +50,6 @@
 [a,b][x,y] = [ax+by]
 ```
 # Vector product or cross product of two vectors 
+```math
+A*B = ab* sinθ
+```
