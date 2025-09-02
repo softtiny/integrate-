@@ -49,3 +49,4 @@
 ```math
 [a,b][x,y] = [ax+by]
 ```
+# Vector product or cross product of two vectors 
