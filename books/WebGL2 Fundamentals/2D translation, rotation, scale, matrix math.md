@@ -38,6 +38,13 @@
 
   # WebGL2 2D Rotation
 
+  ## Notes
+  - Vector Angle Formula
+  ```math
+  cos⁡θ = \frac{\overrightarrow{OA}⋅\overrightarrow{OB}}{|\overrightarrow{OA}⋅|⋅|\overrightarrow{OB}|}
+  ```
+
+  ## A(x1,y1) get target (tx1,ty1)
   ```math
   |x_1,y_1|\\
   |tx_1,ty_1|\\
