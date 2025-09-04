@@ -43,6 +43,7 @@
   ```math
   cos⁡θ = \frac{\overrightarrow{OA}⋅\overrightarrow{OB}}{|\overrightarrow{OA}⋅|⋅|\overrightarrow{OB}|}
   ```
+  ![ alt text](./circle.png).
 
   ## A(x1,y1) get target (tx1,ty1)
   ```math
