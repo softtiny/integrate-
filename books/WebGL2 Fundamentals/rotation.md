@@ -115,3 +115,14 @@ Given point \( A(x_1, y_1) \) (satisfying \( x_1^2 + y_1^2 = 25 \)), the coordin
 \left( \frac{\sqrt{3} x_1 - y_1}{2}, \frac{\sqrt{3} y_1 + x_1}{2} \right) \quad \text{or} \quad \left( \frac{\sqrt{3} x_1 + y_1}{2}, \frac{\sqrt{3} y_1 - x_1}{2} \right)
 }
 \]
+
+\[
+   ∣a,b∣⋅∣x,y∣=ax+by
+\]
+
+\[
+   a^2 + b^2 = x^2+y^2 \\
+   \cos \theta = \frac{\overrightarrow{OA} \cdot \overrightarrow{OB}}{|\overrightarrow{OA}| |\overrightarrow{OB}|} \\
+   \cos \theta = \frac{\overrightarrow{OA} \cdot \overrightarrow{OB}}{a^2+b^2}\\
+    \cos \theta = \frac{ax+by}{a^2+b^2}
+\]
