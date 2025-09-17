@@ -22,3 +22,11 @@ flowchart TB
 
 1.1 Matrices
 represent the number of direct flights between each pair of countries
+
+| ****            | **Australia** | **New Zealand** | **Philippines** | **Singapore** | **UK** |
+|-----------------|---------------|-----------------|-----------------|---------------|--------|
+| **Australia**   | 0             | 1               | 0               | 4             | 0      |
+| **New Zealand** | 1             | 0               | 0               | 2             | 0      |
+| **Philippines** | 0             | 0               | 0               | 1             | 0      |
+| **Singapore**   | 4             | 2               | 1               | 0             | 2      |
+| **UK**          | 0             | 0               | 0               | 2             | 0      |
