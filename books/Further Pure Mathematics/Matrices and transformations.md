@@ -30,3 +30,13 @@ represent the number of direct flights between each pair of countries
 | **Philippines** | 0             | 0               | 0               | 1             | 0      |
 | **Singapore**   | 4             | 2               | 1               | 0             | 2      |
 | **UK**          | 0             | 0               | 0               | 2             | 0      |
+
+matrix  is usually written inside curved brackets.
+
+$\begin{bmatrix}
+0 & 1 & 0 & 4 & 0\\
+1 & 0 & 0 & 2 & 0\\
+0 & 0 & 0 & 1 & 0\\
+4 & 2 & 1 & 0 & 2\\
+0 & 0 & 0 & 2 & 0\\
+\end{bmatrix}$
