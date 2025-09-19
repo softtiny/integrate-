@@ -40,3 +40,14 @@ $\begin{bmatrix}
 4 & 2 & 1 & 0 & 2\\
 0 & 0 & 0 & 2 & 0\\
 \end{bmatrix}$
+
+---
+
+- Special matrices
+    - square matrices
+        1.  have the same number ofrows as columns 
+    - **identity matrix** or **unit matrix**
+        - $\begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}$
+        - $\begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
+    - **zero matrix**
+        - $\begin{bmatrix}0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$
