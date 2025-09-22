@@ -77,3 +77,11 @@ $\begin{bmatrix}
 -5 & 0 \\
 5 & -1 \\
 \end{bmatrix}$
+
+$2\begin{bmatrix}
+3 & -4 \\
+0 & 6 \\
+\end{bmatrix} = \begin{bmatrix}
+6 & -8 \\
+0 & 12 \\
+\end{bmatrix}$
