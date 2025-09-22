@@ -51,3 +51,29 @@ $\begin{bmatrix}
         - $\begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
     - **zero matrix**
         - $\begin{bmatrix}0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$
+
+---
+
+Matrices can be added or subtracted if they are of the same order.
+
+$\begin{bmatrix}
+2 & 4 & 0 \\
+-1 & 3 & 5 \\
+\end{bmatrix} + \begin{bmatrix}
+1 & -1 & 4 \\
+2 & 0 & -5 \\
+\end{bmatrix} = \begin{bmatrix}
+3 & 3 & 4 \\
+1 & 3 & 0 \\
+\end{bmatrix}$
+
+$\begin{bmatrix}
+2 & -3 \\
+4 & 1  \\
+\end{bmatrix} - \begin{bmatrix}
+7 & -3 \\
+-1 & 2 \\
+\end{bmatrix} = \begin{bmatrix}
+-5 & 0 \\
+5 & -1 \\
+\end{bmatrix}$
