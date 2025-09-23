@@ -85,3 +85,36 @@ $2\begin{bmatrix}
 6 & -8 \\
 0 & 12 \\
 \end{bmatrix}$
+
+---
+
+i. $ \mathbf{2  \times 3 } $  is the order of matrix $\begin{bmatrix}
+2 & 4 \\
+6 & 0 \\
+-3 & 7
+\end{bmatrix}$ 
+ii. $\mathbf{ 3 \times 3 }$ is the order of matrix $\begin{bmatrix}
+0 & 8 & 4 \\
+-2 & -3 & 1 \\
+5 & 3 & -2 
+\end{bmatrix}$ 
+
+iii. $ \mathbf{2  \times 1 } $  is the order of matrix $\begin{bmatrix}
+7 & -3 \\
+\end{bmatrix}$ 
+iv. $ \mathbf{1  \times 5} $  is the order of matrix $\begin{bmatrix}
+1\\
+2\\
+3\\
+4\\
+5
+\end{bmatrix}$ 
+v. $ \mathbf{4  \times 2 } $  is the order of matrix $\begin{bmatrix}
+2 & -6 & 4 & 9 \\
+5 & 10 & 11 & -4
+\end{bmatrix}$ 
+vi. $ \mathbf{2  \times 3 } $  is the order of matrix $\begin{bmatrix}
+8 & 5 \\
+-2 & 0 \\
+3 & -9
+\end{bmatrix}$ 
