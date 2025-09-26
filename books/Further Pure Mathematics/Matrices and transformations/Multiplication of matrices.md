@@ -32,3 +32,69 @@ $\begin{bmatrix}
 3 & 2 \\
 -1 & 2 \\
 \end{bmatrix}$
+
+
+---
+
+**AB=C**
+**BA=D**
+
+$\begin{bmatrix}
+3 & 2 \\
+-1 & 2 \\
+\end{bmatrix}\begin{bmatrix}
+1 & 2 \\
+3 & 1 \\
+\end{bmatrix} = \begin{bmatrix}
+9 & 8 \\
+5 & 0 \\
+\end{bmatrix}$
+
+$\begin{bmatrix}
+1 & 2 \\
+3 & 1 \\
+\end{bmatrix}\begin{bmatrix}
+3 & 2 \\
+-1 & 2 \\
+\end{bmatrix} = \begin{bmatrix}
+1 & 6 \\
+8 & 8\\
+\end{bmatrix}$
+
+---
+
+**AB=BA**
+
+$\begin{bmatrix}
+3 & 0 \\
+0 & 2 \\
+\end{bmatrix}\begin{bmatrix}
+4 & 0 \\
+0 & -5 \\
+\end{bmatrix} = \begin{bmatrix}
+12 & 0 \\
+0 & -10 \\
+\end{bmatrix}$
+
+$\begin{bmatrix}
+4 & 0 \\
+0 & -5 \\
+\end{bmatrix}\begin{bmatrix}
+3 & 0 \\
+0 & 2 \\
+\end{bmatrix} = \begin{bmatrix}
+12 & 0 \\
+0 & -10\\
+\end{bmatrix}$
+
+
+---
+
+Definition of **Diagonal Matrices**
+
+$\begin{bmatrix}
+a_{11} & 0 & ⋯ & 0 \\
+0 & a_{22} & ⋯ & 0 \\
+⋮ & ⋮ & ⋱ & ⋮ \\
+0 & 0 & ⋯ & a_{nn} \\
+\end{bmatrix}$
