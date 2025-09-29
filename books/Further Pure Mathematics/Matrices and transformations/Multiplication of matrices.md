@@ -98,3 +98,55 @@ a_{11} & 0 & ⋯ & 0 \\
 ⋮ & ⋮ & ⋱ & ⋮ \\
 0 & 0 & ⋯ & a_{nn} \\
 \end{bmatrix}$
+
+---
+
+matrix $ A = \begin{bmatrix}
+2 & 1 \\
+0 & 1\\
+\end{bmatrix}$
+
+
+$ A^2 = \begin{bmatrix}
+2 & 1 \\
+0 & 1\\
+\end{bmatrix}\begin{bmatrix}
+2 & 1 \\
+0 & 1\\
+\end{bmatrix} = \begin{bmatrix}
+4 & 3 \\
+0 & 1\\
+\end{bmatrix}$
+
+$ A^3 = \begin{bmatrix}
+4 & 3 \\
+0 & 1\\
+\end{bmatrix}\begin{bmatrix}
+2 & 1 \\
+0 & 1\\
+\end{bmatrix} = \begin{bmatrix}
+8 & 7 \\
+0 & 1\\
+\end{bmatrix}$
+
+$ A^4 = \begin{bmatrix}
+8 & 7 \\
+0 & 1\\
+\end{bmatrix}\begin{bmatrix}
+2 & 1 \\
+0 & 1\\
+\end{bmatrix} = \begin{bmatrix}
+16 & 15 \\
+0 & 1\\
+\end{bmatrix}$
+
+$ A^n = \begin{bmatrix}
+2^{n-1} & 2^{n-1}-1 \\
+0 & 1\\
+\end{bmatrix}\begin{bmatrix}
+2 & 1 \\
+0 & 1\\
+\end{bmatrix} = \begin{bmatrix}
+2^n & 2^n-1 \\
+0 & 1\\
+\end{bmatrix}$
