@@ -150,3 +150,37 @@ $ A^n = \begin{bmatrix}
 2^n & 2^n-1 \\
 0 & 1\\
 \end{bmatrix}$
+
+
+---
+
+The map below shows the bus routes in a holiday area. Lines represent routes that run each way between the resorts. Arrows indicated one-way
+scenic routes
+
+![ alt text](./roads.jpg)
+
+
+|       | **A** | **B** | **C** | **D** |
+|-------|-------|-------|-------|-------|
+| **A** | 1     | 1     | 2     | 0     |
+| **B** | 1     | 0     | 1     | 0     |
+| **C** | 1     | 1     | 0     | 2     |
+| **D** | 0     | 0     | 1     | 0     |
+
+
+$\begin{bmatrix}
+1 & 1 & 2 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 1 & 0 & 2 \\
+0 & 0 & 1 & 0 \\
+\end{bmatrix}\begin{bmatrix}
+1 & 1 & 2 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 1 & 0 & 2 \\
+0 & 0 & 1 & 0 \\
+\end{bmatrix} = \begin{bmatrix}
+4 & 3 & 3 & 4 \\
+2 & 2 & 2 & 2 \\
+2 & 1 & 5 & 0 \\
+1 & 1 & 0 & 2 \\
+\end{bmatrix}$
