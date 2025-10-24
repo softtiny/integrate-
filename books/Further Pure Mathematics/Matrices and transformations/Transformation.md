@@ -11,6 +11,13 @@
 ![Enlargement](./Enlargement.png)
 
 
+- Object
+  - The original point, or shape, is called the object.
+- Image
+  - The new point, or shape, after the transformation, is called the image.
+- Mapping
+  - A transformation is a mapping of an object onto its image.
+
 
 ## Rotations
 
