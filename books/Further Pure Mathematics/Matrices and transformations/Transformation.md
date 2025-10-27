@@ -87,3 +87,65 @@ $\begin{bmatrix}
 -6 \\
 16
 \end{bmatrix}$
+
+---
+
+
+![unit square](./square.png)
+
+The unit square in a 2D coordinate system typically has vertices as (0,0),(1,0),(1,1) and (1,0). A reflection in the x-axis flips points across the x-axis,keeping the x-coordiante unchanged and negating the y-coordinate.Let's map the vertices of the unit square under this transformation:
+- (0,0) → (0,0) (remains unchanged as it's on the x-axis).
+- (1,0) → (1,0) (remains unchanged as it's on the x-axis).
+- (0,1) → (0,-1) (y-coordinate changes from 1 to -1).
+- (1,1) → (1,-1) (y-coordinate changes from 1 to -1).
+
+If we were to draw the unit square and its image:
+- The original unit square has vertices connected to form a square in the first quadrant.
+- The image after reflection forms a square with vertices (0,0),(1,0),(1,-1),(0,-1).lying in the fourth quadrant (except for the x-axis points).
+
+To find the transformation matrix,consider a general point (x,y) transformed to (x,-y). The transformation can be represented by a 2x2 matrix(A) such that:
+\[
+\begin{bmatrix}
+x'\\
+y'
+\end{bmatrix}=A\begin{bmatrix}
+x\\
+y
+\end{bmatrix}=\begin{bmatrix}
+x\\
+-y
+\end{bmatrix}
+\]
+
+we need a matrix $ A=\begin{bmatrix}
+a & b\\
+c & d
+\end{bmatrix} $ such that:
+
+\[
+\begin{bmatrix}
+a & b\\
+c & d
+\end{bmatrix}\begin{bmatrix}
+x\\
+y
+\end{bmatrix}=\begin{bmatrix}
+x\\
+-y
+\end{bmatrix}
+\]
+
+This gives:
+- $ax + by = x$
+- $cx + dy = -y$
+
+For these equations to hold for all $(x,y)$:
+- From $ax+by=x$ : $a=1,b=0$(coefficients of (x)  and (y)).
+- From $cx+dy=-y$: $c=0,d=-1$.
+Thus, the matrix is:
+\[
+\begin{bmatrix}
+1 & 0\\
+0 & -1
+\end{bmatrix}
+\]
