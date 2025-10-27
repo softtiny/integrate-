@@ -142,6 +142,7 @@ This gives:
 For these equations to hold for all $(x,y)$:
 - From $ax+by=x$ : $a=1,b=0$(coefficients of (x)  and (y)).
 - From $cx+dy=-y$: $c=0,d=-1$.
+
 Thus, the matrix is:
 \[
 \begin{bmatrix}
