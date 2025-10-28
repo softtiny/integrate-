@@ -150,3 +150,53 @@ Thus, the matrix is:
 0 & -1
 \end{bmatrix}
 \]
+
+
+---
+
+![rotation ](./geogebra-export2.png)
+
+- A(1,0) → A'(cosθ ,sinθ)
+- B(0,1) → B'(-sinθ ,cosθ)
+
+
+\[
+\begin{bmatrix}
+a & b\\
+c & d
+\end{bmatrix}\begin{bmatrix}
+1\\
+0
+\end{bmatrix}=\begin{bmatrix}
+cosθ\\
+sinθ
+\end{bmatrix}
+\]
+
+- $ a+0=cosθ$ : $a=cosθ$
+- $ c+0 = sinθ $ : $ c=sinθ $
+
+
+\[
+\begin{bmatrix}
+a & b\\
+c & d
+\end{bmatrix}\begin{bmatrix}
+0\\
+1
+\end{bmatrix}=\begin{bmatrix}
+-sinθ\\
+cosθ
+\end{bmatrix}
+\]
+
+- $ 0+b=-sinθ$ : $b=-sinθ$
+- $ 0+d = cosθ $ : $ d=cosθ $
+
+Thus, the matrix is:
+\[
+\begin{bmatrix}
+cosθ & -sinθ\\
+sinθ & cosθ
+\end{bmatrix}
+\]
