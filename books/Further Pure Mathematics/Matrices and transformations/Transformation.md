@@ -200,3 +200,17 @@ cosθ & -sinθ\\
 sinθ & cosθ
 \end{bmatrix}
 \]
+
+---
+
+- The matrix $\begin{bmatrix}
+m & 0\\
+0 & 1
+\end{bmatrix}$ represents a stretch of scale factor m parallel to the
+$x-axis$.
+
+- The matrix $\begin{bmatrix}
+1 & 0\\
+0 & n
+\end{bmatrix}$ represents a stretch of scale factor m parallel to the
+$y-axis$.
