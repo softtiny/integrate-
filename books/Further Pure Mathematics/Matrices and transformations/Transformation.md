@@ -214,3 +214,16 @@ $x-axis$.
 0 & n
 \end{bmatrix}$ represents a stretch of scale factor m parallel to the
 $y-axis$.
+
+\[
+  \begin{bmatrix}
+ 2 & 0 \\
+ 0  & 1 \\
+\end{bmatrix}\begin{bmatrix}
+2 \\
+5 
+\end{bmatrix} = \begin{bmatrix}
+4 \\
+5
+\end{bmatrix}
+\]
