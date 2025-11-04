@@ -145,3 +145,52 @@ sin90^{\circ}&cos90^{\circ}
 0&1\\
 1&0
 \end{bmatrix}$
+
+---
+
+\[
+\begin{bmatrix}
+cos30^{\circ}&-sin30^{\circ}\\
+sin30^{\circ}&cos30^{\circ}
+\end{bmatrix} =  \begin{bmatrix}
+\frac{\sqrt{3}}{2}&-\frac{1}{2}\\
+\frac{1}{2}&\frac{\sqrt{3}}{2}
+\end{bmatrix}\\
+\begin{bmatrix}
+cos60^{\circ}&-sin60^{\circ}\\
+sin60^{\circ}&cos60^{\circ}
+\end{bmatrix} =  \begin{bmatrix}
+\frac{1}{2}&-\frac{\sqrt{3}}{2}\\
+\frac{\sqrt{3}}{2}&\frac{1}{2}
+\end{bmatrix}
+\]
+\[
+\begin{bmatrix}
+\frac{\sqrt{3}}{2}&-\frac{1}{2}\\
+\frac{1}{2}&\frac{\sqrt{3}}{2}
+\end{bmatrix}\begin{bmatrix}
+\frac{\sqrt{3}}{2}&-\frac{1}{2}\\
+\frac{1}{2}&\frac{\sqrt{3}}{2}
+\end{bmatrix}=  \begin{bmatrix}
+\frac{1}{2}&-\frac{\sqrt{3}}{2}\\
+\frac{\sqrt{3}}{2}&\frac{1}{2}
+\end{bmatrix}
+\]
+
+- $\frac{\sqrt{3}}{2}\times\frac{\sqrt{3}}{2}+\frac{1}{2}\times\frac{1}{2}=\frac{1}{2}$
+- $\frac{\sqrt{3}}{2}\times(-\frac{1}{2})+(-\frac{1}{2})\times\frac{\sqrt{3}}{2}=(-\frac{\sqrt{3}}{2})$
+- $\frac{1}{2}\times\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}\times\frac{1}{2}=\frac{\sqrt{3}}{2}$
+- $\frac{1}{2}\times(-\frac{1}{2})+\frac{\sqrt{3}}{2}\times\frac{\sqrt{3}}{2}=\frac{1}{2}$
+
+\[
+\begin{bmatrix}
+cos30^{\circ}&-sin30^{\circ}\\
+sin30^{\circ}&cos30^{\circ}
+\end{bmatrix}\begin{bmatrix}
+cos30^{\circ}&-sin30^{\circ}\\
+sin30^{\circ}&cos30^{\circ}
+\end{bmatrix} = \begin{bmatrix}
+cos60^{\circ}&-sin60^{\circ}\\
+sin60^{\circ}&cos60^{\circ}
+\end{bmatrix}
+\]
