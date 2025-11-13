@@ -1,0 +1,1 @@
+# What is perspective? It’s basically the feature that things that are further away appear smaller.
