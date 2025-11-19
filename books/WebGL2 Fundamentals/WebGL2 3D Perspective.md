@@ -22,3 +22,16 @@
     20 / 3 = 6.666 \\
     abs(3.333-6.666) = 3.333
 \]
+
+# What “Perspective” Actually Means in 3D Graphics
+
+In real life:
+- Objects that are far away look smaller.
+- Parallel lines (like railway tracks) appear to meet at the horizon.
+
+A perspective projection is the mathematical trick that makes exactly that happen on a flat screen.
+
+Without perspective → everything stays the same size no matter how far it is (orthographic, like a 2D game or CAD program).
+
+ith perspective → far = smaller + correct convergence → feels 3D.
+
