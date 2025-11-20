@@ -35,3 +35,16 @@ Without perspective → everything stays the same size no matter how far it is (
 
 ith perspective → far = smaller + correct convergence → feels 3D.
 
+# The Four Spaces a Vertex Travels Through
+
+| Space                   | Coordinates                     | What transforms it                              |
+|-------------------------|---------------------------------|-------------------------------------------------|
+| Object/Model            | (x,y,z) local to the object     | Model matrix (position, rotation, scale)        |
+| World                   | (x,y,z) in the shared world     | → World = Model × vertex                        |
+| View / Eye / Camera     | (x,y,z) relative to camera      | View matrix (inverse of camera transform)       |
+| Clip                    | (x,y,z,w) before division       | Projection matrix does the magic here           |
+| NDC (Normalized Device) | (-1..+1, -1..+1, -1..+1)        | Automatic: x/w, y/w, z/w  (perspective divide)  |
+| Screen                  | pixels on your monitor          | Viewport transform (gl.viewport)                |
+
+Perspective happens only in the last two steps:  
+Clip → NDC (the famous divide by w).
