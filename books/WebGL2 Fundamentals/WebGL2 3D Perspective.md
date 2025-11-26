@@ -48,3 +48,24 @@ ith perspective → far = smaller + correct convergence → feels 3D.
 
 Perspective happens only in the last two steps:  
 Clip → NDC (the famous divide by w).
+
+#  The Perspective Projection Matrix – What It Really Does
+
+This is the exact matrix WebGL2 uses (gl-matrix, three.js, etc. all generate this):
+
+```javascript
+mat4.perspective(out, fovY, aspect, near, far)
+```
+
+produces:
+
+|          |     |                       |                       |
+|----------|-----|-----------------------|-----------------------|
+| f/aspect | 0   | 0                     | 0                     |
+| 0        | f   | 0                     | 0                     |
+| 0        | 0   | (far+near)/(near-far) | 2*far*near/(near-far) |
+| 0        | 0   | -1                    | 0                     |
+
+
+
+where f = 1 / tan(fovY/2)
