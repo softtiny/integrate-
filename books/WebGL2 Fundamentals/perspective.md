@@ -8,3 +8,12 @@ mat4.perspective(out, fov, aspect, near, far)
 ### How it Works
 
 The perspective projection matrix essentially defines a viewing frustum (a truncated pyramid shape). Any objects within this frustum are visible, while those outside are not. The fov, aspect, near, and far parameters define the shape and extent of this frustum.
+
+#### Parameters
+| Parameter | Type   | Description                                                                 |
+|-----------|--------|-----------------------------------------------------------------------------|
+| `out`     | mat4   | The receiving matrix (will be overwritten with the result)                 |
+| `fovy`    | Number | Field of view in **radians** in the **vertical** direction (y-axis)         |
+| `aspect`  | Number | Aspect ratio = canvas width ÷ canvas height (e.g. 16/9, 4/3, 1, etc.)       |
+| `near`    | Number | Distance to the near clipping plane (must be > 0)                           |
+| `far`     | Number | Distance to the far clipping plane (must be > near)                         |
