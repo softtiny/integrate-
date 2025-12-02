@@ -17,3 +17,27 @@ The perspective projection matrix essentially defines a viewing frustum (a trunc
 | `aspect`  | Number | Aspect ratio = canvas width ÷ canvas height (e.g. 16/9, 4/3, 1, etc.)       |
 | `near`    | Number | Distance to the near clipping plane (must be > 0)                           |
 | `far`     | Number | Distance to the far clipping plane (must be > near)                         |
+
+#### Returns
+Returns `out` (the modified matrix) for chaining.
+
+#### Resulting matrix (OpenGL style)
+gl-matrix uses the standard OpenGL infinite-depth-buffer form when `far` is finite, and the reversed-Z form when `far` is `Infinity`.
+
+**Standard finite far plane:**
+```text
+[ f/aspect  0             0                     0            ]
+[ 0         f             0                     0            ]
+[ 0         0   (far+near)/(near-far)  2*far*near/(near-far) ]
+[ 0         0            -1                     0            ]
+
+where f = 1 / tan(fovy/2)   (cotangent of half vertical FOV)
+```
+
+**Reversed-Z infinite far plane (`far = Infinity`):**
+```text
+[ f/aspect  0    0     0 ]
+[ 0         f    0     0 ]
+[ 0         0    0    -1 ]   // note the 0 instead of (far+near)/(near-far)
+[ 0         0   -near   0 ]   // flipped sign and near instead of 2*far*near/...
+```
