@@ -41,3 +41,13 @@ where f = 1 / tan(fovy/2)   (cotangent of half vertical FOV)
 [ 0         0    0    -1 ]   // note the 0 instead of (far+near)/(near-far)
 [ 0         0   -near   0 ]   // flipped sign and near instead of 2*far*near/...
 ```
+
+#### How to convert degrees to radians (common helper)
+
+```javascript
+function toRadians(degrees) {
+  return degrees * Math.PI / 180;
+}
+
+mat4.perspective(out, toRadians(60), aspect, 0.1, 2000);
+```
