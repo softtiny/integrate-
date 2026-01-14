@@ -2,7 +2,8 @@
 
 This function is used to test whether two numerical arguments have approximately the same value, considering an absolute or relative tolerance
 
-### Example:
+
+### Example: [link](https://jsfiddle.net/softtiny/b75vmz12/1/)
 
 ```js
 import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
@@ -29,3 +30,7 @@ console.log(`\nComparing ${num3} and ${num4} with tolerance ${largeTolerance}:`)
 console.log(`glMatrix.equals(num3, num4, largeTolerance): ${glMatrix.equals(num3, num4, largeTolerance)}`); // true
 ```
 
+
+# glMatrix.round(a) : integer
+
+This function rounds a number to the nearest integer. (e.g., 2.5 rounds to 3, -2.5 rounds to -3)
