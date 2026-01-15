@@ -34,3 +34,33 @@ console.log(`glMatrix.equals(num3, num4, largeTolerance): ${glMatrix.equals(num3
 # glMatrix.round(a) : integer
 
 This function rounds a number to the nearest integer. (e.g., 2.5 rounds to 3, -2.5 rounds to -3)
+
+
+
+# glMatrix.toDegree(radians) : Number
+
+ library to convert an angle from radians to degree;
+
+### Example: [link](https://jsfiddle.net/softtiny/f4ygwrhv/2/)
+
+```js
+import * as glMatrix from 'gl-matrix';
+
+// Define some angles in radians
+const piRadians = Math.PI; // 180 degrees
+const halfPiRadians = Math.PI / 2; // 90 degrees
+const quarterPiRadians = Math.PI / 4; // 45 degrees
+const twoPiRadians = Math.PI * 2; // 360 degrees
+
+console.log(`Converting Radians to Degrees:`);
+
+// Convert and log
+console.log(`Math.PI radians (${piRadians.toFixed(4)}) = ${glMatrix.toDegree(piRadians).toFixed(2)} degrees`);
+console.log(`Math.PI / 2 radians (${halfPiRadians.toFixed(4)}) = ${glMatrix.toDegree(halfPiRadians).toFixed(2)} degrees`);
+console.log(`Math.PI / 4 radians (${quarterPiRadians.toFixed(4)}) = ${glMatrix.toDegree(quarterPiRadians).toFixed(2)} degrees`);
+console.log(`2 * Math.PI radians (${twoPiRadians.toFixed(4)}) = ${glMatrix.toDegree(twoPiRadians).toFixed(2)} degrees`);
+
+// Example with a custom radian value
+const customRadians = 0.785398; // Approximately Math.PI / 4
+console.log(`\n${customRadians.toFixed(6)} radians = ${glMatrix.toDegree(customRadians).toFixed(2)} degrees`);
+```
