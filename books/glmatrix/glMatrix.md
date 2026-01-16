@@ -82,7 +82,7 @@ When you call `glMatrix.setMatrixArrayType(Float32Array)` or `glMatrix.setMatrix
 *   **Performance:** `Float32Array` is a typed array that stores 32-bit floating-point numbers. It's optimized for performance in WebGL contexts because it maps directly to GPU memory structures. However, for CPU-bound operations in some JavaScript engines, a regular `Array` might sometimes be faster due to less overhead in certain operations or better garbage collection characteristics 
 *   **Compatibility/Debugging:** Regular `Array` objects might be easier to inspect and work with in some debugging scenarios, as they behave like standard JavaScript arrays.
 
-**Example:**
+**Example:** [link](https://jsfiddle.net/softtiny/6wvcp371/2/)
 
 ```javascript project="glMatrixArrayType" file="setMatrixArrayType.js" version=1
 import {glMatrix,vec3,mat4,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
