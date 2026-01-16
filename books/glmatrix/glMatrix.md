@@ -44,7 +44,7 @@ This function rounds a number to the nearest integer. (e.g., 2.5 rounds to 3, -2
 ### Example: [link](https://jsfiddle.net/softtiny/f4ygwrhv/2/)
 
 ```js
-import * as glMatrix from 'gl-matrix';
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
 
 // Define some angles in radians
 const piRadians = Math.PI; // 180 degrees
@@ -63,4 +63,58 @@ console.log(`2 * Math.PI radians (${twoPiRadians.toFixed(4)}) = ${glMatrix.toDeg
 // Example with a custom radian value
 const customRadians = 0.785398; // Approximately Math.PI / 4
 console.log(`\n${customRadians.toFixed(6)} radians = ${glMatrix.toDegree(customRadians).toFixed(2)} degrees`);
+```
+
+
+# glMatrix.setMatrixArrayType(type) : void
+
+By default, gl-matrix attempts to use Float32Array for its vectors and matrices, as this is the most efficient type for WebGL operations. However, in some scenarios, particularly for general JavaScript applications not directly interacting with WebGL, using standard JavaScript Array objects might offer better performance or debugging capabilities . This function lets you switch between these types.
+
+**Parameters:**
+
+*   `type` (`Float32ArrayConstructor | ArrayConstructor`): The constructor function for the desired array type. You typically pass `Float32Array` or `Array`.
+
+**How it works:**
+When you call `glMatrix.setMatrixArrayType(Float32Array)` or `glMatrix.setMatrixArrayType(Array)`, all subsequent calls to functions like `vec3.create()`, `mat4.create()`, etc., will use the specified array type to allocate their internal storage.
+
+**Why it's important:**
+
+*   **Performance:** `Float32Array` is a typed array that stores 32-bit floating-point numbers. It's optimized for performance in WebGL contexts because it maps directly to GPU memory structures. However, for CPU-bound operations in some JavaScript engines, a regular `Array` might sometimes be faster due to less overhead in certain operations or better garbage collection characteristics 
+*   **Compatibility/Debugging:** Regular `Array` objects might be easier to inspect and work with in some debugging scenarios, as they behave like standard JavaScript arrays.
+
+**Example:**
+
+```javascript project="glMatrixArrayType" file="setMatrixArrayType.js" version=1
+import {glMatrix,vec3,mat4,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+
+console.log("--- Default Array Type ---");
+// By default, gl-matrix uses Float32Array if available
+let defaultVec = vec3.create();
+let defaultMat = mat4.create();
+console.log(`Default vec3 type: ${defaultVec.constructor.name}`);//Float32Array
+console.log(`Default mat4 type: ${defaultMat.constructor.name}`);//Float32Array
+
+console.log("\n--- Setting Array Type to Array ---");
+// Change the array type to a standard JavaScript Array
+glMatrix.setMatrixArrayType(Array);
+
+let arrayVec = vec3.create();
+let arrayMat = mat4.create();
+console.log(`New vec3 type: ${arrayVec.constructor.name}`);//Array
+console.log(`New mat4 type: ${arrayMat.constructor.name}`);//Array
+
+console.log("\n--- Setting Array Type back to Float32Array ---");
+// Change the array type back to Float32Array
+glMatrix.setMatrixArrayType(Float32Array);
+
+let float32Vec = vec3.create();
+let float32Mat = mat4.create();
+console.log(`Restored vec3 type: ${float32Vec.constructor.name}`);//Float32Array
+console.log(`Restored mat4 type: ${float32Mat.constructor.name}`);//Float32Array
+
+// Demonstrate that existing vectors/matrices are not affected
+console.log("\n--- Existing objects retain their original type ---");
+console.log(`Default vec3 (created before change) type: ${defaultVec.constructor.name}`); //Float32Array
+console.log(`Array vec3 (created after Array change) type: ${arrayVec.constructor.name}`); //Array
 ```
