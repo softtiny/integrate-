@@ -65,6 +65,40 @@ const customRadians = 0.785398; // Approximately Math.PI / 4
 console.log(`\n${customRadians.toFixed(6)} radians = ${glMatrix.toDegree(customRadians).toFixed(2)} degrees`);
 ```
 
+# glMatrix.toRadians(a) Number
+
+**Example:** [link](https://jsfiddle.net/softtiny/4jt7gxev/1/)
+
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+// Define some angles in degrees
+const ninetyDegrees = 90;
+const fortyFiveDegrees = 45;
+const oneEightyDegrees = 180;
+const threeSixtyDegrees = 360;
+
+console.log(`Converting Degrees to Radians:`);
+
+// Convert and log
+console.log(`${ninetyDegrees} degrees = ${glMatrix.toRadian(ninetyDegrees).toFixed(4)} radians`);
+console.log(`${fortyFiveDegrees} degrees = ${glMatrix.toRadian(fortyFiveDegrees).toFixed(4)} radians`);
+console.log(`${oneEightyDegrees} degrees = ${glMatrix.toRadian(oneEightyDegrees).toFixed(4)} radians`);
+console.log(`${threeSixtyDegrees} degrees = ${glMatrix.toRadian(threeSixtyDegrees).toFixed(4)} radians`);
+
+// Example of using it in a common gl-matrix operation, like `mat4.perspective`
+// Note: The `mat4.perspective` function expects the field of view (fovy) in radians.
+// If you have it in degrees, you'd convert it like this:
+const fovDegrees = 45;
+const fovRadians = glMatrix.toRadian(fovDegrees);
+console.log(`\nField of View: ${fovDegrees} degrees = ${fovRadians.toFixed(4)} radians`);
+
+// Example usage in a perspective matrix (conceptual, not a full working example)
+// let projectionMatrix = mat4.create();
+// mat4.perspective(projectionMatrix, fovRadians, aspectRatio, nearClip, farClip);
+```
+
+
 
 # glMatrix.setMatrixArrayType(type) : void
 
