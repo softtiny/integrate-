@@ -62,3 +62,28 @@ mat2.add(out, a, a);
 console.log("Result of A + A:", mat2.str(out));
 
 ```
+
+
+### adjoint(out, a) → {mat2}
+
+For a $2×2$ matrix, the adjoint is essentially the transpose of its cofactor matrix. In practical terms, this involves swapping the diagonal elements and negating the off-diagonal elements.
+
+
+**Mathematical Definition**
+
+If you have a matrix $A$:
+\[
+A = \begin{bmatrix}
+a & b \\
+c & d 
+\end{bmatrix}
+\]
+
+The adjoint of $A$, denoted as $adj(A)$, is:
+
+\[
+adj(A) = \begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix}
+\]
