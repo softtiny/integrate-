@@ -87,3 +87,22 @@ d & -b \\
 -c & a
 \end{bmatrix}
 \]
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/ezhkps0a/2/)
+
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+// Create a matrix: [1, 2, 3, 4] 
+// (Represents: [1 2]
+//              [3 4])
+let a = mat2.fromValues(1, 2, 3, 4);
+let out = mat2.create();
+
+mat2.adjoint(out, a);
+console.log(out.toString())
+// 'out' will now be [4, -2, -3, 1]
+// (Represents: [4 -2]
+//              [-3 1])
+```
