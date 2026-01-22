@@ -2,7 +2,7 @@
 
 
 
-### add(out, a, b) → {mat2}
+### mat2.add(out, a, b) → {mat2}
 
 
 *   **Purpose**: Adds two `mat2` matrices.
@@ -64,7 +64,7 @@ console.log("Result of A + A:", mat2.str(out));
 ```
 
 
-### adjoint(out, a) → {mat2}
+### mat2.adjoint(out, a) → {mat2}
 
 For a $2×2$ matrix, the adjoint is essentially the transpose of its cofactor matrix. In practical terms, this involves swapping the diagonal elements and negating the off-diagonal elements.
 
@@ -105,4 +105,24 @@ console.log(out.toString())
 // 'out' will now be [4, -2, -3, 1]
 // (Represents: [4 -2]
 //              [-3 1])
+```
+
+### mat2.clone(a) → {mat2}
+
+method is used to create a deep copy of an existing 2×2 matrix.
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/cj3g8hdn/1/)
+
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+// 1. Create an original matrix
+const original = mat2.fromValues(1, 2, 3, 4);
+console.log(original.toString());
+
+
+// 2. Clone it into a new variable
+const duplicate = mat2.clone(original);
+console.log(duplicate.toString())
 ```
