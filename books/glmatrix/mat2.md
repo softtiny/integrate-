@@ -126,3 +126,23 @@ console.log(original.toString());
 const duplicate = mat2.clone(original);
 console.log(duplicate.toString())
 ```
+
+### mat2.copy(out, a) → {mat2}
+
+method is used to transfer values from one 2×2 matrix to another existing matrix.
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/3p8swu9d/)
+
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+
+const source = mat2.fromValues(10, 20, 30, 40);
+const destination = mat2.create(); // Starts as an identity matrix
+
+// 2. Perform the copy
+mat2.copy(destination, source);
+console.log(destination.toString())
+// 'destination' is now [10, 20, 30, 40]
+```
