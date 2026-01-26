@@ -146,3 +146,42 @@ mat2.copy(destination, source);
 console.log(destination.toString())
 // 'destination' is now [10, 20, 30, 40]
 ```
+
+
+
+### mat2.determinant(a) → {Number}
+
+
+The determinant is a scalar value that provides critical information about the matrix, such as whether it can be inverted and how it scales area during a transformation.
+
+**Mathematical Formula**
+
+For a $2×2$ matrix A defined as:
+\[
+A = \begin{bmatrix}
+a & b \\
+c & d 
+\end{bmatrix}
+\]
+
+The determinant is calculated as:
+\[
+det(A) = (a \times d) - ( b \times c )
+\]
+
+**Examples:** [link](https://jsfiddle.net/softtiny/5hry216p/2/)
+
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+
+// Create a matrix:
+// [1, 2]
+// [3, 4]
+const myMatrix = mat2.fromValues(1, 2, 3, 4);
+
+// Calculate the determinant
+const result = mat2.determinant(myMatrix);
+
+console.log(result); // Output: -2  ((1*4) - (2*3))
+```
