@@ -185,3 +185,25 @@ const result = mat2.determinant(myMatrix);
 
 console.log(result); // Output: -2  ((1*4) - (2*3))
 ```
+
+
+### mat2.equals(a, b) → {Boolean}
+
+It checks if the corresponding elements of two matrices are "close enough" to each other based on a very small threshold (called an epsilon).
+
+* **Logic:** It returns `true` if .
+* **Why use it?** Floating-point math (like ) often results in values like . This method ignores those tiny discrepancies.
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/w94g0ukt/1/)
+
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+
+const matA = mat2.fromValues(1, 0, 0, 1);
+const matB = mat2.fromValues(1.0000001, 0, 0, 1);
+
+const isSame = mat2.equals(matA, matB); 
+console.log(isSame); // Returns true (the difference is smaller than glMatrix.EPSILON)
+```
