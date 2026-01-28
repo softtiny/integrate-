@@ -191,8 +191,8 @@ console.log(result); // Output: -2  ((1*4) - (2*3))
 
 It checks if the corresponding elements of two matrices are "close enough" to each other based on a very small threshold (called an epsilon).
 
-* **Logic:** It returns `true` if .
-* **Why use it?** Floating-point math (like ) often results in values like . This method ignores those tiny discrepancies.
+* **Logic:** It returns `true` if $a_i-b_i<=∣ai​−bi​∣≤threshold$.
+* **Why use it?** Floating-point math (like  $0.1+0.2$) often results in values like $0.30000000000000004$. This method ignores those tiny discrepancies.
 
 
 **Examples:** [link](https://jsfiddle.net/softtiny/w94g0ukt/1/)
@@ -206,4 +206,28 @@ const matB = mat2.fromValues(1.0000001, 0, 0, 1);
 
 const isSame = mat2.equals(matA, matB); 
 console.log(isSame); // Returns true (the difference is smaller than glMatrix.EPSILON)
+```
+
+
+
+### mat2.exactEquals(a, b) → {Boolean}
+
+This method performs a strict equality check (===) on every element.
+
+* **Logic:** Returns true only if every single bit of every element matches perfectly.
+* **Why use it?** Use this only if you are comparing matrices that were set with integers or hard-coded constants where you expect zero mathematical drift.
+
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/4tw3jfao/)
+
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+
+const matA = mat2.fromValues(1, 0, 0, 1);
+const matB = mat2.fromValues(1.0000001, 0, 0, 1);
+
+const isSame = mat2.exactEquals(matA, matB); 
+console.log(isSame); // Returns false 
 ```
