@@ -231,3 +231,38 @@ const matB = mat2.fromValues(1.0000001, 0, 0, 1);
 const isSame = mat2.exactEquals(matA, matB); 
 console.log(isSame); // Returns false 
 ```
+
+
+### mat2.frob(a) → {Number}
+
+it’s actually a shorthand for the **Frobenius norm**, which is a way to measure the "magnitude" or "length" of a matrix, much like you would calculate the length of a vector.
+
+**Mathematical Formula**
+
+For a  matrix :
+\[
+A = \begin{bmatrix}
+a & b \\
+c & d 
+\end{bmatrix}
+\]
+
+The Frobenius norm is defined as the square root of the sum of the squares of all its elements:
+
+\[
+\|A\|_F = \sqrt{a^2+b^2+c^2+d^2}    
+\]
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/gaqv8tyx/2/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+// Create a matrix: [1, 2, 3, 4]
+const myMatrix = mat2.fromValues(1, 2, 3, 4);
+
+const magnitude = mat2.frob(myMatrix);
+
+// Calculation: sqrt(1^2 + 2^2 + 3^2 + 4^2) = sqrt(1 + 4 + 9 + 16) = sqrt(30)
+console.log(magnitude); // Approximately 5.477225
+```
