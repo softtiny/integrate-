@@ -266,3 +266,41 @@ const magnitude = mat2.frob(myMatrix);
 // Calculation: sqrt(1^2 + 2^2 + 3^2 + 4^2) = sqrt(1 + 4 + 9 + 16) = sqrt(30)
 console.log(magnitude); // Approximately 5.477225
 ```
+
+
+
+### mat2.fromRotation(out, rad) → {mat2}
+
+This is the standard way to rotate objects in a 2D coordinate system. In a  matrix, rotation happens around the **origin (0,0)**.
+
+
+**Mathematical Definition**
+
+For a given angle $θ$, the resulting rotation matrix $R(θ)$ is:
+
+\[
+R(θ) = \begin{bmatrix}
+cos(θ) & -sin(θ) \\
+sin(θ) & cos(θ)
+\end{bmatrix}
+\]
+
+**Examples:** [link](https://jsfiddle.net/softtiny/pjqc58yL/14/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+const out = mat2.create();
+console.log(out.toString()); // "1,0,0,1"
+
+const degrees = 90;
+const radians = degrees * (Math.PI / 180);
+
+console.log(radians) //1.5707963267948966
+console.log(glMatrix.toRadian(90)) //1.5707963267948966
+// Create the rotation matrix
+const res = mat2.fromRotation(out, radians);
+console.log(out.toString());//"6.123234262925839e-17,1,-1,6.123234262925839e-17"
+console.log(res.toString())//"6.123234262925839e-17,1,-1,6.123234262925839e-17"
+
+
+```
