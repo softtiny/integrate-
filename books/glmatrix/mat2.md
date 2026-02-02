@@ -301,6 +301,38 @@ console.log(glMatrix.toRadian(90)) //1.5707963267948966
 const res = mat2.fromRotation(out, radians);
 console.log(out.toString());//"6.123234262925839e-17,1,-1,6.123234262925839e-17"
 console.log(res.toString())//"6.123234262925839e-17,1,-1,6.123234262925839e-17"
+```
 
 
+
+### mat2.fromScaling(out, v) → {mat2}
+
+
+This method is used to resize an object along the $X$ and $Y$ axes. it resets the target matrix, replacing whatever was there with the new scaling values.
+
+
+**Mathematical Definition**
+
+For scaling factors $s_x​ (width)$ and $s_y​ (height)$, the resulting matrix $S$ is:
+
+\[
+S = \begin{bmatrix}
+S_x & 0 \\
+0 & S_y
+\end{bmatrix}
+\]
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/e62gmqj3/2/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+const out = mat2.create();
+console.log(out.toString());//"1,0,0,1"
+const scaleFactor = mat2.fromValues(2, 0.5); // Double the width, halve the height
+
+// Create the scaling matrix
+const res = mat2.fromScaling(out, scaleFactor);
+console.log(out.toString());//"2,0,0,0.5"
+console.log(res.toString());//"2,0,0,0.5"
 ```
