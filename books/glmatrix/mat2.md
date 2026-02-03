@@ -336,3 +336,34 @@ const res = mat2.fromScaling(out, scaleFactor);
 console.log(out.toString());//"2,0,0,0.5"
 console.log(res.toString());//"2,0,0,0.5"
 ```
+
+### mat2.fromValues(m00, m01, m10, m11) → {mat2}
+
+
+### mat2.identity(out) → {mat2}
+
+resets a $2×2$ matrix to the **Identity Matrix**.
+
+**Mathematical Definition**
+
+\[
+I = \begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\]
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/09pzkLb6/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+
+// Suppose we have a matrix with random values
+let myMatrix = mat2.fromValues(5, 10, -3, 22);
+console.log(myMatrix.toString());//"5,10,-3,22"
+// Reset it to identity
+let res = mat2.identity(myMatrix);
+console.log(myMatrix.toString());//"1,0,0,1"
+console.log(res.toString());//"1,0,0,1"
+```
