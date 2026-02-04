@@ -2,7 +2,7 @@
 
 
 
-### mat2.add(out, a, b) → {mat2}
+### mat2.add(out, a, b) → {mat2}  { }
 
 
 *   **Purpose**: Adds two `mat2` matrices.
@@ -20,7 +20,7 @@ import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4
 
 
 
-// Create two 2x2 matrices
+// Create two 2×2 matrices
 // Matrix A:
 // | 1  2 |
 // | 3  4 |
@@ -64,7 +64,7 @@ console.log("Result of A + A:", mat2.str(out));
 ```
 
 
-### mat2.adjoint(out, a) → {mat2}
+### mat2.adjoint(out, a) → {mat2}  { }
 
 For a $2×2$ matrix, the adjoint is essentially the transpose of its cofactor matrix. In practical terms, this involves swapping the diagonal elements and negating the off-diagonal elements.
 
@@ -107,7 +107,7 @@ console.log(out.toString())
 //              [-3 1])
 ```
 
-### mat2.clone(a) → {mat2}
+### mat2.clone(a) → {mat2}  { }
 
 method is used to create a deep copy of an existing 2×2 matrix.
 
@@ -127,7 +127,7 @@ const duplicate = mat2.clone(original);
 console.log(duplicate.toString())
 ```
 
-### mat2.copy(out, a) → {mat2}
+### mat2.copy(out, a) → {mat2}  { }
 
 method is used to transfer values from one 2×2 matrix to another existing matrix.
 
@@ -149,7 +149,7 @@ console.log(destination.toString())
 
 
 
-### mat2.determinant(a) → {Number}
+### mat2.determinant(a) → {Number}  { }
 
 
 The determinant is a scalar value that provides critical information about the matrix, such as whether it can be inverted and how it scales area during a transformation.
@@ -187,7 +187,7 @@ console.log(result); // Output: -2  ((1*4) - (2*3))
 ```
 
 
-### mat2.equals(a, b) → {Boolean}
+### mat2.equals(a, b) → {Boolean}  { }
 
 It checks if the corresponding elements of two matrices are "close enough" to each other based on a very small threshold (called an epsilon).
 
@@ -210,7 +210,7 @@ console.log(isSame); // Returns true (the difference is smaller than glMatrix.EP
 
 
 
-### mat2.exactEquals(a, b) → {Boolean}
+### mat2.exactEquals(a, b) → {Boolean}  { }
 
 This method performs a strict equality check (===) on every element.
 
@@ -233,7 +233,7 @@ console.log(isSame); // Returns false
 ```
 
 
-### mat2.frob(a) → {Number}
+### mat2.frob(a) → {Number}  { }
 
 it’s actually a shorthand for the **Frobenius norm**, which is a way to measure the "magnitude" or "length" of a matrix, much like you would calculate the length of a vector.
 
@@ -269,7 +269,7 @@ console.log(magnitude); // Approximately 5.477225
 
 
 
-### mat2.fromRotation(out, rad) → {mat2}
+### mat2.fromRotation(out, rad) → `{mat2}`
 
 This is the standard way to rotate objects in a 2D coordinate system. In a  matrix, rotation happens around the **origin (0,0)**.
 
@@ -305,7 +305,7 @@ console.log(res.toString())//"6.123234262925839e-17,1,-1,6.123234262925839e-17"
 
 
 
-### mat2.fromScaling(out, v) → {mat2}
+### mat2.fromScaling(out, v) → `{mat2}`
 
 
 This method is used to resize an object along the $X$ and $Y$ axes. it resets the target matrix, replacing whatever was there with the new scaling values.
@@ -340,7 +340,7 @@ console.log(res.toString());//"2,0,0,0.5"
 ### mat2.fromValues(m00, m01, m10, m11) → {mat2}
 
 
-### mat2.identity(out) → {mat2}
+### mat2.identity(out) → `{mat2}`
 
 resets a $2×2$ matrix to the **Identity Matrix**.
 
@@ -366,4 +366,56 @@ console.log(myMatrix.toString());//"5,10,-3,22"
 let res = mat2.identity(myMatrix);
 console.log(myMatrix.toString());//"1,0,0,1"
 console.log(res.toString());//"1,0,0,1"
+```
+
+
+
+### mat2.invert(out, a) → `{mat2|null}`
+
+is used to find the inverse of a $2×2$ matrix. This is a fundamental operation in computer graphics, often used to reverse transformations or move between coordinate spaces.
+
+**Mathematical Definition**
+
+For a $2×2$ matrix A:
+
+\[
+A = \begin{bmatrix}
+a & b \\
+c & d 
+\end{bmatrix}
+\]
+
+The inverse is calculated using the formula:
+
+\[
+A^{-1} =\frac{1}{det(A)} \begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix}
+\]
+
+Where the determinant $(det)$ is:
+\[
+det(A)=ad-bc
+\]
+
+**Examples:** [link](https://jsfiddle.net/softtiny/vhxdyonu/2/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+const out = mat2.create();
+const temp_a = mat2.fromValues(1, 2, 3, 4);
+
+
+const result = mat2.invert(out, temp_a);
+
+if (result === null) {
+  console.log("The matrix is singular (determinant is zero) and cannot be inverted.");
+} else {
+  console.log("Inverted matrix:", out.toString());//"-2,1,1.5,-0.5"
+  console.log("Inverted matrix:", result.toString());
+  console.log(result==out);//true
+}
+
+
 ```
