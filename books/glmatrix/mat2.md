@@ -416,6 +416,63 @@ if (result === null) {
   console.log("Inverted matrix:", result.toString());
   console.log(result==out);//true
 }
+```
 
 
+### LDU(L, D, U, a)
+
+method performs an $LDU$ decomposition on a $2×2$ matrix. This is a specific type of matrix factorization where a square matrix is broken down into three distinct parts: a Lower triangular matrix $(L)$, a Diagonal matrix $(D)$, and an Upper triangular matrix $(U)$.
+
+**Mathematical Definition**
+
+For a given matrix $A$, the method solves for:
+\[
+A = L⋅D⋅U
+\]
+
+In the context of `mat2`, the matrices look like this:
+
+* **L (Lower)**: A lower triangular matrix with 1s on the diagonal.
+  \[
+  \begin{bmatrix}
+  1 & 0 \\
+  l_{21} & 1 
+  \end{bmatrix}
+  \]
+* **D (Diagonal)**: A matrix where only the diagonal elements are non-zero.
+  \[
+  \begin{bmatrix}
+  d_{11} & 0 \\
+  0 & d_{22} 
+  \end{bmatrix}
+  \]
+* **U (Upper)**: An upper triangular matrix with 1s on the diagonal.
+  \[
+  \begin{bmatrix}
+  1 & u_{12} \\
+  0 & 1 
+  \end{bmatrix}
+  \]
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/wrvu31ht/3/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+
+const a = mat2.fromValues(4, 3, 6, 3);
+const L = mat2.create();
+const D = mat2.create();
+const U = mat2.create();
+console.log(a.toString());//"4,3,6,3"
+console.log(L.toString());//"1,0,0,1"
+console.log(D.toString());//"1,0,0,1"
+console.log(U.toString());//"1,0,0,1"
+
+const res = mat2.LDU(L, D, U, a);
+console.log(a.toString());//"4,3,6,3"
+console.log(L.toString());//"1,0,1.5,1"
+console.log(D.toString());//"1,0,0,1"
+console.log(U.toString());//"4,3,0,-1.5"
+console.log(res.toString());//"1,0,1.5,1,1,0,0,1,4,3,0,-1.5"
 ```
