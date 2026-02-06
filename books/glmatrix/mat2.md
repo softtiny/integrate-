@@ -476,3 +476,51 @@ console.log(D.toString());//"1,0,0,1"
 console.log(U.toString());//"4,3,0,-1.5"
 console.log(res.toString());//"1,0,1.5,1,1,0,0,1,4,3,0,-1.5"
 ```
+
+
+### mul() = multiply(out, a, b) → `{mat2}`
+
+performs matrix multiplication. Specifically, it computes the product of two $2×2$ matrices: $C=A×B$.
+
+**Mathematical Definition**
+
+For two matrices $A$ and $B$:
+
+  \[
+  A=\begin{bmatrix}
+  a_{00} & a_{01} \\
+  a_{10} & a_{11} 
+  \end{bmatrix}\\
+  B=\begin{bmatrix}
+  b_{00} & b_{01} \\
+  b_{10} & b_{11} 
+  \end{bmatrix}\\
+  \]
+  The resulting matrix $C=A×B$ is:
+  \[
+  C=\begin{bmatrix}
+  (a_{00}×b_{00} + a_{01}×b_{10}) & (a_{00}×b_{01} + a_{01}×b_{11}) \\
+ (a_{10}×b_{00} + a_{11}×b_{10}) &(a_{10}×b_{01} + a_{11}×b_{11})
+  \end{bmatrix}\\
+  \]
+
+  **Examples:** [link](https://jsfiddle.net/softtiny/komcjbr4/3/)
+```js
+
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+const a = mat2.fromValues(1, 6, 8, 7); // Identity matrix
+console.log(a.toString());//1,6,8,7
+const b = mat2.fromValues(2, 3, 4, 5);
+console.log(b.toString());//2,3,4,5
+
+const out = mat2.create();
+const res = mat2.multiply(out,a,b);
+console.log(out.toString());//"26,33,44,59"
+console.log(res.toString());//"26,33,44,59"
+
+console.log('1×2+6x4=26',1*2+6*4)
+console.log('1×3+6x5=33',1*3+6*5)
+console.log('8×2+7x4=44',8*2+7*4)
+console.log('8x3+7x5=59',8*3+7*5)
+```
