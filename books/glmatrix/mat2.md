@@ -524,3 +524,38 @@ console.log('1×3+6x5=33',1*3+6*5)
 console.log('8×2+7x4=44',8*2+7*4)
 console.log('8x3+7x5=59',8*3+7*5)
 ```
+
+### mat2.multiplyScalar(out, a, b) → `{mat2}`
+
+Unlike standard matrix multiplication (which combines two matrices), this method scales every single element in a matrix by a single numeric value (a scalar).
+
+
+**Mathematical Definition**
+
+If you have a matrix $A$ and a scalar $k$, the operation multiplies each component of the matrix by $k$:
+
+\[
+k \cdot \begin{bmatrix}
+a & b \\
+c & d 
+\end{bmatrix} = \begin{bmatrix}
+k \cdot a & k \cdot b \\
+k \cdot c & k \cdot d
+\end{bmatrix}
+\]
+
+
+  **Examples:** [link](https://jsfiddle.net/softtiny/nk09t571/6/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+const a = mat2.fromValues(1, 2, 3, 4);
+const scalar = 5;
+const out = mat2.create();
+console.log(a.toString());//"1,2,3,4"
+console.log(out.toString());//"1,0,0,1"
+let res = mat2.multiplyScalar(out,a,scalar);
+console.log(a.toString());//"1,2,3,4"
+console.log(out.toString());//"5,10,15,20"
+console.log(res.toString());//"5,10,15,20"
+```
