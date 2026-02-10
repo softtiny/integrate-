@@ -559,3 +559,41 @@ console.log(a.toString());//"1,2,3,4"
 console.log(out.toString());//"5,10,15,20"
 console.log(res.toString());//"5,10,15,20"
 ```
+
+
+### mat2.multiplyScalarAndAdd(out, a, b, scale) → `{mat2}`
+
+method is a specialized utility function designed for performance. It performs two operations in a single step: it multiplies a matrix by a scalar and then adds the result to another matrix.
+
+
+**Mathematical Definition**
+
+This method implements the following operation:
+
+```math
+Out=A+(B×scale)
+```
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/xqs17o2v/2/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+const a = mat2.fromValues(1, 1, 1, 1);
+const b = mat2.fromValues(2, 3, 4, 5);
+const scale = 10;
+const out = mat2.create();
+
+console.log(a.toString());//"1,1,1,1"
+console.log(b.toString());//"2,3,4,5"
+console.log(out.toString());//"1,0,0,1"
+
+
+let res = mat2.multiplyScalarAndAdd(out, a, b, scale);
+
+console.log(a.toString());//"1,1,1,1"
+console.log(b.toString());//"2,3,4,5"
+// [1+(2*10), 1+(3*10), 1+(4*10), 1+(5*10)]
+console.log(out.toString());//"21,31,41,51"
+console.log(res.toString());//"21,31,41,51"
+```
