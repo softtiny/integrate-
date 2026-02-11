@@ -129,7 +129,7 @@ console.log(duplicate.toString())
 
 ### mat2.copy(out, a) → {mat2}  { }
 
-method is used to transfer values from one 2×2 matrix to another existing matrix.
+method is used to transfer values from one $2×2$ matrix to another existing matrix.
 
 
 **Examples:** [link](https://jsfiddle.net/softtiny/3p8swu9d/)
@@ -596,4 +596,38 @@ console.log(b.toString());//"2,3,4,5"
 // [1+(2*10), 1+(3*10), 1+(4*10), 1+(5*10)]
 console.log(out.toString());//"21,31,41,51"
 console.log(res.toString());//"21,31,41,51"
+```
+
+### mat2.rotate(out, a, rad) → `{mat2}`
+
+method is used to apply a rotation to a $2×2$ matrix. Specifically, it rotates the matrix by a given angle (in radians) around the origin.
+
+**Mathematical Definition**
+
+A $2×2$ rotation matrix for an angle $θ$ is defined as:
+
+\[
+R(θ)=\begin{bmatrix}
+cos(θ) & -sin(θ) \\
+sin(θ) & cons(θ)
+\end{bmatrix}
+\]
+
+The library performs a matrix multiplication between your source matrix $A$ and this rotation matrix $R$. In math terms, it computes $Out=A×R$.
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/g6ubwy32/1/)
+```js
+import {glMatrix,mat2, mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+const out = mat2.create();
+const a = mat2.create();
+const angle = Math.PI / 4; // 45 degrees
+console.log(out.toString());//"1,0,0,1"
+console.log(a.toString());//"1,0,0,1"
+console.log(angle);//0.7853981633974483
+const res = mat2.rotate(out, a, angle);
+console.log(out.toString());//"0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304"
+console.log(res.toString());//"0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304"
+console.log(a.toString());//"1,0,0,1"
+console.log(angle)//0.7853981633974483
 ```
