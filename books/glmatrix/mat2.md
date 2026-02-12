@@ -631,3 +631,37 @@ console.log(res.toString());//"0.7071067690849304,0.7071067690849304,-0.70710676
 console.log(a.toString());//"1,0,0,1"
 console.log(angle)//0.7853981633974483
 ```
+
+
+### mat2.scale(out, a, v) → `{mat2}`
+method applies a scaling transformation to a $2×2$ matrix. It essentially stretches or squeezes the coordinate system along the X and Y axes based on the components of a 2D vector.
+
+
+**Mathematical Definition**
+
+Scaling a matrix involves multiplying the basis vectors (the columns) by the scaling factors $s_x$​ and $s_y$​. If you are scaling an identity matrix, it results in:
+
+\[
+S = \begin{bmatrix}
+s_x & 0 \\
+0 & s_x
+\end{bmatrix}\\
+Out= A×S
+\]
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/xyhb1j28/)
+```js
+import {glMatrix,mat2, mat2d,vec2,} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+const out = mat2.create();
+const a = mat2.create();
+const scalingFactor = vec2.fromValues(2, 0.5);
+console.log(out.toString());//"1,0,0,1"
+console.log(a.toString());//"1,0,0,1"
+console.log(scalingFactor.toString());//"2,0.5"
+const res = mat2.scale(out, a, scalingFactor);
+console.log(out.toString());//"2,0,0,0.5"
+console.log(res.toString());//"2,0,0,0.5"
+console.log(a.toString());//"1,0,0,1"
+console.log(scalingFactor.toString());//"2,0.5"
+```
