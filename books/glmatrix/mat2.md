@@ -665,3 +665,59 @@ console.log(res.toString());//"2,0,0,0.5"
 console.log(a.toString());//"1,0,0,1"
 console.log(scalingFactor.toString());//"2,0.5"
 ```
+
+### mat2.sub() subtract(out, a, b) → `{mat2}`
+
+
+### mat2.transpose(out, a) → `{mat2}`
+
+method is used to flip a $2×2$ matrix over its main diagonal. This operation switches the row and column indices of every element in the matrix.
+
+**Mathematical Definition**
+
+\[
+A=\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}\\
+A^T=\begin{bmatrix}
+a & c \\
+b & d
+\end{bmatrix}
+\]
+
+**Examples:** [link](https://jsfiddle.net/softtiny/p675xmvw/2/)
+```js
+import {glMatrix,mat2, mat2d,vec2,} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+function demo_a(){
+  const a = mat2.fromValues(5, 6, 7, 8);
+  const b = mat2.fromValues(1, 2, 3, 4);
+  const out = mat2.create();
+  console.log(a.toString());//5,6,7,8
+  console.log(b.toString());//1,2,3,4
+  console.log(out.toString());//"1,0,0,1"
+  const res = mat2.subtract(out,a,b);
+  console.log(a.toString());//5,6,7,8
+  console.log(b.toString());//1,2,3,4
+  console.log(out.toString());//4,4,4,4
+  console.log(res.toString());//4,4,4,4
+}
+function demo_b(){
+  const a = mat2.fromValues(1, 2, 3, 4);
+  // Internal array: [1, 2, 3, 4] 
+  // Represents: | 1 2 |
+  //             | 3 4 |
+  const out = mat2.create();
+  console.log(a.toString());//1,2,3,4
+  console.log(out.toString());//"1,0,0,1"
+  const res = mat2.transpose(out, a);
+  console.log(a.toString());//1,2,3,4
+  console.log(out.toString());//1,3,2,4
+  console.log(res.toString());//1,3,2,4
+  // Internal array: [1, 3, 2, 4] 
+  // Represents: | 1  3 |
+  //             | 2  4 |
+}
+demo_a();
+demo_b();
+```
