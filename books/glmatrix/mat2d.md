@@ -41,3 +41,50 @@ The `mat2d` module is a specialized subset designed specifically for 2D transfor
 | tx                          | index 4                          | translation X                      |
 | ty                          | index 5                          | translation Y                      |
 | 1                           | (not stored)                     | always 1 (homogeneous coordinate)  |
+
+---
+
+the mat2d values for "rotate 45° + scale 1.5 + translate (100,50)"
+
+Values are rounded to 4 decimal places for readability (exact $cos(45°) ≈ 0.7071, sin(45°) ≈ 0.7071 $).
+
+1.  Identity (no transformation)
+
+```js
+[1.0000, 0.0000, 0.0000, 1.0000, 0, 0]
+```
+
+2. Pure rotation: 45° counterclockwise (around origin)
+
+```js
+[ 0.7071,  0.7071,
+ -0.7071,  0.7071,
+  0,       0     ]
+```
+
+3. Pure uniform scale: ×1.5
+
+```js
+[1.5000, 0.0000, 0.0000, 1.5000, 0, 0]
+```
+
+4. Pure translation: (100, 50)
+
+```js
+[1.0000, 0.0000, 0.0000, 1.0000, 100, 50]
+```
+
+### 5. Combined: scale 1.5 → rotate 45° → translate (100, 50)
+
+This is the most common order in 2D graphics / games / UI:
+
+- First apply **scale** (local size change)
+- Then **rotate** (around origin after scaling)
+- Finally **translate** (move to final position)
+
+```js
+// ≈ [1.0607, 1.0607, -1.0607, 1.0607, 100, 50]
+[ 1.0607,  1.0607,
+ -1.0607,  1.0607,
+  100,     50    ]
+```
