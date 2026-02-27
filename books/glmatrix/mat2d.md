@@ -88,3 +88,17 @@ This is the most common order in 2D graphics / games / UI:
  -1.0607,  1.0607,
   100,     50    ]
 ```
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/hfcdnvxu/)
+```js
+import {glMatrix,mat2, mat2d,vec2,} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+let m = mat2d.create();
+console.log(m.toString()); // "1,0,0,1,0,0"
+mat2d.translate(m, m, [100, 50]);      // last: move
+console.log(m.toString()); //"1,0,0,1,100,50"
+mat2d.rotate(m, m, Math.PI/4);         // middle: rotate 45°
+console.log(m.toString()); // "0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,100,50"
+mat2d.scale(m, m, [1.5, 1.5]);         // first: scale
+console.log(m.toString());//"1.0606601238250732,1.0606601238250732,-1.0606601238250732,1.0606601238250732,100,50"
+```
