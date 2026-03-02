@@ -44,61 +44,66 @@ The `mat2d` module is a specialized subset designed specifically for 2D transfor
 
 ---
 
-the mat2d values for "rotate 45° + scale 1.5 + translate (100,50)"
+### mat2d.add(out, a, b) → `{mat2d}`
 
-Values are rounded to 4 decimal places for readability (exact $cos(45°) ≈ 0.7071, sin(45°) ≈ 0.7071 $).
+### mat2d.determinant(a) → `{Number}`
+### mat2d.frob(a) → `{Number}`
+### mat2d.fromRotation(out, rad) → `{mat2d}`
+### mat2d.fromScaling(out, v) → `{mat2d}`
 
-1.  Identity (no transformation)
+### mat2d.fromTranslation(out, v) → `{mat2d}`
+### mat2d.translate(out, a, v) → `{mat2d}`
 
-```js
-[1.0000, 0.0000, 0.0000, 1.0000, 0, 0]
-```
+Translates the mat2d by the dimensions in the given vec2 
 
-2. Pure rotation: 45° counterclockwise (around origin)
-
-```js
-[ 0.7071,  0.7071,
- -0.7071,  0.7071,
-  0,       0     ]
-```
-
-3. Pure uniform scale: ×1.5
-
-```js
-[1.5000, 0.0000, 0.0000, 1.5000, 0, 0]
-```
-
-4. Pure translation: (100, 50)
-
-```js
-[1.0000, 0.0000, 0.0000, 1.0000, 100, 50]
-```
-
-### 5. Combined: scale 1.5 → rotate 45° → translate (100, 50)
-
-This is the most common order in 2D graphics / games / UI:
-
-- First apply **scale** (local size change)
-- Then **rotate** (around origin after scaling)
-- Finally **translate** (move to final position)
-
-```js
-// ≈ [1.0607, 1.0607, -1.0607, 1.0607, 100, 50]
-[ 1.0607,  1.0607,
- -1.0607,  1.0607,
-  100,     50    ]
-```
+**Mathematical Definition**
 
 
-**Examples:** [link](https://jsfiddle.net/softtiny/hfcdnvxu/)
+A `mat2d ` is stored linearly as an array of 6 values: `[a, b, c, d, tx, ty]` . Mathematically, it represents this structure:
+\[
+\begin{bmatrix}
+a & c  & t_x\\
+b & d  & t_y\\
+0 & 0  & 1
+\end{bmatrix}
+\]
+
+When you call `translate`, you are performing matrix multiplication between your current matrix and a translation matrix. The logic essentially boils down to:
+
+- $new_{tx} = a * v[0] + c*v[1] + t_x$
+- $new_{ty} = b * v[1] + d*v[1] + t_y$
+
+**Examples:** [link](https://jsfiddle.net/softtiny/48feaqtz/10/)
 ```js
 import {glMatrix,mat2, mat2d,vec2,} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
-let m = mat2d.create();
-console.log(m.toString()); // "1,0,0,1,0,0"
-mat2d.translate(m, m, [100, 50]);      // last: move
-console.log(m.toString()); //"1,0,0,1,100,50"
-mat2d.rotate(m, m, Math.PI/4);         // middle: rotate 45°
-console.log(m.toString()); // "0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,100,50"
-mat2d.scale(m, m, [1.5, 1.5]);         // first: scale
-console.log(m.toString());//"1.0606601238250732,1.0606601238250732,-1.0606601238250732,1.0606601238250732,100,50"
+
+// 1. Create an identity matrix (no transformation)
+let myMatrix = mat2d.create(); 
+
+// 2. Define the translation vector [x, y]
+let movement = vec2.fromValues(50, 100);
+
+console.log(myMatrix.toString())//"1,0,0,1,0,0"
+console.log(movement.toString()) //"50,100"
+// 3. Apply translation
+// We pass 'myMatrix' as both 'out' and 'a' to modify it in-place
+mat2d.translate(myMatrix, myMatrix, movement);
+
+console.log(myMatrix.toString()); 
+// Output: [1, 0, 0, 1, 50, 100]
+
+let mm = mat2d.fromValues(1,2,3,4,5,6);
+console.log(mm.toString());//"1,2,3,4,5,6"
+mat2d.translate(mm, mm, movement);
+console.log(mm.toString());//"1,2,3,4,355,506"
+//new_tx = `a=1` * `v[0]=50` + `c=3` * `v[1]=100` + `tx=5` = 355
+//new_tx = `b=2` * `v[0]=50` + `d=4` * `v[1]=100` + `ty=6` = 506
+
+let move2=vec2.fromValues(10,100);
+mm = mat2d.fromValues(1,2,3,4,5,6);
+console.log(mm.toString());//"1,2,3,4,5,6"
+mat2d.translate(mm, mm, move2);
+console.log(mm.toString());//"1,2,3,4,315,426"
+//new_tx = `a=1` * `v[0]=10` + `c=3` * `v[1]=100` + `tx=5` = 315
+//new_tx = `b=2` * `v[0]=10` + `d=4` * `v[1]=100` + `ty=6` = 426
 ```
