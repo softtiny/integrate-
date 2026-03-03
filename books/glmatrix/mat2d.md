@@ -107,3 +107,44 @@ console.log(mm.toString());//"1,2,3,4,315,426"
 //new_tx = `a=1` * `v[0]=10` + `c=3` * `v[1]=100` + `tx=5` = 315
 //new_tx = `b=2` * `v[0]=10` + `d=4` * `v[1]=100` + `ty=6` = 426
 ```
+
+
+### mul() = multiply(out, a, b) → `{mat2d}`
+
+A `mat2d` represents a $3×3$ matrix where the last row is implicitly `[0, 0, 1]`. When you multiply two of these, the engine calculates the dot product of the rows and columns
+
+
+
+**Examples:** [link](https://jsfiddle.net/softtiny/ncosju2z/2/)
+```js
+import {glMatrix,mat2d} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+const a = mat2d.fromValues(1, 6, 8, 7,2,3); // Identity matrix
+console.log(a.toString());//1,6,8,7,2,3
+const b = mat2d.fromValues(2, 3, 4, 5,3,4);
+console.log(b.toString());//2,3,4,5,3,4
+
+const out = mat2d.create();
+const res = mat2d.multiply(out,a,b);
+console.log(out.toString());//"26,33,44,59,37,49"
+console.log(res.toString());//"26,33,44,59,37,49"
+
+/*
+[1,6
+8,7]
+[2,3
+4,5]
+ 
+*/
+console.log('1×2+6x4=26',1*2+6*4)
+console.log('1×3+6x5=33',1*3+6*5)
+console.log('8×2+7x4=44',8*2+7*4)
+console.log('8x3+7x5=59',8*3+7*5)
+//a,b,c,d --- [1,6,7,7]
+//tx,ty,[...,2,3]
+//v[0],v[],[...,3,4]
+//new_tx = `a=1` * `v[0]=3` + `c=8` * `v[1]=4` + `tx=2` = 3+32+2=37
+//new_tx = `b=6` * `v[0]=3` + `d=7` * `v[1]=4` + `ty=3` = 18+28+3=49
+console.log('1*3+8*4+2=37',1*3+8*4+2)
+console.log('6*3+7*4+3=49',6*3+7*4+3)
+```
