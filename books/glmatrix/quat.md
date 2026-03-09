@@ -27,3 +27,34 @@ It is the quaternion equivalent of building a **Rotation Matrix** from scratch u
 - **Cameras:** Orienting a camera to look at a specific point.
 - **Character AI:** Making an NPC turn to face the player.
 - **Procedural Animation:** Aligning an object (like a laser bolt) to its velocity vector.
+
+
+
+**Example:** [link](https://jsfiddle.net/softtiny/y5medv8o/)
+
+```js
+import {glMatrix,vec3, quat} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+let posA=vec3.fromValues(1,2,3);
+let posB=vec3.fromValues(4,5,6)
+let outQuat = quat.create();
+let view = vec3.create();
+let right = vec3.create();
+let up = [0, 1, 0]; // World Up
+// 1. Calculate the 'view' (direction from A to B)
+console.log(posA.toString());//"1,2,3"
+console.log(posB.toString());//"4,5,6"
+vec3.subtract(view, posB, posA);
+console.log(view.toString());//"3,3,3"
+vec3.normalize(view, view);
+console.log(view.toString());//"0.5773502588272095,0.5773502588272095,0.5773502588272095"
+// 2. Calculate the 'right' vector (cross product of up and view)
+vec3.cross(right, up, view);
+console.log(right.toString());//"0.5773502588272095,0,-0.5773502588272095"
+vec3.normalize(right, right);
+console.log(right.toString());//"0.7071067690849304,0,-0.7071067690849304"
+
+// 3. Set the axes
+console.log(outQuat.toString());//"0,0,0,1"
+quat.setAxes(outQuat, view, up, right);
+console.log(outQuat.toString());//"0.6576622724533081,0.7117631435394287,-0.24072110652923584,0.05410083383321762"
+```
