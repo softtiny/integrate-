@@ -11,7 +11,7 @@ Quaternions represent rotations as a 4D vector $[x,y,z,w]$. While they aren't "h
 
 
 
-### setAxes()
+### quat.setAxes()
 
 The `quat.setAxes` method in `glMatrix` is a powerful utility for when you know where you want an object to face, but you don't know the specific angles or rotation axis to get it there.
 
@@ -58,3 +58,24 @@ console.log(outQuat.toString());//"0,0,0,1"
 quat.setAxes(outQuat, view, up, right);
 console.log(outQuat.toString());//"0.6576622724533081,0.7117631435394287,-0.24072110652923584,0.05410083383321762"
 ```
+
+
+### quat.sqlerp()
+
+While `slerp` (Spherical Linear Interpolation) is the go-to for moving between two rotations, `quat.sqlerp` (Spherical Quadrangle Interpolation) is the specialized tool for smooth paths through multiple rotations.
+
+`sqlerp` uses "control points" to create a smooth, curved path—essentially a Bézier curve for rotations.
+
+
+Parameter,Type,Description
+out,quat,The receiving quaternion.
+"a, b, c, d",quat,The four quaternions defining the curve.
+t,number,The interpolation amount (0.0 to 1.0) between b and c.
+
+**quat.sqlerp(out, a, b, c, d, t);**
+
+| **Parameter** | **Type** | **Description**                                        |
+|---------------|----------|--------------------------------------------------------|
+| out           | quat     | The receiving quaternion.                              |
+| a, b, c, d    | quat     | The four quaternions defining the curve.               |
+| t             | number   | The interpolation amount (0.0 to 1.0) between b and c. |
