@@ -79,3 +79,10 @@ t,number,The interpolation amount (0.0 to 1.0) between b and c.
 | out           | quat     | The receiving quaternion.                              |
 | a, b, c, d    | quat     | The four quaternions defining the curve.               |
 | t             | number   | The interpolation amount (0.0 to 1.0) between b and c. |
+
+
+**Mathematical Definition**
+
+```math
+sqlerp(a,b,c,d,t)=slerp(slerp(a,d,t),slerp(b,c,t),2t(1−t))
+```
