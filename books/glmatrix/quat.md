@@ -60,6 +60,18 @@ console.log(outQuat.toString());//"0.6576622724533081,0.7117631435394287,-0.2407
 ```
 
 
+### quat.slerp(out, a, b, t) -> `{quat}`
+
+In the world of 3D animation,  `quat.slerp` (Spherical Linear Interpolation) is the gold standard for rotating objects. While a standard linear interpolation (`lerp`) moves in a straight line between two points, `slerp` moves along the arc of a sphere.
+
+| Parameter | Type   | Description                                                                    |
+|-----------|--------|--------------------------------------------------------------------------------|
+| out       | quat   | The receiving quaternion.                                                      |
+| a         | quat   | The starting rotation.                                                         |
+| b         | quat   | The ending rotation.                                                           |
+| t         | number | The interpolation amount, typically between **0.0** (Start) and **1.0** (End). |
+
+
 ### quat.sqlerp()
 
 While `slerp` (Spherical Linear Interpolation) is the go-to for moving between two rotations, `quat.sqlerp` (Spherical Quadrangle Interpolation) is the specialized tool for smooth paths through multiple rotations.
