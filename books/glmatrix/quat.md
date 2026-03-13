@@ -59,6 +59,20 @@ quat.setAxes(outQuat, view, up, right);
 console.log(outQuat.toString());//"0.6576622724533081,0.7117631435394287,-0.24072110652923584,0.05410083383321762"
 ```
 
+### quat.lerp(out, a, b, t) -> `{quat}`
+
+In the glMatrix library, `quat.lerp` stands for Linear Interpolation. It is the faster, "dirty" sibling of slerp. While `slerp` moves along the curve of a sphere, `lerp` moves in a straight line between two points in 4D space.
+
+The "Straight Line" Problem
+
+When you use `lerp` on two quaternions, the math simply calculates a point on a straight line between them. Because quaternions must have a length (magnitude) of 1.0 to be valid rotations, a `lerp` causes a problem: the midpoint of that straight line is closer to the center of the sphere than the surface.
+
+Results of using `lerp`:
+
+- **Invalid Magnitude:** The resulting quaternion is no longer "normalized" (its length is less than 1).
+- **Variable Velocity:** The rotation appears to speed up in the middle and slow down at the ends.
+- **Non-Spherical:** It cuts "through" the sphere rather than sliding around it.
+
 
 ### quat.slerp(out, a, b, t) -> `{quat}`
 
@@ -77,6 +91,9 @@ In the world of 3D animation,  `quat.slerp` (Spherical Linear Interpolation) is 
 While `slerp` (Spherical Linear Interpolation) is the go-to for moving between two rotations, `quat.sqlerp` (Spherical Quadrangle Interpolation) is the specialized tool for smooth paths through multiple rotations.
 
 `sqlerp` uses "control points" to create a smooth, curved path—essentially a Bézier curve for rotations.
+
+
+
 
 
 Parameter,Type,Description
