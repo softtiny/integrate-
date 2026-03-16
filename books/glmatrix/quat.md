@@ -73,6 +73,16 @@ Results of using `lerp`:
 - **Variable Velocity:** The rotation appears to speed up in the middle and slow down at the ends.
 - **Non-Spherical:** It cuts "through" the sphere rather than sliding around it.
 
+Slerp vs. Lerp (nlerp) Comparison
+
+
+| **Feature**  | **quat.slerp**           | **quat.lerp (+ normalize)**            |
+|--------------|--------------------------|----------------------------------------|
+| **Path**     | Perfect arc              | Straight line (then pushed to arc)     |
+| **Velocity** | Perfectly constant       | Slightly faster in the middle          |
+| **CPU Cost** | High (Trig functions)    | Very Low (Basic math)                  |
+| **Best Use** | Camera arcs, slow orbits | Thousands of particles, bone animation |
+
 
 ### quat.slerp(out, a, b, t) -> `{quat}`
 
