@@ -84,6 +84,30 @@ Slerp vs. Lerp (nlerp) Comparison
 | **Best Use** | Camera arcs, slow orbits | Thousands of particles, bone animation |
 
 
+**Example:** [link](https://jsfiddle.net/softtiny/kpcob5w4/)
+
+```js
+import {glMatrix,mat2, mat2d, quat} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+
+// 1. Create two quaternions (rotations)
+const quatA = quat.create(); // Identity (no rotation)
+const quatB = quat.create();
+
+// Rotate quatB 90 degrees (PI/2) around the Y axis
+quat.fromEuler(quatB, 0, 90, 0);
+
+// 2. Create a placeholder for the result
+const resultQuat = quat.create();
+console.log(resultQuat.toString()) //"0,0,0,1"
+console.log(quatB.toString()) //"0,0.7071067690849304,0,0.7071067690849304"
+console.log(quatA.toString()) //"0,0,0,1"
+
+// 3. Interpolate halfway (t = 0.5)
+quat.lerp(resultQuat, quatA, quatB, 0.5);
+console.log("Halfway Rotation:", resultQuat.toString()); //"0,0.3535533845424652,0,0.8535534143447876"
+```
+
+
 ### quat.slerp(out, a, b, t) -> `{quat}`
 
 In the world of 3D animation,  `quat.slerp` (Spherical Linear Interpolation) is the gold standard for rotating objects. While a standard linear interpolation (`lerp`) moves in a straight line between two points, `slerp` moves along the arc of a sphere.
