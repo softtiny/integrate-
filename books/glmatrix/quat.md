@@ -107,6 +107,7 @@ quat.lerp(resultQuat, quatA, quatB, 0.5);
 console.log("Halfway Rotation:", resultQuat.toString()); //"0,0.3535533845424652,0,0.8535534143447876"
 ```
 
+![Lerp](./lerp.png)
 
 ### quat.slerp(out, a, b, t) -> `{quat}`
 
