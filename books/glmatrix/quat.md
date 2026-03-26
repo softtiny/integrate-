@@ -150,3 +150,32 @@ t,number,The interpolation amount (0.0 to 1.0) between b and c.
 ```math
 sqlerp(a,b,c,d,t)=slerp(slerp(a,d,t),slerp(b,c,t),2t(1−t))
 ```
+
+
+
+### quat.calculateW(out, a) → `{quat}`
+
+`quat.calculateW` computes the **W component** of a quaternion from its X, Y, Z components, assuming the quaternion is a **unit quaternion**.
+
+### How it works
+
+A unit quaternion satisfies:
+
+**$x^2 + y^2 + z^2 + w^2 = 1$**
+
+So W can be derived as:
+
+**$w = \sqrt{(1 - x^2 - y^2 - z^2)}$**
+
+
+**Example:** [link](https://jsfiddle.net/softtiny/ganfd6hr/3/)
+
+```js
+import {glMatrix,mat2, mat2d,quat} from 'https://cdn.jsdelivr.net/npm/gl-matrix@3.4.4/+esm'
+// A quaternion with only XYZ set (W unknown / 0)
+const q = quat.fromValues(0, 0, 0.7071, 0); // ~90° rotation around Z
+console.log(q.toString()); // "0,0,0.707099974155426,0"
+// Compute the W component
+quat.calculateW(q, q); // out === a is fine (in-place)
+console.log(q.toString());//"0,0,0.707099974155426,0.7071135640144348"
+```
