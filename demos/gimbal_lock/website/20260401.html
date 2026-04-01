@@ -1,0 +1,63 @@
+
+<style>
+  * { box-sizing: border-box; }
+  .wrap { padding: 1rem 0; font-family: var(--font-sans); }
+  .canvas-wrap { display: flex; justify-content: center; margin-bottom: 1rem; }
+  canvas { border-radius: var(--border-radius-lg); background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); }
+  .controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .ctrl-card { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+  .ctrl-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .ctrl-val { font-size: 14px; font-weight: 500; }
+  input[type=range] { width: 100%; margin: 4px 0; }
+  .lock-banner { display: none; background: var(--color-background-warning); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 12px; font-size: 13px; color: var(--color-text-warning); margin-top: 10px; text-align: center; }
+  .lock-banner.show { display: block; }
+  .btn-row { display: flex; gap: 8px; margin-top: 10px; }
+  button { flex: 1; padding: 6px 10px; font-size: 13px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); background: var(--color-background-primary); color: var(--color-text-primary); cursor: pointer; }
+  button:hover { background: var(--color-background-secondary); }
+  button.active { background: var(--color-background-info); color: var(--color-text-info); border-color: var(--color-border-tertiary); }
+</style>
+<div class="wrap">
+  <div class="canvas-wrap"><canvas id="gc" width="540" height="300"></canvas></div>
+  <div class="controls">
+    <div class="ctrl-card">
+      <div class="ctrl-label" style="color:#E8593C"><span>Yaw (Z)</span><span id="yv" class="ctrl-val">0°</span></div>
+      <input type="range" id="sy" min="-180" max="180" value="0" style="accent-color:#E8593C">
+    </div>
+    <div class="ctrl-card">
+      <div class="ctrl-label" style="color:#3B8BD4"><span>Pitch (X)</span><span id="pv" class="ctrl-val">0°</span></div>
+      <input type="range" id="sp" min="-90" max="90" value="0" style="accent-color:#3B8BD4">
+    </div>
+    <div class="ctrl-card">
+      <div class="ctrl-label" style="color:#3DB57A"><span>Roll (Y)</span><span id="rv" class="ctrl-val">0°</span></div>
+      <input type="range" id="sr" min="-180" max="180" value="0" style="accent-color:#3DB57A">
+    </div>
+  </div>
+  <div id="lb" class="lock-banner">⚠ Gimbal lock! Pitch = ±90°. Yaw and Roll now rotate the same axis — one degree of freedom lost.</div>
+  <div class="btn-row">
+    <button id="bdem" onclick="setDemo()">Demo: approach lock ↗</button>
+    <button id="brst" onclick="resetAll()">Reset</button>
+    
+  </div>
+</div>
+<script>
+const canvas = document.getElementById('gc');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+const cx = W / 2, cy = H / 2;
+
+let yaw = 0, pitch = 0, roll = 0;
+let animId = null;
+
+function deg(d){return d*Math.PI/180;}
+
+// 3D → projected 2D
+function project(x,y,z, scale=100){ 
+  return [cx + x*scale, cy-y*scale]
+}
+
+// Apply rotation matrices: Rz(yaw) * Rx(pitch) * Ry(roll)
+function rotatePoint(v,Y,P,R){}
+function drawArrow(x1,y1,x2,y2,color,label,dashed){}
+function drawRing(pts,color,dashed){}
+function ellipsePoints(axis,r,n,Y,P,R){}
+</script>
