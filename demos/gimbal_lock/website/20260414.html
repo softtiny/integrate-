@@ -1,0 +1,224 @@
+
+<style>
+  * { box-sizing: border-box; }
+  .wrap { padding: 1rem 0; font-family: var(--font-sans); }
+  .canvas-wrap { display: flex; justify-content: center; margin-bottom: 1rem; }
+  canvas { border-radius: var(--border-radius-lg); background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); }
+  .controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .ctrl-card { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+  .ctrl-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .ctrl-val { font-size: 14px; font-weight: 500; }
+  input[type=range] { width: 100%; margin: 4px 0; }
+  .lock-banner { display: none; background: var(--color-background-warning); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 12px; font-size: 13px; color: var(--color-text-warning); margin-top: 10px; text-align: center; }
+  .lock-banner.show { display: block; }
+  .btn-row { display: flex; gap: 8px; margin-top: 10px; }
+  button { flex: 1; padding: 6px 10px; font-size: 13px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); background: var(--color-background-primary); color: var(--color-text-primary); cursor: pointer; }
+  button:hover { background: var(--color-background-secondary); }
+  button.active { background: var(--color-background-info); color: var(--color-text-info); border-color: var(--color-border-tertiary); }
+</style>
+<div class="wrap">
+  <div class="canvas-wrap"><canvas id="gc" width="540" height="300"></canvas></div>
+  <div class="controls">
+    <div class="ctrl-card">
+      <div class="ctrl-label" style="color:#E8593C"><span>Yaw (Z)</span><span id="yv" class="ctrl-val">0°</span></div>
+      <input type="range" id="sy" min="-180" max="180" value="0" style="accent-color:#E8593C">
+    </div>
+    <div class="ctrl-card">
+      <div class="ctrl-label" style="color:#3B8BD4"><span>Pitch (X)</span><span id="pv" class="ctrl-val">0°</span></div>
+      <input type="range" id="sp" min="-90" max="90" value="0" style="accent-color:#3B8BD4">
+    </div>
+    <div class="ctrl-card">
+      <div class="ctrl-label" style="color:#3DB57A"><span>Roll (Y)</span><span id="rv" class="ctrl-val">0°</span></div>
+      <input type="range" id="sr" min="-180" max="180" value="0" style="accent-color:#3DB57A">
+    </div>
+  </div>
+  <div id="lb" class="lock-banner">⚠ Gimbal lock! Pitch = ±90°. Yaw and Roll now rotate the same axis — one degree of freedom lost.</div>
+  <div class="btn-row">
+    <button id="bdem" onclick="setDemo()">Demo: approach lock ↗</button>
+    <button id="brst" onclick="resetAll()">Reset</button>
+    
+  </div>
+</div>
+<script>
+const canvas = document.getElementById('gc');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+const cx = W / 2, cy = H / 2;
+
+let yaw = 0, pitch = 0, roll = 0;
+let animId = null;
+
+function deg(d){return d*Math.PI/180;}
+
+// 3D → projected 2D
+function project(x,y,z, scale=100){ 
+  return [cx + x*scale, cy-y*scale]
+}
+
+// Apply rotation matrices: Rz(yaw) * Rx(pitch) * Ry(roll)
+function rotatePoint(v,Y,P,R){
+  let [x, y, z] =v;
+  // Roll (Y-axis)
+  let r = deg(R);
+  let x1 = x*Math.cos(r) + z*Math.sin(r);
+  let y1 = y;
+  let z1 = -x*Math.sin(r) + z*Math.cos(r);
+  // Pitch(X-axis)
+  let p = deg(P);
+  let x2 = x1;
+  let y2 = y1*Math.cos(p) - z1*Math.sin(p);
+  let z2 = y1*Math.sin(p) + z1*Math.cos(p);
+
+  // Yaw (Z-axis)
+  let w = deg(Y);
+  let x3 = x2*Math.cos(w) - y*Math.sin(w);
+  let y3 = x3*Math.sin(w) + y2*Math.cos(w);
+  let z3 = z2;
+  return [x3,y3,z3];
+}
+function drawArrow(x1,y1,x2,y2,color,label,dashed){
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = dashed ? 1 : 2;
+  if (dashed) {
+    ctx.setLineDash([5,4])
+  }
+  ctx.beginPath()
+  ctx.moveTo(x1,y1)
+  ctx.lineTo(x2,y2)
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  //arrowhead
+  const angle = Math.atan2(y2-y1,x2-x1);
+  const hs = 8;
+  ctx.beginPath();
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-hs*Math.cos(angle-0.4), y2 - hs*Math.sin(angle - 0.4));
+  ctx.lineTo(x2-hs*Math.cos(angle+0.4), y2 - hs*Math.sin(angle + 0.4));
+  ctx.closePath();
+  ctx.fill();
+  if (label) {
+    ctx.font = `600 12px var(--font-sans, sans-serif)`;
+    ctx.fillStyle = color;
+    const ox = (x2 - x1 <0) ? -14 : 6;
+    const oy = (y2 - y1 <0) ? -6 : 14;
+    ctx.fillText(label,x2+ox,y2+oy);
+  } 
+  ctx.restore();
+}
+function drawRing(pts,color,dashed){
+  if(pts.length < 1){
+    returnj
+  }
+  ctx.save()
+  ctx.strokeStyle = color;
+  ctx.lineWidth = dashed? 1: 1.5;
+  ctx.globalAlpha = dashed?0.35:0.7;
+  if(dashed){
+    ctx.setLineDash([4,4]);
+  }
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0],pts[0][1])
+  for (let i = 1;i<pts.length;i++){
+    ctx.lineTo(pts[i][0],pts[i][1]);
+  }
+  ctx.closePath();
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.restore();
+}
+function ellipsePoints(axis,r,n,Y,P,R){
+  const pst = [];
+  for (let i = 0; i<= n; i++) {
+    const a = (i / n) * Math.PI * 2;
+    let v;
+    if (axis==='x'){
+      v = [0,r*Math.cos(a),r*Math.sin(a)];
+    }else if (axis ==='y'){
+      v = [r*Math.cos(a),0,r*Math.sin(a)];
+    }else{
+      v = [r*Math.cos(a),r*Math.sin(a),0];
+    }
+    const [rx,ry]=rotatePoint(v,Y,P,R);
+    pst.push(project(rx,ry,0,90))  
+  }
+  return pst;
+
+}
+
+function draw() {
+  ctx.clearRect(0,0, W,H);
+  const locked = Math.abs(pitch) >= 88;
+
+  // world axes(thin,dashed,gray)
+  const axLen = 1.1;
+  const worldAxes = [
+    [[0,0,0],[axLen,0,0],'#888','X'],
+    [[0,0,0],[0,axLen,0],'#888','Y'],
+    [[0,0,0],[0,0,axLen],'#888','Z'],
+  ];
+  worldAxes.forEach(([from,to,col,lol]) => {
+    const [fx,fy] = project(...from,90);
+    const [tx,ty] = project(...to,90);
+    drawArrow(fx, fy,tx,ty,col,null,true);
+  })
+
+  const zRing =  ellipsePoints('z', 1.5, 48, yaw, 0,0);
+  drawRing(zRing, '#E8593C', false);
+
+  const xRing = ellipsePoints('x', 1.2, 48, yaw, pitch, 0);
+  drawRing(xRing, '#3B8BD4', false)
+
+  const yRing = ellipsePoints('y', 0.9, 48, yaw, pitch, roll);
+  drawRing(yRing, locked?'#E8593C' : '#3DB57A', locked);
+
+  const bodyAxes = [
+    [[1,0,0],'#E8593C','Yaw axis'],
+    [[0,1,0],locked?'E8593C':'#3DB57A', 'Roll ais'],
+    [[0,0,1],'#3B8BD4', 'Pitch axis'],
+  ];
+  bodyAxes.forEach(([dir,col,lbl]) => {
+    const [rx,ry,rz] = rotatePoint(dir,yaw,pitch,roll);
+    const [ox,oy] = project(0,0,0,90);
+    const [tx,ty] = project(rx*1.05,ry*1.05,rz*1.05,90);
+    drawArrow(ox,oy,tx,ty,col,null,false);
+  })
+
+  // Probe /object indicator at center
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, 5, 0, Math.PI*2);
+  ctx.fillStyle = "#888";
+  ctx.fill();
+  ctx.restore();
+
+  // Locked .todo
+  if (locked){
+    ctx.save();
+    ctx.font = '500 12 px var(--font-sans, sans-serif)';
+    ctx.fillStyle = '#E8593C';
+    ctx.globalAlpha= 0.85;
+    ctx.fillText('Yaw = Roll (same axis)', cx -65,cy+120);
+    ctx.restore();
+  }
+
+  //Legend(top-left)
+  const legend = [
+    ['#E8593C', 'Yaw (Z) ring'],
+    ['#3B8BD4', 'Pitch (X) ring'],
+    [locked ? '#E8593C' : '#3DB57A', 'Roll (Y) ring' + (locked ? ' - collapsed' : '')],
+  ];
+  legend.forEach(([c,t],i) => {
+    ctx.save();
+    ctx.fillStyle = c;
+    ctx.fillRect(14, 14 + i*18, 10, 10);
+    ctx.font = '12px var(--font-sans, sans-serif)';
+    ctx.fillStyle = locked && i === 2? '#E8593C' : 'var(--color-text-secondary, #888)';
+    ctx.fillText(t, 30, 23 + i*18);
+    ctx.restore();
+  })
+}
+draw();
+</script>
