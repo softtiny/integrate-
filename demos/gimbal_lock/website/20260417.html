@@ -69,12 +69,13 @@ function rotatePoint(v,Y,P,R){
   let x1 = x*Math.cos(r) + z*Math.sin(r);
   let y1 = y;
   let z1 = -x*Math.sin(r) + z*Math.cos(r);
+  return [x1,y,z1];
   // Pitch(X-axis)
   let p = deg(P);
   let x2 = x1;
   let y2 = y1*Math.cos(p) - z1*Math.sin(p);
   let z2 = y1*Math.sin(p) + z1*Math.cos(p);
-
+  return [x2,y2,z2]
   // Yaw (Z-axis)
   let w = deg(Y);
   let x3 = x2*Math.cos(w) - y2*Math.sin(w);
