@@ -27,6 +27,7 @@ Equivalently: $Q^T = Q^{-1}$
 **2×2 Rotation Matrix** (counterclockwise by angle θ):
 $$Q = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}\\
 Q^T=\begin{pmatrix}\cos\theta & sin\theta \\ -\sin\theta & cos\theta\end{pmatrix}\\
+Q^{-1} = \frac{1}{\det Q}Adj(Q)\\
 Q^{-1} = \frac{1}{\cos^2\theta+\sin^2\theta}\begin{pmatrix}\cos\theta & sin\theta \\ -\sin\theta & cos\theta\end{pmatrix}\\
 Q^T=Q^{-1}
 $$
