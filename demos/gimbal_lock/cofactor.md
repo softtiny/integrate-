@@ -17,3 +17,15 @@ M_{12} = 40 - 36 = 4\\
 Cofactor \space C_{12} \space of \space a_{12} = M_{12} \times (-1)^{1+2}\\
 C_{12} = -4
 ```
+
+
+## What is the cofactor matrix of
+
+```math
+\begin{bmatrix} 3 & 6 \\ 7 & 8\end{bmatrix}\\
+M_{11} = 8 \space \space \space C_{11} = 8\times(-1)^{(1+1)} = 8\\
+M_{12} = 7 \space \space \space C_{12} = 7\times(-1)^{(1+2)} = -7\\
+M_{21} = 6 \space \space \space C_{21} = 6\times(-1)^{(2+1)} = -6 \\
+M_{22} = 3 \space \space \space C_{22} = 3\times(-1)^{(2+2)} = 3 \\ 
+Cofactor \space matrix \begin{bmatrix} 8 & -7 \\ -6 & 3\end{bmatrix}\\
+```
