@@ -29,3 +29,14 @@ M_{21} = 6 \space \space \space C_{21} = 6\times(-1)^{(2+1)} = -6 \\
 M_{22} = 3 \space \space \space C_{22} = 3\times(-1)^{(2+2)} = 3 \\ 
 Cofactor \space matrix \begin{bmatrix} 8 & -7 \\ -6 & 3\end{bmatrix}\\
 ```
+
+## What is the cofactor matrix of
+
+```math
+\begin{bmatrix} 0 & -6 \\ -3 & -4\end{bmatrix}\\
+M_{11} = -4 \space \space \space C_{11} = -4\times(-1)^{(1+1)} = -4\\
+M_{12} = -3 \space \space \space C_{12} = -3\times(-1)^{(1+2)} = 3\\
+M_{21} = -6 \space \space \space C_{21} = -6\times(-1)^{(2+1)} = 6 \\
+M_{22} = 0 \space \space \space C_{22} = 0\times(-1)^{(2+2)} = 0 \\ 
+Cofactor \space matrix \begin{bmatrix} -4 & 3 \\ 6 & 0\end{bmatrix}\\
+```
