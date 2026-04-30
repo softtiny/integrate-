@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+			outline:none;
+			border:0;
+		}
+		table {
+		  border-collapse: collapse;  /* 方案 1: 合并边框 */
+		  /* 或 */
+		  border-spacing: 0;           /* 方案 2: 显式关闭间距 */
+		}
+
+		tr,td{
+			margin:0;
+			outline:none;
+			border:none;
+		}
+		.box{
+			position: relative;
+			& td {
+				font-size: 32px;
+				width: 80px;
+				height: 80px;
+				text-align: center;
+			}
+			.bar{
+				position:absolute;
+				left: 40px;
+				left: 360px;
+				top:0;
+				width: 540px;
+				height: 60px;
+				border: 1px solid #3B82F6;
+				border-radius: 9999px;
+				transform:rotate(45deg);
+				transform-origin:left top;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<table>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+				<td>10</td>
+				<td>6</td>
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>11</td>
+				<td>12</td>
+				<td>13</td>
+				<td>14</td>
+				<td>15</td>
+				<td>11</td>
+				<td>12</td>
+				<td>13</td>
+				<td>14</td>
+				<td>15</td>
+			</tr>
+			<tr>
+				<td>16</td>
+				<td>17</td>
+				<td>18</td>
+				<td>19</td>
+				<td>20</td>
+				<td>16</td>
+				<td>17</td>
+				<td>18</td>
+				<td>19</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>21</td>
+				<td>22</td>
+				<td>23</td>
+				<td>24</td>
+				<td>25</td>
+				<td>21</td>
+				<td>22</td>
+				<td>23</td>
+				<td>24</td>
+				<td>25</td>
+			</tr>
+		</table>
+		<div class="bar"></div>
+	</div>
+<script>
+window.onload=function(){
+	var table = document.querySelector("table")
+	var trs = table.querySelectorAll('tr')
+	var colors = [
+		"#3B82F6",
+		"#EF4444",
+		"#10B981",
+		"#F59E0B",
+		"#8B5CF6",
+		"#475569",
+		"#EC4899",
+		"#06B6D4",
+		"#78350F",
+		"#84A59D",
+	]
+	var arr1=[]
+	arr1.push(1*7*13*19*25)
+	console.log(1*7*13*19*25,'1*7*13*19*25')
+	arr1.push(2*8*14*20*21)
+	console.log(2*8*14*20*21,'2*8*14*20*21')
+	arr1.push(2*8*14*20*21)
+	console.log(2*8*14*20*21,'2*8*14*20*21')
+	arr1.push(4*10*11*17*23)
+	console.log(4*10*11*17*23,'4*10*11*17*23')
+	arr1.push(5*6*12*18*24)
+	console.log(5*6*12*18*24,'5*6*12*18*24');
+	let aaaa = [1,2,3,4,5].map((num)=>{
+		let arr = [0,1,2,3,4].map((ext)=>{
+			return [num+ext,1+ext]
+		})
+		arr = arr.map(([tdext,trext])=>{
+			let td = tdext-1
+			let tr = trext-1
+			let cols = trs[tr].querySelectorAll("td")
+			let col = cols[td]
+			let res = +col.innerText.trim()
+			return res
+		})
+		console.log(arr)
+		let sum = arr.reduce((c,n)=>c*n,1)
+		console.log(sum)
+		return sum
+	})
+	let plus = aaaa.reduce((c,n)=>c+n,0);
+	console.log(plus)
+	aaaa = [6,7,8,9,10].map((num)=>{
+		let arr = [0,1,2,3,4].map((ext)=>{
+			return [ num-ext,1+ext]
+		})
+		arr = arr.map(([tdext,trext])=>{
+			let td = tdext-1
+			let tr = trext-1
+			let cols = trs[tr].querySelectorAll("td")
+			let col = cols[td]
+			let res = +col.innerText.trim()
+			return res
+		})
+		console.log(arr)
+		let sum = arr.reduce((c,n)=>c*n,1)
+		console.log(sum)
+		return sum
+	})
+	let minus = aaaa.reduce((c,n)=>c+n,0)
+	console.log(minus)
+	console.log(plus,minus)
+}
+</script>
+</body>
+</html>
