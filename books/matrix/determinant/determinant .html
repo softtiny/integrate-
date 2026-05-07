@@ -24,13 +24,15 @@
 		}
 		.box{
 			position: relative;
+			display: flex;
+			justify-content: space-between;
 			& td {
 				font-size: 32px;
 				width: 80px;
 				height: 80px;
 				text-align: center;
 			}
-			.bar{
+			& .bar{
 				position:absolute;
 				left: 40px;
 				left: 360px;
@@ -41,6 +43,40 @@
 				border-radius: 9999px;
 				transform:rotate(45deg);
 				transform-origin:left top;
+			}
+		}
+		aside{
+			& .page{
+				display:flex;
+			}
+		}
+		dl {
+			width: 100px;
+			border: 1px solid #3fb950;
+			
+			text-align: center;
+			& dt {
+				font-size:22px;
+				font-weight: bold;
+				border-bottom: 1px solid #3fb950;
+				line-height: 50px;
+			}
+			& dd {
+				height: 50px;
+				line-height: 50px;
+				poistion: relative;
+				
+			}
+			& dd.cur::after {
+				position: absoulte;
+				left:0;
+				top: 0;
+				content: " ";
+				display: block;
+				box-sizing: border-box;
+				width: 100%;
+				height: 100%;
+				border: 2px solid #ffd343;
 			}
 		}
 	</style>
@@ -110,6 +146,33 @@
 			</tr>
 		</table>
 		<div class="bar"></div>
+		<aside>
+			<div class="gap">
+				<div class="page">
+					<dl>
+						<dt>+1</dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>+2</dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>+3</dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>+4</dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>+5</dt>
+						<dd></dd>
+					</dl>
+				</div>
+			</div>
+			
+		</aside>
 	</div>
 <script>
 window.onload=function(){
