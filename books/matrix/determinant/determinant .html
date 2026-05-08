@@ -79,6 +79,27 @@
 				border: 2px solid #ffd343;
 			}
 		}
+		.bot {
+			padding: 30px;
+			& .info {
+				& .col {
+					width: 100px;
+					height: 100px;
+					& .col-num {
+						height: 80px;
+						line-height: 80px;
+						font-size: 24px;
+						text-align: center;
+					}
+					& .line {
+						width:  100%px;
+						height: 2px;
+						background-color:  #000;
+					}
+				}
+			}
+			& .sign {font-size: 40px;padding: 0 20px;}
+		}
 	</style>
 </head>
 <body>
@@ -173,6 +194,53 @@
 			</div>
 			
 		</aside>
+	</div>
+	<div class="bot">
+		<table class="info">
+			<tr>
+				<td>
+					<div class="col">
+						<div class="col-num"></div>
+						<div class="line"></div>
+					</div>
+				</td>
+				<td><div class="sign">+</div></td>
+				<td>
+					<div class="col">
+						<div class="col-num"></div>
+						<div class="line"></div>
+					</div>
+				</td>
+				<td><div class="sign">+</div></td>
+				<td>
+					<div class="col">
+						<div class="col-num"></div>
+						<div class="line"></div>
+					</div>
+				</td>
+				<td><div class="sign">+</div></td>
+				<td>
+					<div class="col">
+						<div class="col-num"></div>
+						<div class="line"></div>
+					</div>
+				</td>
+				<td><div class="sign">+</div></td>
+				<td>
+					<div class="col">
+						<div class="col-num"></div>
+						<div class="line"></div>
+					</div>
+				</td>
+				<td><div class="sign">=</div></td>
+				<td>
+					<div class="col">
+						<div class="col-num"></div>
+						<div class="line"></div>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
 <script>
 window.onload=function(){
