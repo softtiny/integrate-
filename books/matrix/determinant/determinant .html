@@ -33,6 +33,7 @@
 				text-align: center;
 			}
 			& .bar{
+				pointer-events: none;
 				position:absolute;
 				left: 40px;
 				left: 360px;
@@ -104,7 +105,7 @@
 </head>
 <body>
 	<div class="box">
-		<table>
+		<table id="matrix">
 			<tr>
 				<td>1</td>
 				<td>2</td>
@@ -244,8 +245,15 @@
 	</div>
 <script>
 window.onload=function(){
-	var table = document.querySelector("table")
+	var table = document.querySelector("table#matrix")
+	var info = document.querySelector('table.info')
+	var info_col_num = info.querySelectorAll('.col-num')
 	var trs = table.querySelectorAll('tr')
+	var top_tds = Array.from( trs[0].querySelectorAll('td') )
+	trs[0].addEventListener('click',function(event){
+		let item = event.target
+		focus_seg(top_tds.indexOf(item))
+	})
 	var colors = [
 		"#3B82F6",
 		"#EF4444",
@@ -258,17 +266,29 @@ window.onload=function(){
 		"#78350F",
 		"#84A59D",
 	]
-	var arr1=[]
-	arr1.push(1*7*13*19*25)
-	console.log(1*7*13*19*25,'1*7*13*19*25')
-	arr1.push(2*8*14*20*21)
-	console.log(2*8*14*20*21,'2*8*14*20*21')
-	arr1.push(2*8*14*20*21)
-	console.log(2*8*14*20*21,'2*8*14*20*21')
-	arr1.push(4*10*11*17*23)
-	console.log(4*10*11*17*23,'4*10*11*17*23')
-	arr1.push(5*6*12*18*24)
-	console.log(5*6*12*18*24,'5*6*12*18*24');
+	var struct = {
+		add:[],
+		add_sums:[],
+		minus:[],
+		minus_sums:[],
+		cur:null,
+	}
+	function focus_seg(idx){
+		struct.cur = idx
+		if(idx>4){
+			idx -= 5
+			info_col_num[5].innerHTML=struct.minus_sums[idx]
+			struct.minus[idx].map((val,pos)=>{
+				info_col_num[pos].innerHTML=val
+			})
+		}else{
+			info_col_num[5].innerHTML=struct.add_sums[idx]
+			struct.add[idx].map((val,pos)=>{
+				info_col_num[pos].innerHTML=val
+			})
+		}
+		
+	}
 	let aaaa = [1,2,3,4,5].map((num)=>{
 		let arr = [0,1,2,3,4].map((ext)=>{
 			return [num+ext,1+ext]
@@ -282,7 +302,9 @@ window.onload=function(){
 			return res
 		})
 		console.log(arr)
+		struct.add.push(arr)
 		let sum = arr.reduce((c,n)=>c*n,1)
+		struct.add_sums.push(sum)
 		console.log(sum)
 		return sum
 	})
@@ -300,8 +322,10 @@ window.onload=function(){
 			let res = +col.innerText.trim()
 			return res
 		})
+		struct.minus.push(arr)
 		console.log(arr)
 		let sum = arr.reduce((c,n)=>c*n,1)
+		struct.minus_sums.push(sum)
 		console.log(sum)
 		return sum
 	})
