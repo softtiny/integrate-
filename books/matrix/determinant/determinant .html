@@ -36,7 +36,7 @@
 				pointer-events: none;
 				position:absolute;
 				left: 40px;
-				left: 360px;
+				
 				top:0;
 				width: 540px;
 				height: 60px;
@@ -44,6 +44,18 @@
 				border-radius: 9999px;
 				transform:rotate(45deg);
 				transform-origin:left top;
+			}
+			& .bleft1 {
+				left: 120px;
+			}
+			& .bleft2 {
+				left: 200px;
+			}
+			& .bleft3 {
+				left: 280px;
+			}
+			& .bleft4 {
+				left: 360px;
 			}
 		}
 		aside{
@@ -167,7 +179,7 @@
 				<td>25</td>
 			</tr>
 		</table>
-		<div class="bar"></div>
+		<div class="bar" id="bar"></div>
 		<aside>
 			<div class="gap">
 				<div class="page">
@@ -245,6 +257,7 @@
 	</div>
 <script>
 window.onload=function(){
+	var bar = document.querySelector("#bar")
 	var table = document.querySelector("table#matrix")
 	var info = document.querySelector('table.info')
 	var info_col_num = info.querySelectorAll('.col-num')
@@ -286,6 +299,8 @@ window.onload=function(){
 			struct.add[idx].map((val,pos)=>{
 				info_col_num[pos].innerHTML=val
 			})
+			bar.className = ""
+			bar.classList.add('bar','bleft'+idx)
 		}
 		
 	}
