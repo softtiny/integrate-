@@ -182,7 +182,7 @@
 		<div class="bar" id="bar"></div>
 		<aside>
 			<div class="gap">
-				<div class="page">
+				<div class="page" id="records_add">
 					<dl>
 						<dt>+1</dt>
 						<dd></dd>
@@ -257,6 +257,8 @@
 	</div>
 <script>
 window.onload=function(){
+	var records_add = document.querySelector("#records_add")
+	var records_add_dds=records_add.querySelectorAll("dd")
 	var bar = document.querySelector("#bar")
 	var table = document.querySelector("table#matrix")
 	var info = document.querySelector('table.info')
@@ -285,6 +287,7 @@ window.onload=function(){
 		minus:[],
 		minus_sums:[],
 		cur:null,
+		add_records:[],
 	}
 	function focus_seg(idx){
 		struct.cur = idx
@@ -301,8 +304,14 @@ window.onload=function(){
 			})
 			bar.className = ""
 			bar.classList.add('bar','bleft'+idx)
+			if(!struct.add_records.includes(idx)){
+				struct.add_records.push(idx)
+			}
 		}
-		
+
+		struct.add_records.map((item)=>{
+			records_add_dds[item].innerHTML=struct.add_sums[item]
+		})
 	}
 	let aaaa = [1,2,3,4,5].map((num)=>{
 		let arr = [0,1,2,3,4].map((ext)=>{
