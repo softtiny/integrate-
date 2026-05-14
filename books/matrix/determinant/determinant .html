@@ -61,6 +61,12 @@
 		aside{
 			& .page{
 				display:flex;
+				
+			}
+			& .records_add_sum{
+				text-align: center;	
+				line-height: 55px;	
+				border-bottom: 1px solid #000;
 			}
 		}
 		dl {
@@ -204,6 +210,7 @@
 						<dd></dd>
 					</dl>
 				</div>
+				<div class="records_add_sum">0</div>
 			</div>
 			
 		</aside>
@@ -259,6 +266,7 @@
 window.onload=function(){
 	var records_add = document.querySelector("#records_add")
 	var records_add_dds=records_add.querySelectorAll("dd")
+	var records_add_sum = records_add.nextElementSibling;
 	var bar = document.querySelector("#bar")
 	var table = document.querySelector("table#matrix")
 	var info = document.querySelector('table.info')
@@ -308,10 +316,13 @@ window.onload=function(){
 				struct.add_records.push(idx)
 			}
 		}
-
+		let sumadd=0
 		struct.add_records.map((item)=>{
-			records_add_dds[item].innerHTML=struct.add_sums[item]
+			let linesum = struct.add_sums[item]
+			records_add_dds[item].innerHTML=linesum
+			sumadd+=linesum
 		})
+		records_add_sum.innerHTML=sumadd
 	}
 	let aaaa = [1,2,3,4,5].map((num)=>{
 		let arr = [0,1,2,3,4].map((ext)=>{
