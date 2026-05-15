@@ -57,13 +57,41 @@
 			& .bleft4 {
 				left: 360px;
 			}
+			& .bar2{
+				pointer-events: none;
+				position:absolute;
+				left: 60px;
+				
+				top:370px;
+				width: 540px;
+				height: 60px;
+				border: 1px solid #EA4F16;
+				border-radius: 9999px;
+				transform:rotate(-45deg);
+				transform-origin:left top;
+			}
+			& .bright1{
+				left: 140px;
+			}
+			& .bright2{
+				left: 220px;
+			}
+			& .bright3{
+				left: 300px;
+			}
+			& .bright4{
+				left: 380px;
+			}
 		}
 		aside{
 			& .page{
 				display:flex;
 				
 			}
-			& .records_add_sum{
+			& .gap2{
+				padding-top: 80px;
+			}
+			& .records_add_sum,.records_minus_sum{
 				text-align: center;	
 				line-height: 55px;	
 				border-bottom: 1px solid #000;
@@ -185,7 +213,7 @@
 				<td>25</td>
 			</tr>
 		</table>
-		<div class="bar" id="bar"></div>
+		<div class="bar2" id="bar"></div>
 		<aside>
 			<div class="gap">
 				<div class="page" id="records_add">
@@ -212,7 +240,31 @@
 				</div>
 				<div class="records_add_sum">0</div>
 			</div>
-			
+			<div class="gap gap2">
+				<div class="page" id="records_minus">
+					<dl>
+						<dt>-1</dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>-2</dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>-3</dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>-4</dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>-5</dt>
+						<dd></dd>
+					</dl>
+				</div>
+				<div class="records_minus_sum">0</div>
+			</div>
 		</aside>
 	</div>
 	<div class="bot">
@@ -267,6 +319,9 @@ window.onload=function(){
 	var records_add = document.querySelector("#records_add")
 	var records_add_dds=records_add.querySelectorAll("dd")
 	var records_add_sum = records_add.nextElementSibling;
+	var records_minus = document.querySelector("#records_minus")
+	var records_minus_dds=records_minus.querySelectorAll("dd")
+	var records_minus_sum = records_minus.nextElementSibling;
 	var bar = document.querySelector("#bar")
 	var table = document.querySelector("table#matrix")
 	var info = document.querySelector('table.info')
@@ -296,6 +351,7 @@ window.onload=function(){
 		minus_sums:[],
 		cur:null,
 		add_records:[],
+		minus_records:[],
 	}
 	function focus_seg(idx){
 		struct.cur = idx
@@ -305,6 +361,11 @@ window.onload=function(){
 			struct.minus[idx].map((val,pos)=>{
 				info_col_num[pos].innerHTML=val
 			})
+			bar.className = ""
+			bar.classList.add('bar2','bright'+idx)
+			if(!struct.minus_records.includes(idx)){
+				struct.minus_records.push(idx)
+			}
 		}else{
 			info_col_num[5].innerHTML=struct.add_sums[idx]
 			struct.add[idx].map((val,pos)=>{
@@ -323,6 +384,13 @@ window.onload=function(){
 			sumadd+=linesum
 		})
 		records_add_sum.innerHTML=sumadd
+		let summinus = 0
+		struct.minus_records.map((item)=>{
+			let linesum = struct.minus_sums[item]
+			records_minus_dds[item].innerHTML=linesum
+			summinus+=linesum
+		})
+		records_minus_sum.innerHTML=summinus
 	}
 	let aaaa = [1,2,3,4,5].map((num)=>{
 		let arr = [0,1,2,3,4].map((ext)=>{
