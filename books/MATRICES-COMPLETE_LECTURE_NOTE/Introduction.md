@@ -1,0 +1,8 @@
+- Special Types of Matrices
+    - Square matrix
+    - Diagonal matrix
+    - Identity Matrix
+    - Upper Triangular matrix
+    - Lower Triangular Matrix
+    - Symmetric Matrix
+    - Skew- Symmetric Matrix
