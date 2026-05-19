@@ -18,6 +18,13 @@ function rotatePoint(v, Y, P, R) {
 ### 1. **基础概念：旋转矩阵**
 
 在3D空间中，绕坐标轴旋转一个点可以用旋转矩阵表示。对于绕各轴旋转θ角，有三个基本旋转矩阵：
+```js
+let [x,y,z] =v;
+let degree = 30;
+let x1 = x * Math.cos(degree) + z * Math.sin(degree);
+let y1 = 1;
+let z1 = -x*Math.sin(degree) + z*Math.cos(dgree)
+```
 
 #### 绕 X 轴旋转（Pitch - 俯仰）
 ```
