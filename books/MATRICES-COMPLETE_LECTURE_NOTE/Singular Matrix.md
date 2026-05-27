@@ -18,4 +18,14 @@ if $A$ is square matrix of order $n$, the $A$  is called singular matrix when $\
 |                          |                                          |                                                |
 
 
+#### Simple $2×2$ singular matrix
+
+```math
+A = \begin{bmatrix}
+2 & 4 \\
+1 & 2
+\end{bmatrix}\\
+\vert A \vert  = 0
+```
+
 ##### about non-singular (invertible matrix )
