@@ -62,3 +62,26 @@ const slerp = function(out,a,b,t) {
     return out
 }
 ```
+
+### method quat.rotateX
+
+```js
+/**
+ * Rotates a quaternion by the given angle about the X axis
+ * @param {number} rad angle (in radians) to rotate
+ */
+const rotateX = function(out,a, rad){
+    rad *= 0.5;
+    let ax = a[0];
+    let ay = a[1];
+    let az = a[2];
+    let aw = a[3];
+    let bx = Math.sin(rad),
+        bw = Math.cos(rad);
+    out[0] = ax*bw + aw*bx;
+    out[1] = ay*bw + az*bx;
+    out[2] = az * bw - ay*bx;
+    out[3] = aw*bw -ax*bx;
+    return out;
+}
+```
