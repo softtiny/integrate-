@@ -32,3 +32,8 @@ I. Definitions and Foundational Theorems (Articles 1–12)
     + Multiplying by a negative number scales the step and reverses its direction.
     + Subtraction is defined as adding a reversed step: $\mathbf{AB} - \mathbf{CB} = \mathbf{AB} + \mathbf{BC} = \mathbf{AC}$.
 10. Distributive Property: A sum of steps is multiplied by a scalar by multiplying each individual component step.
+
+### Center of Gravity
+
+- Point Division: Defining a point $P$ on a line segment $AB$ using the step equation $l\mathbf{AP} + m\mathbf{BP} = 0$, which means $P$ divides $AB$ in the inverse ratio of $l : m$.
+- System Mean / Centroid: Using equations like $\sum m\mathbf{AP} = 0$ to find the center of gravity ($P$) of a system of weighted points.
