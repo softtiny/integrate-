@@ -37,3 +37,8 @@ I. Definitions and Foundational Theorems (Articles 1–12)
 
 - Point Division: Defining a point $P$ on a line segment $AB$ using the step equation $l\mathbf{AP} + m\mathbf{BP} = 0$, which means $P$ divides $AB$ in the inverse ratio of $l : m$.
 - System Mean / Centroid: Using equations like $\sum m\mathbf{AP} = 0$ to find the center of gravity ($P$) of a system of weighted points.
+
+
+### Curve Tracing and Tangents
+- Variable Steps: Introducing the concept of a step that changes dynamically with respect to a scalar variable (like time or a parameter $t$).
+- Geometric Differentiation: Defining the tangent to a curve through the limiting ratio of a step increment ($\Delta \mathbf{R}$) divided by a scalar increment ($\Delta t$).
