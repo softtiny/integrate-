@@ -1,0 +1,375 @@
+
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 20px; }
+  .section { margin-bottom: 2rem; }
+  .section-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+  .section-sub  { font-size: 12px; color: var(--color-text-secondary); margin: 0 0 12px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px; }
+  .ctrl-group { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--color-text-secondary); }
+  .ctrl-group input[type=range] { width: 100px; }
+  .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+  .badge-blue   { background: var(--color-background-info);    color: var(--color-text-info); }
+  .badge-amber  { background: var(--color-background-warning);  color: var(--color-text-warning); }
+  .badge-green  { background: var(--color-background-success);  color: var(--color-text-success); }
+  .badge-coral  { background: #FAECE7; color: #993C1D; }
+  .eq-box { background: var(--color-background-secondary); border-radius: 8px; border: 0.5px solid var(--color-border-tertiary); padding: 10px 14px; font-size: 13px; color: var(--color-text-secondary); margin-top: 10px; }
+  .eq-box strong { color: var(--color-text-primary); font-weight: 500; }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.5rem 0; }
+  .tabs { display: flex;  margin-bottom: 14px; }
+  .tab { font-size: 13px; padding: 5px 14px; border: 0.5px solid #000; cursor: pointer; transition: all .15s; }
+  .tab.active { font-weight: 500; position: relative;border-color:#1D9E75;color: #1D9E75;background-color: transparent;}
+  .tab.active::after{
+      content: "";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      border:1px solid #1D9E75;
+      z-index:33;
+  }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  canvas { border-radius: 8px; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); display: block; width: 100%; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--color-text-secondary); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .line-swatch { width: 18px; height: 2px; flex-shrink: 0; }
+</style>
+
+<h2 class="sr-only" style="position:absolute;left:-9999px">Interactive explainer: Parallel projection and step proportion from A Primer of Quaternions Chapter 1</h2>
+
+<div class="tabs">
+  <button class="tab active" onclick="setTab('proj')">Projection</button>
+  <button class="tab" onclick="setTab('sum')">Sum of steps</button>
+  <button class="tab" onclick="setTab('prop')">Proportion & plagiograph</button>
+</div>
+
+<!-- TAB 1: Projection -->
+<div class="panel active" id="tab-proj">
+  <p class="section-sub" style="margin:0 0 10px">Drag the sliders to change the direction of projection and the target line. Watch how step <strong>AB</strong> maps onto the line.</p>
+  <div class="controls">
+    <div class="ctrl-group">
+      Projection angle
+      <input type="range" min="-75" max="75" value="40" id="sl-angle" oninput="drawProj()">
+      <span id="lbl-angle" style="min-width:32px;text-align:right">40°</span>
+    </div>
+    <div class="ctrl-group">
+      Line tilt
+      <input type="range" min="-30" max="30" value="0" id="sl-line" oninput="drawProj()">
+      <span id="lbl-line" style="min-width:32px;text-align:right">0°</span>
+    </div>
+  </div>
+  <canvas id="c-proj" height="280"></canvas>
+  <div class="legend">
+    <div class="legend-item"><div class="dot" style="background:#378ADD"></div> Step AB</div>
+    <div class="legend-item"><div class="line-swatch" style="background:#E24B4A"></div> Projection line</div>
+    <div class="legend-item"><div class="dot" style="background:#1D9E75"></div> Projected step A'B'</div>
+    <div class="legend-item"><div class="line-swatch" style="background:#BA7517;border-top:2px dashed #BA7517;height:0"></div> Parallel direction</div>
+  </div>
+  <div class="eq-box">
+    <strong>Definition (Hathaway §2):</strong> To project step <em>AB</em> onto a line ℓ along direction <em>d</em>, draw parallels to <em>d</em> through A and B; where they meet ℓ are A′ and B′. The projected step is <strong>A′B′</strong>.
+  </div>
+</div>
+
+<!-- TAB 2: Sum of steps -->
+<div class="panel" id="tab-sum">
+  <p class="section-sub" style="margin:0 0 10px">Hathaway's key theorem: <strong>proj(AB + BC) = proj(AB) + proj(BC)</strong>. Toggle the three steps and see how their projections add up.</p>
+  <div class="controls">
+    <div class="ctrl-group">
+      Angle
+      <input type="range" min="-65" max="65" value="35" id="sl-sum-angle" oninput="drawSum()">
+      <span id="lbl-sum-angle" style="min-width:32px;text-align:right">35°</span>
+    </div>
+    <div class="ctrl-group" style="gap:6px">
+      <label style="display:flex;align-items:center;gap:4px"><input type="checkbox" id="cb-ab" checked onchange="drawSum()"> <span class="badge badge-blue">AB</span></label>
+      <label style="display:flex;align-items:center;gap:4px"><input type="checkbox" id="cb-bc" checked onchange="drawSum()"> <span class="badge badge-amber">BC</span></label>
+      <label style="display:flex;align-items:center;gap:4px"><input type="checkbox" id="cb-ac" checked onchange="drawSum()"> <span class="badge badge-green">AC (sum)</span></label>
+    </div>
+  </div>
+  <canvas id="c-sum" height="300"></canvas>
+  <div class="eq-box" id="sum-eq">
+    <strong>Projection of sum:</strong> proj(<em>AB</em>) + proj(<em>BC</em>) = proj(<em>AC</em>)
+  </div>
+</div>
+
+<!-- TAB 3: Proportion & Plagiograph -->
+<div class="panel" id="tab-prop">
+  <p class="section-sub" style="margin:0 0 10px">Scale factor <em>k</em> distributes through projection. The <strong>Plagiograph</strong> is a mechanical linkage that realises this: it takes an input step and outputs a scaled, direction-preserved copy.</p>
+  <div class="controls">
+    <div class="ctrl-group">
+      Scale <em>k</em>
+      <input type="range" min="20" max="300" value="150" id="sl-k" oninput="drawPlag()">
+      <span id="lbl-k" style="min-width:32px;text-align:right">1.5×</span>
+    </div>
+    <div class="ctrl-group">
+      Angle
+      <input type="range" min="-60" max="60" value="25" id="sl-plag-angle" oninput="drawPlag()">
+      <span id="lbl-plag-angle" style="min-width:32px;text-align:right">25°</span>
+    </div>
+  </div>
+  <canvas id="c-plag" height="300"></canvas>
+  <div class="eq-box">
+    <strong>Step proportion (§3):</strong> proj(<em>k</em> · AB) = <em>k</em> · proj(AB). Scaling a step scales its projection by the same factor. The plagiograph exploits this: it is a parallelogram linkage whose pivot ratio sets <em>k</em>, turning it into a geometric multiplier.
+  </div>
+</div>
+
+<script>
+function setTab(id) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', ['proj','sum','prop'][i]===id));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='proj') drawProj();
+  if(id==='sum')  drawSum();
+  if(id==='prop') drawPlag();
+}
+
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+function col(light, d) { return dark ? d : light; }
+const txt   = col('#3d3d3a','#c2c0b6');
+const txt2  = col('#73726c','#888780');
+const bg2   = col('#f5f4ef','#232320');
+const bord  = col('#d3d1c7','#444441');
+
+function resizeCanvas(id) {
+  const c = document.getElementById(id);
+  c.width = c.parentElement.clientWidth;
+  return c;
+}
+
+// ─── TAB 1: Projection ──────────────────────────────────────────────────────
+function drawProj() {
+  const c = resizeCanvas('c-proj');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  const angle = +document.getElementById('sl-angle').value;
+  const lineTilt = +document.getElementById('sl-line').value;
+  document.getElementById('lbl-angle').textContent = angle+'°';
+  document.getElementById('lbl-line').textContent = lineTilt+'°';
+
+  const Ax = W*0.28, Ay = H*0.35;
+  const Bx = W*0.65, By = H*0.28;
+
+  // Target line through centre
+  const cy = H*0.72;
+  const lAngle = lineTilt * Math.PI/180;
+  const lDx = Math.cos(lAngle), lDy = Math.sin(lAngle);
+  const L1x = W*0.05, L1y = cy + (W*0.05 - W/2)*lDy/lDx*0;
+  const L2x = W*0.95;
+  // parametric line through (W/2, cy)
+  function lineY(x) { return cy + (x - W/2)*Math.tan(lAngle); }
+  ctx.strokeStyle = '#E24B4A'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(L1x, lineY(L1x)); ctx.lineTo(L2x, lineY(L2x)); ctx.stroke();
+  label(ctx, 'ℓ', L2x-20, lineY(L2x)-10, '#E24B4A');
+
+  // Projection direction
+  const pAngle = (90 - angle) * Math.PI/180;
+  const pdx = Math.cos(pAngle), pdy = Math.sin(pAngle);
+
+  // find intersection of ray from (Ax,Ay) with line
+  function projectOntoLine(px, py) {
+    // line: y - cy = tan(lAngle)*(x - W/2) → tan(lAngle)*x - y + (cy - tan(lAngle)*W/2) = 0
+    // ray: (px + t*pdx, py + t*pdy)
+    const m = Math.tan(lAngle);
+    // m*(px+t*pdx) - (py+t*pdy) + (cy - m*W/2) = 0
+    // t*(m*pdx - pdy) = py - m*px - cy + m*W/2
+    const denom = m*pdx - pdy;
+    if(Math.abs(denom) < 1e-6) return null;
+    const t = (py - m*px - cy + m*W/2) / denom;
+    return { x: px + t*pdx, y: py + t*pdy, t };
+  }
+
+  const pA = projectOntoLine(Ax, Ay);
+  const pB = projectOntoLine(Bx, By);
+
+  // Draw dashed parallel lines
+  ctx.strokeStyle = '#BA7517'; ctx.lineWidth = 1; ctx.setLineDash([5,4]);
+  if(pA) { ctx.beginPath(); ctx.moveTo(Ax,Ay); ctx.lineTo(pA.x,pA.y); ctx.stroke(); }
+  if(pB) { ctx.beginPath(); ctx.moveTo(Bx,By); ctx.lineTo(pB.x,pB.y); ctx.stroke(); }
+  ctx.setLineDash([]);
+
+  // Draw step AB
+  arrow(ctx, Ax, Ay, Bx, By, '#378ADD', 2);
+  label(ctx, 'A', Ax-14, Ay, '#378ADD');
+  label(ctx, 'B', Bx+6, By, '#378ADD');
+
+  // Draw projected step A'B'
+  if(pA && pB) {
+    arrow(ctx, pA.x, pA.y, pB.x, pB.y, '#1D9E75', 2.5);
+    label(ctx, "A'", pA.x-14, pA.y+16, '#1D9E75');
+    label(ctx, "B'", pB.x+6, pB.y+16, '#1D9E75');
+  }
+
+  dot(ctx, Ax, Ay, '#378ADD');
+  dot(ctx, Bx, By, '#378ADD');
+  if(pA) dot(ctx, pA.x, pA.y, '#1D9E75');
+  if(pB) dot(ctx, pB.x, pB.y, '#1D9E75');
+}
+
+// ─── TAB 2: Sum of steps ─────────────────────────────────────────────────────
+function drawSum() {
+  const c = resizeCanvas('c-sum');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  const angle = +document.getElementById('sl-sum-angle').value;
+  document.getElementById('lbl-sum-angle').textContent = angle+'°';
+  const showAB = document.getElementById('cb-ab').checked;
+  const showBC = document.getElementById('cb-bc').checked;
+  const showAC = document.getElementById('cb-ac').checked;
+
+  const Ax = W*0.18, Ay = H*0.30;
+  const Bx = W*0.55, By = H*0.20;
+  const Cx = W*0.75, Cy = H*0.40;
+
+  // Target line
+  const ly = H*0.75;
+  ctx.strokeStyle = '#E24B4A'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(W*0.04, ly); ctx.lineTo(W*0.96, ly); ctx.stroke();
+  label(ctx, 'ℓ', W*0.93, ly-12, '#E24B4A');
+
+  const pAngle = (90-angle)*Math.PI/180;
+  const pdx = Math.cos(pAngle), pdy = Math.sin(pAngle);
+  function proj(px,py) {
+    const t = (ly-py)/pdy;
+    return { x: px+t*pdx, y: ly };
+  }
+
+  const pA = proj(Ax,Ay), pB = proj(Bx,By), pC = proj(Cx,Cy);
+
+  // Dashed projectors
+  ctx.strokeStyle = col('#B4B2A9','#5F5E5A'); ctx.lineWidth=0.8; ctx.setLineDash([4,4]);
+  [[Ax,Ay,pA],[Bx,By,pB],[Cx,Cy,pC]].forEach(([x,y,p])=>{
+    ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(p.x,p.y); ctx.stroke();
+  });
+  ctx.setLineDash([]);
+
+  if(showAB) { arrow(ctx,Ax,Ay,Bx,By,'#378ADD',2); label(ctx,'A',Ax-14,Ay,'#378ADD'); label(ctx,'B',Bx+4,By-8,'#378ADD'); }
+  if(showBC) { arrow(ctx,Bx,By,Cx,Cy,'#BA7517',2); if(!showAB) label(ctx,'B',Bx+4,By-8,'#BA7517'); label(ctx,'C',Cx+6,Cy,'#BA7517'); }
+  if(showAC) { arrow(ctx,Ax,Ay+18,Cx,Cy+18,'#1D9E75',1.5,true); if(!showAB) label(ctx,'A',Ax-14,Ay,'#1D9E75'); if(!showBC) label(ctx,'C',Cx+6,Cy,'#1D9E75'); }
+
+  dot(ctx,Ax,Ay,'#378ADD'); dot(ctx,Bx,By,'#BA7517'); dot(ctx,Cx,Cy,'#1D9E75');
+
+  // On-line projected steps
+  if(showAB) { arrow(ctx,pA.x,ly,pB.x,ly,'#378ADD',2.5); dot(ctx,pA.x,ly,'#378ADD'); dot(ctx,pB.x,ly,'#378ADD'); }
+  if(showBC) { arrow(ctx,pB.x,ly+10,pC.x,ly+10,'#BA7517',2.5); dot(ctx,pB.x,ly+10,'#BA7517'); dot(ctx,pC.x,ly+10,'#BA7517'); }
+  if(showAC) { arrow(ctx,pA.x,ly+22,pC.x,ly+22,'#1D9E75',2.5); dot(ctx,pA.x,ly+22,'#1D9E75'); dot(ctx,pC.x,ly+22,'#1D9E75'); }
+
+  const d = (v=>v.toFixed(1))(Math.abs(pB.x-pA.x));
+  const e = (v=>v.toFixed(1))(Math.abs(pC.x-pB.x));
+  const f = (v=>v.toFixed(1))(Math.abs(pC.x-pA.x));
+  document.getElementById('sum-eq').innerHTML =
+    `<strong>Projection of sum:</strong> proj(<em>AB</em>)=${d}px &nbsp;+&nbsp; proj(<em>BC</em>)=${e}px &nbsp;=&nbsp; proj(<em>AC</em>)=${f}px &nbsp; ✓`;
+}
+
+// ─── TAB 3: Proportion & Plagiograph ─────────────────────────────────────────
+function drawPlag() {
+  const c = resizeCanvas('c-plag');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  const kRaw = +document.getElementById('sl-k').value;
+  const k = kRaw/100;
+  const angle = +document.getElementById('sl-plag-angle').value * Math.PI/180;
+  document.getElementById('lbl-k').textContent = k.toFixed(2)+'×';
+  document.getElementById('lbl-plag-angle').textContent = (+document.getElementById('sl-plag-angle').value)+'°';
+
+  // Input step: fixed pivot at (ox,oy), end at (ex,ey)
+  const ox = W*0.20, oy = H*0.55;
+  const stepLen = W*0.22;
+  const ex = ox + stepLen*Math.cos(angle), ey = oy - stepLen*Math.sin(angle);
+
+  // Output step: same direction, scaled by k, starting at ox
+  const ox2 = W*0.20, oy2 = H*0.55;
+  const ex2 = ox2 + stepLen*k*Math.cos(angle), ey2 = oy2 - stepLen*k*Math.sin(angle);
+
+  // Projection line
+  const ly = H*0.82;
+  ctx.strokeStyle='#E24B4A'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(W*0.04,ly); ctx.lineTo(W*0.96,ly); ctx.stroke();
+  label(ctx,'ℓ',W*0.93,ly-12,'#E24B4A');
+
+  const pAngle = Math.PI/2; // straight down
+  function proj2(px,py){ return {x:px,y:ly}; }
+
+  const pO = proj2(ox,oy), pE = proj2(ex,ey), pE2 = proj2(ex2,ey2);
+
+  // Dashed projectors
+  ctx.strokeStyle=col('#B4B2A9','#5F5E5A'); ctx.lineWidth=0.8; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(pO.x,pO.y); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ex,ey); ctx.lineTo(pE.x,pE.y); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ex2,ey2); ctx.lineTo(pE2.x,pE2.y); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Input step
+  arrow(ctx,ox,oy,ex,ey,'#378ADD',2.5);
+  label(ctx,'O',ox-14,oy,'#378ADD'); label(ctx,'A',ex+5,ey-5,'#378ADD');
+
+  // Output step (scaled)
+  arrow(ctx,ox2,oy2+10,ex2,ey2+10,'#D85A30',2.5);
+  label(ctx,'k·A',ex2+5,ey2+15,'#D85A30');
+
+  dot(ctx,ox,oy,'#378ADD'); dot(ctx,ex,ey,'#378ADD');
+  dot(ctx,ex2,ey2,'#D85A30');
+
+  // Plagiograph linkage (schematic parallelogram)
+  const mx = (ox+ex)/2, my = (oy+ey)/2;
+  const mx2 = (ox2+ex2)/2, my2 = (oy2+ey2)/2 + 10;
+  const pivotX = W*0.56, pivotY = H*0.40;
+  ctx.strokeStyle=col('#B4B2A9','#5F5E5A'); ctx.lineWidth=1; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(mx,my); ctx.lineTo(pivotX,pivotY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(mx2,my2); ctx.lineTo(pivotX+ex2-ex, pivotY+(ey2-ey+10)); ctx.stroke();
+  ctx.setLineDash([]);
+  dot(ctx,pivotX,pivotY,col('#888780','#B4B2A9'));
+  label(ctx,'pivot',pivotX+7,pivotY+4,txt2);
+
+  // On-line
+  const projInputLen = Math.abs(pE.x-pO.x);
+  const projOutputLen = Math.abs(pE2.x-pO.x);
+  arrow(ctx,pO.x,ly,pE.x,ly,'#378ADD',2.5);
+  arrow(ctx,pO.x,ly+12,pE2.x,ly+12,'#D85A30',2.5);
+  dot(ctx,pO.x,ly,'#378ADD'); dot(ctx,pE.x,ly,'#378ADD'); dot(ctx,pE2.x,ly+12,'#D85A30');
+
+  label(ctx,'proj(OA) = '+projInputLen.toFixed(0)+'px', W*0.58, ly-10, '#378ADD');
+  label(ctx,'proj(k·OA) = '+projOutputLen.toFixed(0)+'px', W*0.58, ly+6, '#D85A30');
+}
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+function arrow(ctx,x1,y1,x2,y2,color,w,dashed) {
+  ctx.save();
+  ctx.strokeStyle=color; ctx.lineWidth=w;
+  if(dashed) ctx.setLineDash([5,4]);
+  ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  ctx.setLineDash([]);
+  const a=Math.atan2(y2-y1,x2-x1);
+  const hs=8;
+  ctx.fillStyle=color;
+  ctx.beginPath();
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-hs*Math.cos(a-0.4),y2-hs*Math.sin(a-0.4));
+  ctx.lineTo(x2-hs*Math.cos(a+0.4),y2-hs*Math.sin(a+0.4));
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function dot(ctx,x,y,color,r=4){
+  ctx.save(); ctx.fillStyle=color;
+  ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill(); ctx.restore();
+}
+function label(ctx,text,x,y,color){
+  ctx.save(); ctx.fillStyle=color; ctx.font='12px sans-serif';
+  ctx.fillText(text,x,y); ctx.restore();
+}
+
+window.addEventListener('resize',()=>{
+  const active = document.querySelector('.panel.active').id;
+  if(active==='tab-proj') drawProj();
+  if(active==='tab-sum')  drawSum();
+  if(active==='tab-prop') drawPlag();
+});
+
+drawProj();
+</script>
