@@ -1,0 +1,258 @@
+
+<style>
+  .section { padding: 1.5rem 0 1rem; border-top: 0.5px solid var(--color-border-tertiary); }
+  .section:first-child { border-top: none; padding-top: 0.5rem; }
+  .label-row { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .label-row span { font-weight: 500; color: var(--color-text-primary); min-width: 32px; }
+  .eq-box { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: 8px; padding: 10px 16px; font-family: var(--font-mono); font-size: 13px; color: var(--color-text-primary); margin: 10px 0; display: flex; gap: 16px; flex-wrap: wrap; }
+  .eq-box span { color: var(--color-text-secondary); font-family: var(--font-sans); font-size: 12px; align-self: center; }
+  .info-text { font-size: 13px; color: var(--color-text-secondary); margin: 6px 0; }
+  canvas { width: 100%; border-radius: 8px; display: block; }
+  button.action { font-size: 12px; padding: 4px 12px; margin-right: 6px; cursor: pointer; }
+  .pt-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; flex-wrap: wrap; }
+  .pt-row label { font-size: 12px; color: var(--color-text-secondary); width: 70px; }
+  .pt-row input[type=range] { flex: 1; min-width: 80px; }
+  .pt-row input[type=number] { width: 52px; font-size: 12px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+  .badge-blue { background: var(--color-background-info); color: var(--color-text-info); }
+  .badge-amber { background: #FAEEDA; color: #854F0B; }
+  .badge-teal { background: #E1F5EE; color: #0F6E56; }
+  @media (prefers-color-scheme: dark) {
+    .badge-amber { background: #412402; color: #FAC775; }
+    .badge-teal { background: #04342C; color: #9FE1CB; }
+  }
+</style>
+
+<h2 class="sr-only">Interactive explorer for Point Division and Centroid from A Primer of Quaternions, Chapter 1</h2>
+
+<!-- PART 1: POINT DIVISION -->
+<div class="section">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+    <span class="badge badge-blue">Part 1</span>
+    <span style="font-size:15px;font-weight:500;color:var(--color-text-primary)">Point division: lAP + mBP = 0</span>
+  </div>
+  <p class="info-text">P divides segment AB such that AP/PB = m/l (inverse ratio). Drag the sliders to see P move.</p>
+
+  <div class="pt-row">
+    <label>Weight l (at A)</label>
+    <input type="range" id="sl_l" min="1" max="9" value="2" step="1" oninput="drawDiv()">
+    <span id="lv" style="font-size:13px;font-weight:500;color:var(--color-text-primary);min-width:16px">2</span>
+  </div>
+  <div class="pt-row">
+    <label>Weight m (at B)</label>
+    <input type="range" id="sl_m" min="1" max="9" value="3" step="1" oninput="drawDiv()">
+    <span id="mv" style="font-size:13px;font-weight:500;color:var(--color-text-primary);min-width:16px">3</span>
+  </div>
+
+  <canvas id="cvDiv" height="90"></canvas>
+
+  <div class="eq-box" id="eqDiv">
+    <span>Equation:</span>
+    <span id="eq1">2·AP + 3·BP = 0</span>
+    &nbsp;→&nbsp;
+    <span id="eq2">AP/PB = 3/2</span>
+    &nbsp;→&nbsp;
+    <span id="eq3">P divides AB in ratio 3:2 from A</span>
+  </div>
+  <p class="info-text" id="interpDiv"></p>
+</div>
+
+<!-- PART 2: CENTROID -->
+<div class="section">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+    <span class="badge badge-teal">Part 2</span>
+    <span style="font-size:15px;font-weight:500;color:var(--color-text-primary)">System centroid: ΣmᵢAPᵢ = 0</span>
+  </div>
+  <p class="info-text">The center of gravity G of weighted points satisfies ΣmᵢGPᵢ = 0. Adjust masses to see G shift.</p>
+
+  <div id="pts-list"></div>
+  <button class="action" onclick="addPt()">+ Add point</button>
+  <button class="action" onclick="removePt()">− Remove</button>
+
+  <canvas id="cvCent" height="120" style="margin-top:10px"></canvas>
+
+  <div class="eq-box" id="eqCent" style="margin-top:8px">
+    <span>Centroid G =</span>
+    <span id="eqG">Σ(mᵢ·xᵢ) / Σmᵢ</span>
+    <span>=</span>
+    <span id="eqGv">–</span>
+  </div>
+  <p class="info-text" id="interpCent"></p>
+</div>
+
+<script>
+const W = 620, H1 = 90, H2 = 120;
+const PAD = 40, AX = PAD, BX = W - PAD;
+const axY1 = 54, axY2 = 70;
+
+// ---- helpers ----
+function dpi(cvs, h) {
+  const r = window.devicePixelRatio || 1;
+  cvs.width = W * r; cvs.height = h * r;
+  const ctx = cvs.getContext('2d'); ctx.scale(r, r);
+  return ctx;
+}
+function label(ctx, txt, x, y, col, size, align) {
+  ctx.fillStyle = col; ctx.font = `${size || 12}px var(--font-sans)`;
+  ctx.textAlign = align || 'center'; ctx.fillText(txt, x, y);
+}
+function dot(ctx, x, y, r, col) {
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
+  ctx.fillStyle = col; ctx.fill();
+}
+function themeColor(prop) {
+  return getComputedStyle(document.documentElement).getPropertyValue(prop).trim() || '#888';
+}
+
+// ---- PART 1 ----
+function drawDiv() {
+  const l = +document.getElementById('sl_l').value;
+  const m = +document.getElementById('sl_m').value;
+  document.getElementById('lv').textContent = l;
+  document.getElementById('mv').textContent = m;
+
+  const cvs = document.getElementById('cvDiv');
+  const ctx = dpi(cvs, H1);
+  ctx.clearRect(0, 0, W, H1);
+
+  const textSec = getComputedStyle(document.documentElement).getPropertyValue('--color-text-secondary').trim() || '#888';
+  const textPri = getComputedStyle(document.documentElement).getPropertyValue('--color-text-primary').trim() || '#222';
+
+  // axis line
+  ctx.beginPath(); ctx.moveTo(AX, axY1); ctx.lineTo(BX, axY1);
+  ctx.strokeStyle = themeColor('--color-border-secondary'); ctx.lineWidth = 1.5; ctx.stroke();
+
+  // A and B
+  dot(ctx, AX, axY1, 7, '#534AB7');
+  dot(ctx, BX, axY1, 7, '#D85A30');
+  label(ctx, 'A', AX, axY1 - 14, '#534AB7', 13, 'center');
+  label(ctx, 'B', BX, axY1 - 14, '#D85A30', 13, 'center');
+
+  // P: lAP + mBP = 0 → AP/PB = m/l
+  // P = (m·A + l·B) / (l+m) — wait, let's verify:
+  // Step eq: AP = P - A, BP = P - B (as vectors from fixed origin)
+  // l·AP + m·BP = 0 → l(P-A) + m(P-B) = 0 → (l+m)P = lA + mB
+  // So P = (lA + mB)/(l+m)
+  const PX = (l * AX + m * BX) / (l + m);
+
+  // segment AP (purple), PB (coral)
+  ctx.beginPath(); ctx.moveTo(AX, axY1); ctx.lineTo(PX, axY1);
+  ctx.strokeStyle = '#534AB7'; ctx.lineWidth = 3; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(PX, axY1); ctx.lineTo(BX, axY1);
+  ctx.strokeStyle = '#D85A30'; ctx.lineWidth = 3; ctx.stroke();
+
+  // P dot
+  dot(ctx, PX, axY1, 8, '#1D9E75');
+  label(ctx, 'P', PX, axY1 - 14, '#1D9E75', 13, 'center');
+
+  // AP and PB lengths as fractions
+  const ap = ((PX - AX) / (BX - AX) * 100).toFixed(0);
+  const pb = ((BX - PX) / (BX - AX) * 100).toFixed(0);
+  label(ctx, 'AP', (AX + PX)/2, axY1 + 18, '#534AB7', 11);
+  label(ctx, 'PB', (PX + BX)/2, axY1 + 18, '#D85A30', 11);
+
+  // update equations
+  document.getElementById('eq1').textContent = `${l}·AP + ${m}·BP = 0`;
+  document.getElementById('eq2').textContent = `AP/PB = ${m}/${l}`;
+  document.getElementById('eq3').textContent = `P at ${ap}% of AB from A`;
+  document.getElementById('interpDiv').textContent =
+    `P is closer to ${l < m ? 'A (small l → P pulled toward A)' : l > m ? 'B (large l → P pulled toward B)' : 'the midpoint (l = m)'}. The step equation ` +
+    `lAP + mBP = 0 means vectors AP and BP cancel in ratio l:m, so P divides AB as m:l from A.`;
+}
+
+// ---- PART 2 ----
+let points = [
+  { x: 0.15, m: 1 },
+  { x: 0.45, m: 2 },
+  { x: 0.75, m: 3 },
+];
+
+function renderPtList() {
+  const el = document.getElementById('pts-list');
+  el.innerHTML = '';
+  points.forEach((p, i) => {
+    const row = document.createElement('div');
+    row.className = 'pt-row';
+    const colors = ['#534AB7', '#D85A30', '#1D9E75', '#BA7517', '#D4537E'];
+    const col = colors[i % colors.length];
+    row.innerHTML = `
+      <label style="color:${col}">P${i+1} position</label>
+      <input type="range" min="0" max="100" value="${Math.round(p.x*100)}" step="1"
+             oninput="points[${i}].x=this.value/100;renderPtList()" style="flex:1;min-width:80px">
+      <label style="width:40px;font-size:12px;color:var(--color-text-secondary)">mass</label>
+      <input type="number" min="1" max="10" value="${p.m}" style="width:48px"
+             oninput="points[${i}].m=Math.max(1,+this.value||1);renderPtList()">
+    `;
+    el.appendChild(row);
+  });
+  drawCent();
+}
+
+function addPt() {
+  if (points.length >= 6) return;
+  points.push({ x: 0.5 + Math.random()*0.3, m: 1 });
+  renderPtList();
+}
+function removePt() {
+  if (points.length <= 2) return;
+  points.pop();
+  renderPtList();
+}
+
+function drawCent() {
+  const cvs = document.getElementById('cvCent');
+  const ctx = dpi(cvs, H2);
+  ctx.clearRect(0, 0, W, H2);
+
+  const axY = 68;
+  // axis
+  ctx.beginPath(); ctx.moveTo(AX, axY); ctx.lineTo(BX, axY);
+  ctx.strokeStyle = themeColor('--color-border-secondary'); ctx.lineWidth = 1.5; ctx.stroke();
+
+  const colors = ['#534AB7', '#D85A30', '#1D9E75', '#BA7517', '#D4537E', '#185FA5'];
+  const totalM = points.reduce((s,p) => s + p.m, 0);
+  const cx = points.reduce((s,p) => s + p.m * p.x, 0) / totalM;
+  const GX = AX + cx * (BX - AX);
+
+  // draw each point, with mass shown as circle size
+  points.forEach((p, i) => {
+    const px = AX + p.x * (BX - AX);
+    const r = 5 + p.m * 2;
+    dot(ctx, px, axY, r, colors[i % colors.length]);
+    label(ctx, `P${i+1}`, px, axY - r - 8, colors[i % colors.length], 11);
+    label(ctx, `m=${p.m}`, px, axY + r + 14, colors[i % colors.length], 10);
+    // dashed line to G
+    ctx.beginPath(); ctx.setLineDash([3,3]);
+    ctx.moveTo(px, axY); ctx.lineTo(GX, axY - 4);
+    ctx.strokeStyle = colors[i % colors.length]; ctx.globalAlpha = 0.3; ctx.lineWidth = 1; ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha = 1;
+  });
+
+  // G marker
+  ctx.beginPath(); ctx.moveTo(GX, axY - 18); ctx.lineTo(GX - 8, axY - 6); ctx.lineTo(GX + 8, axY - 6); ctx.closePath();
+  ctx.fillStyle = '#E8593C'; ctx.fill();
+  dot(ctx, GX, axY, 7, '#E8593C');
+  label(ctx, 'G', GX, axY - 24, '#E8593C', 13);
+
+  // axis ticks 0 and 1
+  [AX, BX].forEach((x, i) => {
+    ctx.beginPath(); ctx.moveTo(x, axY - 5); ctx.lineTo(x, axY + 5);
+    ctx.strokeStyle = themeColor('--color-border-secondary'); ctx.lineWidth = 1; ctx.stroke();
+    label(ctx, i === 0 ? '0' : '1', x, axY + 18, themeColor('--color-text-secondary'), 10);
+  });
+
+  // equation
+  const num = points.map((p,i) => `${p.m}·${p.x.toFixed(2)}`).join(' + ');
+  const gval = cx.toFixed(3);
+  document.getElementById('eqG').textContent = `(${num}) / ${totalM}`;
+  document.getElementById('eqGv').textContent = `${gval}`;
+
+  const desc = points.map((p,i) => `P${i+1}(m=${p.m})`).join(', ');
+  document.getElementById('interpCent').textContent =
+    `ΣmᵢGPᵢ = 0: the weighted average position is G = ${gval} (on a 0–1 scale). ` +
+    `Heavier points pull G toward them — try setting one mass to 9 and the rest to 1.`;
+}
+
+drawDiv();
+renderPtList();
+</script>
