@@ -15,8 +15,8 @@ By establishing a geometry of these spherical arcs, Hathaway develops a method f
 #### Turns and Arc Steps (Spherical Representation)
 * **The Unit Sphere Construction:** To analyze pure rotations, Hathaway constructs a sphere of radius 1 centered at the fixed point of rotation.
 * **Arc Steps / Directed Arcs:** A rotation can be uniquely represented on this unit sphere as a directed arc of a great circle. This arc is called an **arc step**.
-* The length of the arc corresponds to the angle of the rotation.
-* The plane of the great circle corresponds to the plane of rotation (perpendicular to the axis).
+    * The length of the arc corresponds to the angle of the rotation.
+    * The plane of the great circle corresponds to the plane of rotation (perpendicular to the axis).
 * **Definition of a "Turn":** A turn is an operator that alters the direction of a line or step. Two arc steps are equal if they belong to the same great circle, have the same length, and point in the same direction. Like linear steps, a turn can be shifted around its great circle without changing its mathematical identity.
 
 #### Composition of Turns (Multiplication of Rotations)
@@ -25,5 +25,6 @@ By establishing a geometry of these spherical arcs, Hathaway develops a method f
     1. Let the first turn be represented by the great circle arc $\mathbf{PQ}$.
     2. Let the second turn begin exactly where the first one ends, represented by the arc $\mathbf{QR}$.
     3. The total resulting rotation from the sequence is represented by the third side of the spherical triangle, the arc $\mathbf{PR}$.
-* Therefore: $\mathbf{QR} \times \mathbf{PQ} = \mathbf{PR}$.
+    4. Therefore: $\mathbf{QR} \times \mathbf{PQ} = \mathbf{PR}$.
+    ![img](./images.jpg)
 * **Non-Commutativity Proved Geometrically:** By showing how changing the order of the arcs ($\mathbf{PQ}$ followed by $\mathbf{QR}$ vs. $\mathbf{QR}$ followed by $\mathbf{PQ}$) leads to entirely different resulting destination points on the sphere, Hathaway visually proves that spatial rotations do not commute.
