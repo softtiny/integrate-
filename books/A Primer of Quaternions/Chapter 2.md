@@ -28,3 +28,5 @@ By establishing a geometry of these spherical arcs, Hathaway develops a method f
     4. Therefore: $\mathbf{QR} \times \mathbf{PQ} = \mathbf{PR}$.
     ![img](./images.jpg)
 * **Non-Commutativity Proved Geometrically:** By showing how changing the order of the arcs ($\mathbf{PQ}$ followed by $\mathbf{QR}$ vs. $\mathbf{QR}$ followed by $\mathbf{PQ}$) leads to entirely different resulting destination points on the sphere, Hathaway visually proves that spatial rotations do not commute.
+
+####  Properties of Turns
