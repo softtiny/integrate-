@@ -30,3 +30,10 @@ By establishing a geometry of these spherical arcs, Hathaway develops a method f
 * **Non-Commutativity Proved Geometrically:** By showing how changing the order of the arcs ($\mathbf{PQ}$ followed by $\mathbf{QR}$ vs. $\mathbf{QR}$ followed by $\mathbf{PQ}$) leads to entirely different resulting destination points on the sphere, Hathaway visually proves that spatial rotations do not commute.
 
 ####  Properties of Turns
+* **The Identity Turn:** A turn of $0^\circ$ (or an arc of length zero), which leaves all positions unchanged.
+* **Inverse Turns:** The reciprocal or inverse of a turn is the same arc traversed in the opposite direction. A turn multiplied by its inverse results in the identity turn ($A^{-1}A = 1$).
+* **Conjugate Rotations:** Hathaway introduces how a rotation behaves when it is itself rotated by another turn, paving the way for the quaternion sandwich operator ($q v q^{-1}$) used in modern computing to rotate vectors.
+
+####  Connection to Spherical Trigonometry
+
+* **Laws of Composition:** The chapter concludes by mapping these geometric arc additions directly to the formulas of spherical trigonometry (such as the spherical law of cosines), demonstrating how the angles and sides of the spherical triangle dictate the exact axis and angle of the combined resultant rotation.
