@@ -1,0 +1,1276 @@
+
+<style>
+
+:root {
+  --radius: 8px;
+  --h-control: 32px;
+  --h-control-nested: 22px;
+  --icon: 20px;
+  --pad-sm: 8px;
+  --pad-md: 12px;
+  --pad-lg: 16px;
+  --pad-xl: 24px;
+  --gap-xs: 8px;
+  --gap-sm: 12px;
+  --gap-md: 16px;
+  --gap-lg: 28px;
+  --gap-xl: 40px;
+  --outset-x: 0px;
+  --outset-y: 0px;
+  --border: var(--alpha-2);
+  --border-accent: var(--blue-250);
+  --border-danger: var(--red-250);
+  --border-success: var(--green-250);
+  --border-warning: var(--yellow-250);
+  --border-pro: var(--violet-250);
+  --border-git-added: color-mix(in srgb, var(--text-git-added) 40%, transparent);
+  --border-git-removed: color-mix(in srgb, var(--text-git-removed) 40%, transparent);
+  --border-git-modified: color-mix(in srgb, var(--text-git-modified) 40%, transparent);
+  --border-git-merged: color-mix(in srgb, var(--text-git-merged) 40%, transparent);
+  --border-git-closed: color-mix(in srgb, var(--text-git-closed) 40%, transparent);
+  --border-git-conflicting: color-mix(in srgb, var(--text-git-conflicting) 40%, transparent);
+  --border-git-draft: color-mix(in srgb, var(--text-git-draft) 40%, transparent);
+  --border-git-opened: var(--border-git-added);
+  --border-git-queued: var(--border-git-modified);
+  --border-strong: var(--alpha-3);
+  --border-stronger: hsl(from var(--neutral-900) h s l / 40%);
+  --shadow-sm: 0 1px 2px 0 hsl(from var(--gray-900) h s l / 6%), 0 2px 8px 0 var(--shadow-color);
+  --shadow-md: 0 2px 4px 0 hsl(from var(--gray-900) h s l / 7%), 0 6px 16px 0 var(--shadow-color);
+  --shadow-lg: 0 4px 8px 0 hsl(from var(--gray-900) h s l / 8%), 0 12px 28px -2px var(--shadow-color);
+  --shadow-color: hsl(from var(--gray-900) h s l / 8%);
+  --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.12), 0 2px 6px rgb(0 0 0 / 0.08);
+  --ring-outer: 1px;
+  --ring-inner: 0px;
+  --ring-color: var(--border);
+  --focus-shadow: inset 0 0 0 1px var(--page-bg), 0 0 0 1px var(--fill-accent), 0 0 6px 1px var(--bg-accent);
+  --font-mono: var(--font-anthropic-mono, "Anthropic Mono Variable"), "Anthropic Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-system: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-anthropic-sans, "Anthropic Sans Variable", "Anthropic Sans"), var(--font-system);
+  --font-voice: var(--font-anthropic-serif, "Anthropic Serif Variable", "Anthropic Serif"), ui-serif, Georgia, "Times New Roman", serif;
+  --ease-out: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-snap: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-overshoot: cubic-bezier(0.34, 1.3, 0.64, 1);
+  --dur-fast: 60ms;
+  --dur-snap: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 450ms;
+  --btn-spring: linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+  --black: #000000;
+  --oncolor-200: hsl(60 6.7% 97.1% / 0.75);
+  --oncolor-300: hsl(60 6.7% 97.1% / 0.5);
+  --clay: #d97757;
+  --clay-emphasized: #c6613f;
+  --heather: #cbcadb;
+  --plum: #827dbd;
+  --cactus: #bcd1ca;
+  --mineral: #629987;
+  --peach: #ebc9b7;
+  --gray-0: #ffffff;
+  --gray-10: #fcfcfb;
+  --gray-20: #f9f9f7;
+  --gray-30: #f6f6f4;
+  --gray-40: #f3f3f0;
+  --gray-50: #f0efec;
+  --gray-60: #edece8;
+  --gray-70: #eae9e4;
+  --gray-80: #e7e6e1;
+  --gray-90: #e4e3dd;
+  --gray-100: #e1e0d9;
+  --gray-150: #d2d1c7;
+  --gray-200: #c3c2b7;
+  --gray-250: #b4b3a8;
+  --gray-300: #a5a49a;
+  --gray-350: #97958d;
+  --gray-400: #898781;
+  --gray-450: #7b7974;
+  --gray-500: #6d6b67;
+  --gray-550: #5f5e5a;
+  --gray-600: #52514e;
+  --gray-650: #454442;
+  --gray-700: #383835;
+  --gray-750: #2c2c2a;
+  --gray-800: #20201f;
+  --gray-810: #1e1e1d;
+  --gray-820: #1c1c1b;
+  --gray-830: #1a1a19;
+  --gray-840: #181817;
+  --gray-850: #151515;
+  --gray-860: #131313;
+  --gray-870: #111111;
+  --gray-880: #0f0f0f;
+  --gray-890: #0d0d0d;
+  --gray-900: #0b0b0b;
+  --red-0: #ffffff;
+  --red-10: #fffbfb;
+  --red-20: #fef7f7;
+  --red-30: #fef3f3;
+  --red-40: #fdefef;
+  --red-50: #fbebeb;
+  --red-60: #fae7e7;
+  --red-70: #fae3e3;
+  --red-80: #fadfdf;
+  --red-90: #fadada;
+  --red-100: #fad6d6;
+  --red-150: #f7c1c1;
+  --red-200: #f4abab;
+  --red-250: #f09595;
+  --red-300: #ec7e7e;
+  --red-350: #e66767;
+  --red-400: #e34948;
+  --red-450: #d03b3b;
+  --red-500: #b93535;
+  --red-550: #a32c2c;
+  --red-600: #8e2626;
+  --red-650: #791e1e;
+  --red-700: #641919;
+  --red-750: #511212;
+  --red-800: #3c0e0e;
+  --red-810: #380d0d;
+  --red-820: #340c0c;
+  --red-830: #310b0b;
+  --red-840: #2d0a0a;
+  --red-850: #280a0a;
+  --red-860: #230b0a;
+  --red-870: #1d0b0a;
+  --red-880: #170c0b;
+  --red-890: #110c0b;
+  --red-900: #0b0b0b;
+  --orange-0: #ffffff;
+  --orange-10: #fefbfa;
+  --orange-20: #fdf7f5;
+  --orange-30: #fcf4f0;
+  --orange-40: #faf0ec;
+  --orange-50: #f9ece7;
+  --orange-60: #f8e9e2;
+  --orange-70: #f7e5dd;
+  --orange-80: #f7e1d7;
+  --orange-90: #f7dcd1;
+  --orange-100: #f7d8cb;
+  --orange-150: #f3c5b2;
+  --orange-200: #f4ae94;
+  --orange-250: #f09978;
+  --orange-300: #ec835a;
+  --orange-350: #eb6834;
+  --orange-400: #d95926;
+  --orange-450: #c25124;
+  --orange-500: #ae461c;
+  --orange-550: #993d19;
+  --orange-600: #863311;
+  --orange-650: #712b0f;
+  --orange-700: #5d230b;
+  --orange-750: #4b1b08;
+  --orange-800: #371407;
+  --orange-810: #341307;
+  --orange-820: #301106;
+  --orange-830: #2d1006;
+  --orange-840: #290f06;
+  --orange-850: #240e07;
+  --orange-860: #1f0e08;
+  --orange-870: #1a0e09;
+  --orange-880: #150d0a;
+  --orange-890: #100c0b;
+  --orange-900: #0b0b0b;
+  --yellow-0: #ffffff;
+  --yellow-10: #fefcf8;
+  --yellow-20: #fcf8f1;
+  --yellow-30: #fbf5ea;
+  --yellow-40: #f9f2e4;
+  --yellow-50: #f9eeda;
+  --yellow-60: #faebce;
+  --yellow-70: #fae7c2;
+  --yellow-80: #fae3b8;
+  --yellow-90: #f9e0b0;
+  --yellow-100: #f9dca4;
+  --yellow-150: #f9c868;
+  --yellow-200: #fab219;
+  --yellow-250: #eda100;
+  --yellow-300: #db9300;
+  --yellow-350: #c98500;
+  --yellow-400: #b77700;
+  --yellow-450: #a66a00;
+  --yellow-500: #945d00;
+  --yellow-550: #835100;
+  --yellow-600: #734500;
+  --yellow-650: #623900;
+  --yellow-700: #512e00;
+  --yellow-750: #412400;
+  --yellow-800: #311a00;
+  --yellow-810: #2e1800;
+  --yellow-820: #2b1700;
+  --yellow-830: #271500;
+  --yellow-840: #231402;
+  --yellow-850: #1f1204;
+  --yellow-860: #1b1106;
+  --yellow-870: #171007;
+  --yellow-880: #130e09;
+  --yellow-890: #0f0d0a;
+  --yellow-900: #0b0b0b;
+  --green-0: #ffffff;
+  --green-10: #fafdfa;
+  --green-20: #f5fbf4;
+  --green-30: #f0f9ef;
+  --green-40: #ebf7e9;
+  --green-50: #e5f4e4;
+  --green-60: #e0f2de;
+  --green-70: #dbf0d8;
+  --green-80: #d5eed3;
+  --green-90: #d0eccd;
+  --green-100: #caeac7;
+  --green-150: #aee0a9;
+  --green-200: #91d68b;
+  --green-250: #73cb6d;
+  --green-300: #55bf50;
+  --green-350: #35b231;
+  --green-400: #0ca30c;
+  --green-450: #009300;
+  --green-500: #008300;
+  --green-550: #007300;
+  --green-600: #006300;
+  --green-650: #005400;
+  --green-700: #074506;
+  --green-750: #0f350d;
+  --green-800: #11260f;
+  --green-810: #10230f;
+  --green-820: #10210f;
+  --green-830: #101e0f;
+  --green-840: #101b0f;
+  --green-850: #0f180e;
+  --green-860: #0e160e;
+  --green-870: #0e130d;
+  --green-880: #0d100d;
+  --green-890: #0c0e0c;
+  --green-900: #0b0b0b;
+  --aqua-0: #ffffff;
+  --aqua-10: #f9fdfb;
+  --aqua-20: #f3fbf8;
+  --aqua-30: #edf9f4;
+  --aqua-40: #e8f7f1;
+  --aqua-50: #e2f4ed;
+  --aqua-60: #dcf2ea;
+  --aqua-70: #d5f0e6;
+  --aqua-80: #ceefe2;
+  --aqua-90: #c7eddf;
+  --aqua-100: #bfebdb;
+  --aqua-150: #a0e1c9;
+  --aqua-200: #7ad7b4;
+  --aqua-250: #5acba0;
+  --aqua-300: #3bbd8c;
+  --aqua-350: #1baf7a;
+  --aqua-400: #199e70;
+  --aqua-450: #138e65;
+  --aqua-500: #0f7e5c;
+  --aqua-550: #0e6e53;
+  --aqua-600: #065f49;
+  --aqua-650: #095040;
+  --aqua-700: #034235;
+  --aqua-750: #02342b;
+  --aqua-800: #022720;
+  --aqua-810: #02241e;
+  --aqua-820: #02221c;
+  --aqua-830: #021f1a;
+  --aqua-840: #031c18;
+  --aqua-850: #051a16;
+  --aqua-860: #071713;
+  --aqua-870: #081411;
+  --aqua-880: #0a110f;
+  --aqua-890: #0b0e0d;
+  --aqua-900: #0b0b0b;
+  --blue-0: #ffffff;
+  --blue-10: #fafcff;
+  --blue-20: #f5f9fe;
+  --blue-30: #f0f7fe;
+  --blue-40: #ebf4fc;
+  --blue-50: #e7f1fb;
+  --blue-60: #e2eefa;
+  --blue-70: #ddebfa;
+  --blue-80: #d7e8fa;
+  --blue-90: #d2e5fa;
+  --blue-100: #cde2fb;
+  --blue-150: #b7d3f6;
+  --blue-200: #9ec5f4;
+  --blue-250: #86b6ef;
+  --blue-300: #6da7ec;
+  --blue-350: #5598e7;
+  --blue-400: #3987e5;
+  --blue-450: #2a78d6;
+  --blue-500: #256abf;
+  --blue-550: #1c5cab;
+  --blue-600: #184f95;
+  --blue-650: #104281;
+  --blue-700: #0d366b;
+  --blue-750: #062b57;
+  --blue-800: #032042;
+  --blue-810: #031e3d;
+  --blue-820: #021c39;
+  --blue-830: #021a36;
+  --blue-840: #021831;
+  --blue-850: #03162c;
+  --blue-860: #051426;
+  --blue-870: #07121f;
+  --blue-880: #091018;
+  --blue-890: #0a0d11;
+  --blue-900: #0b0b0b;
+  --violet-0: #ffffff;
+  --violet-10: #fcfbff;
+  --violet-20: #f8f8ff;
+  --violet-30: #f5f4ff;
+  --violet-40: #f2f1ff;
+  --violet-50: #efedff;
+  --violet-60: #ebeafe;
+  --violet-70: #e8e6fe;
+  --violet-80: #e5e2fd;
+  --violet-90: #e2dffd;
+  --violet-100: #dfdbfd;
+  --violet-150: #cfcafb;
+  --violet-200: #bfb9f5;
+  --violet-250: #b0a7f2;
+  --violet-300: #a096eb;
+  --violet-350: #9085e9;
+  --violet-400: #8173e3;
+  --violet-450: #7161e0;
+  --violet-500: #6250d6;
+  --violet-550: #5645be;
+  --violet-600: #4a3aa7;
+  --violet-650: #3e318e;
+  --violet-700: #322777;
+  --violet-750: #271e60;
+  --violet-800: #1d1649;
+  --violet-810: #1b1544;
+  --violet-820: #19133f;
+  --violet-830: #17123b;
+  --violet-840: #151036;
+  --violet-850: #130f32;
+  --violet-860: #110e2b;
+  --violet-870: #0f0e23;
+  --violet-880: #0e0d1b;
+  --violet-890: #0c0c13;
+  --violet-900: #0b0b0b;
+  --magenta-0: #ffffff;
+  --magenta-10: #fefbfc;
+  --magenta-20: #fef6f9;
+  --magenta-30: #fdf2f6;
+  --magenta-40: #fbeff3;
+  --magenta-50: #faebf0;
+  --magenta-60: #f9e6ed;
+  --magenta-70: #f9e2eb;
+  --magenta-80: #f9dee8;
+  --magenta-90: #f9d9e5;
+  --magenta-100: #f9d4e2;
+  --magenta-150: #f3c0d3;
+  --magenta-200: #f3a8c3;
+  --magenta-250: #ed93b4;
+  --magenta-300: #e87ba4;
+  --magenta-350: #e46191;
+  --magenta-400: #d55181;
+  --magenta-450: #c04873;
+  --magenta-500: #ad3d66;
+  --magenta-550: #993458;
+  --magenta-600: #862a4c;
+  --magenta-650: #722340;
+  --magenta-700: #5e1c34;
+  --magenta-750: #4c1429;
+  --magenta-800: #390f1f;
+  --magenta-810: #360d1c;
+  --magenta-820: #320c1a;
+  --magenta-830: #2f0b18;
+  --magenta-840: #2b0a16;
+  --magenta-850: #270a14;
+  --magenta-860: #220a12;
+  --magenta-870: #1c0b11;
+  --magenta-880: #170b0f;
+  --magenta-890: #110b0d;
+  --magenta-900: #0b0b0b;
+  --pictogram-highlight-default: var(--gray-80);
+  --pictogram-highlight-heather: var(--heather);
+  --pictogram-highlight-cactus: var(--cactus);
+  --pictogram-highlight-peach: var(--peach);
+  --cursor-interactive: pointer;
+  --neutral-0: var(--gray-0);
+  --neutral-10: var(--gray-10);
+  --neutral-20: var(--gray-20);
+  --neutral-30: var(--gray-30);
+  --neutral-40: var(--gray-40);
+  --neutral-50: var(--gray-50);
+  --neutral-60: var(--gray-60);
+  --neutral-70: var(--gray-70);
+  --neutral-80: var(--gray-80);
+  --neutral-90: var(--gray-90);
+  --neutral-100: var(--gray-100);
+  --neutral-150: var(--gray-150);
+  --neutral-200: var(--gray-200);
+  --neutral-250: var(--gray-250);
+  --neutral-300: var(--gray-300);
+  --neutral-350: var(--gray-350);
+  --neutral-400: var(--gray-400);
+  --neutral-450: var(--gray-450);
+  --neutral-500: var(--gray-500);
+  --neutral-550: var(--gray-550);
+  --neutral-600: var(--gray-600);
+  --neutral-650: var(--gray-650);
+  --neutral-700: var(--gray-700);
+  --neutral-750: var(--gray-750);
+  --neutral-800: var(--gray-800);
+  --neutral-810: var(--gray-810);
+  --neutral-820: var(--gray-820);
+  --neutral-830: var(--gray-830);
+  --neutral-840: var(--gray-840);
+  --neutral-850: var(--gray-850);
+  --neutral-860: var(--gray-860);
+  --neutral-870: var(--gray-870);
+  --neutral-880: var(--gray-880);
+  --neutral-890: var(--gray-890);
+  --neutral-900: var(--gray-900);
+  --alpha-0: hsl(from var(--neutral-900) h s l / 0%);
+  --alpha-1: hsl(from var(--neutral-900) h s l / 5%);
+  --alpha-2: hsl(from var(--neutral-900) h s l / 10%);
+  --alpha-3: hsl(from var(--neutral-900) h s l / 20%);
+  --alpha-4: hsl(from var(--neutral-900) h s l / 35%);
+  --alpha-5: hsl(from var(--neutral-900) h s l / 50%);
+  --alpha-6: hsl(from var(--neutral-900) h s l / 60%);
+  --alpha-7: hsl(from var(--neutral-900) h s l / 70%);
+  --alpha-8: hsl(from var(--neutral-900) h s l / 85%);
+  --alpha-9: hsl(from var(--neutral-900) h s l / 95%);
+  --surface-0: var(--gray-20);
+  --surface-1: var(--gray-10);
+  --surface-2: var(--gray-0);
+  --surface-3: var(--gray-0);
+  --surface-popover: var(--surface-3);
+  --surface-panel: var(--surface-2);
+  --page-bg: var(--surface-0);
+  --fill-accent: var(--blue-450);
+  --fill-accent-hover: var(--blue-400);
+  --fill-danger: var(--red-450);
+  --fill-danger-hover: var(--red-400);
+  --fill-success: var(--green-450);
+  --fill-success-hover: var(--green-400);
+  --fill-warning: var(--yellow-200);
+  --fill-warning-hover: var(--yellow-250);
+  --fill-pro: var(--violet-450);
+  --fill-pro-hover: var(--violet-400);
+  --fill-git-added: #1a8633;
+  --fill-git-added-hover: #1e9b3b;
+  --fill-git-removed: var(--text-git-removed);
+  --fill-git-removed-hover: #de295f;
+  --fill-git-modified: #8b751c;
+  --fill-git-modified-hover: #a08720;
+  --fill-git-merged: #855fd6;
+  --fill-git-merged-hover: #9473db;
+  --fill-git-closed: #ed0b00;
+  --fill-git-closed-hover: #ff1307;
+  --fill-git-conflicting: #b85b19;
+  --fill-git-conflicting-hover: #c5621b;
+  --fill-git-draft: var(--text-git-draft);
+  --fill-git-draft-hover: #808080;
+  --fill-git-opened: var(--fill-git-added);
+  --fill-git-opened-hover: var(--fill-git-added-hover);
+  --fill-git-queued: var(--fill-git-modified);
+  --fill-git-queued-hover: var(--fill-git-modified-hover);
+  --fill-brand: var(--clay-emphasized);
+  --fill-brand-hover: var(--clay);
+  --fill-primary: var(--neutral-900);
+  --fill-primary-hover: var(--neutral-750);
+  --fill-secondary: hsl(0 0% 100% / 0.1);
+  --fill-secondary-hover: var(--alpha-1);
+  --fill-secondary-ring: var(--border);
+  --fill-field: hsl(0 0% 100% / 0.5);
+  --fill-ghost-hover: var(--alpha-1);
+  --fill-disabled: var(--alpha-1);
+  --fill-control: var(--alpha-2);
+  --fill-control-hover: var(--alpha-3);
+  --bg-accent: var(--blue-100);
+  --bg-danger: var(--red-100);
+  --bg-success: var(--green-100);
+  --bg-warning: var(--yellow-100);
+  --bg-pro: var(--violet-100);
+  --bg-git-added: color-mix(in srgb, var(--text-git-added) 20%, transparent);
+  --bg-git-removed: color-mix(in srgb, var(--text-git-removed) 20%, transparent);
+  --bg-git-modified: color-mix(in srgb, var(--text-git-modified) 20%, transparent);
+  --bg-git-merged: color-mix(in srgb, var(--text-git-merged) 20%, transparent);
+  --bg-git-closed: color-mix(in srgb, var(--text-git-closed) 20%, transparent);
+  --bg-git-conflicting: color-mix(in srgb, var(--text-git-conflicting) 20%, transparent);
+  --bg-git-draft: color-mix(in srgb, var(--text-git-draft) 20%, transparent);
+  --bg-git-opened: var(--bg-git-added);
+  --bg-git-queued: var(--bg-git-modified);
+  --bg-neutral: var(--alpha-1);
+  --bg-neutral-hover: var(--alpha-2);
+  --backdrop: rgb(0 0 0 / 0.4);
+  --text-accent: var(--blue-600);
+  --text-danger: var(--red-600);
+  --text-success: var(--green-600);
+  --text-warning: var(--yellow-600);
+  --text-pro: var(--violet-600);
+  --text-git-added: #1e9e3c;
+  --text-git-removed: #cd2054;
+  --text-git-modified: #98801f;
+  --text-git-merged: #8e6bd9;
+  --text-git-closed: #ff3a30;
+  --text-git-conflicting: #c5621b;
+  --text-git-draft: #737373;
+  --text-git-opened: var(--text-git-added);
+  --text-git-queued: var(--text-git-modified);
+  --text-primary: var(--neutral-900);
+  --text-secondary: var(--neutral-600);
+  --text-muted: var(--neutral-400);
+  --text-disabled: var(--alpha-4);
+  --font-size-caption: 12px;
+  --font-size-footnote: 13px;
+  --font-size-code: 13px;
+  --font-size-body: 14px;
+  --font-size-heading: 15px;
+  --font-size-title: 22px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --leading-caption: 14px;
+  --leading-footnote: 16px;
+  --leading-code: 19px;
+  --leading-body: 20px;
+  --leading-heading: 20px;
+  --leading-title: 26px;
+  --on-primary: var(--neutral-0);
+  --on-accent: var(--gray-0);
+  --on-danger: var(--gray-0);
+  --on-success: var(--gray-900);
+  --on-warning: var(--gray-900);
+  --on-pro: var(--gray-0);
+  --on-git-added: var(--gray-0);
+  --on-git-removed: var(--gray-0);
+  --on-git-modified: var(--gray-0);
+  --on-git-merged: var(--gray-0);
+  --on-git-closed: var(--gray-0);
+  --on-git-conflicting: var(--gray-0);
+  --on-git-draft: var(--gray-0);
+  --on-git-opened: var(--on-git-added);
+  --on-git-queued: var(--on-git-modified);
+  --on-brand: var(--gray-0);
+  --z-modal: 40;
+  --z-popover: 50;
+  --z-tooltip: 50;
+  --z-toast: 60;
+}
+
+[data-mode="dark"] {
+  --border-accent: var(--blue-700);
+  --border-danger: var(--red-700);
+  --border-success: var(--green-700);
+  --border-warning: var(--yellow-700);
+  --border-pro: var(--violet-700);
+  --shadow-color: hsl(0 0% 0% / 0.24);
+  --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.32), 0 2px 6px rgb(0 0 0 / 0.2);
+  --ring-outer: 0px;
+  --ring-inner: 1px;
+  --ring-color: var(--alpha-2);
+  --focus-shadow: inset 0 0 0 1px var(--page-bg), 0 0 0 1px var(--fill-accent), 0 0 6px 1px hsl(from var(--blue-600) h s l / 60%);
+  --pictogram-highlight-default: var(--gray-650);
+  --pictogram-highlight-heather: var(--plum);
+  --pictogram-highlight-cactus: var(--mineral);
+  --pictogram-highlight-peach: var(--clay-emphasized);
+  --neutral-0: var(--gray-900);
+  --neutral-10: var(--gray-890);
+  --neutral-20: var(--gray-880);
+  --neutral-30: var(--gray-870);
+  --neutral-40: var(--gray-860);
+  --neutral-50: var(--gray-850);
+  --neutral-60: var(--gray-840);
+  --neutral-70: var(--gray-830);
+  --neutral-80: var(--gray-820);
+  --neutral-90: var(--gray-810);
+  --neutral-100: var(--gray-800);
+  --neutral-150: var(--gray-750);
+  --neutral-200: var(--gray-700);
+  --neutral-250: var(--gray-650);
+  --neutral-300: var(--gray-600);
+  --neutral-350: var(--gray-550);
+  --neutral-400: var(--gray-500);
+  --neutral-450: var(--gray-450);
+  --neutral-500: var(--gray-400);
+  --neutral-550: var(--gray-350);
+  --neutral-600: var(--gray-300);
+  --neutral-650: var(--gray-250);
+  --neutral-700: var(--gray-200);
+  --neutral-750: var(--gray-150);
+  --neutral-800: var(--gray-100);
+  --neutral-810: var(--gray-90);
+  --neutral-820: var(--gray-80);
+  --neutral-830: var(--gray-70);
+  --neutral-840: var(--gray-60);
+  --neutral-850: var(--gray-50);
+  --neutral-860: var(--gray-40);
+  --neutral-870: var(--gray-30);
+  --neutral-880: var(--gray-20);
+  --neutral-890: var(--gray-10);
+  --neutral-900: var(--gray-0);
+  --surface-0: var(--gray-890);
+  --surface-1: var(--gray-830);
+  --surface-2: var(--gray-750);
+  --surface-3: var(--gray-700);
+  --fill-git-added: var(--text-git-added);
+  --fill-git-added-hover: #27c840;
+  --fill-git-removed-hover: #ff1342;
+  --fill-git-modified: var(--text-git-modified);
+  --fill-git-modified-hover: #fac800;
+  --fill-git-merged: var(--text-git-merged);
+  --fill-git-merged-hover: #a67dff;
+  --fill-git-closed: var(--text-git-closed);
+  --fill-git-closed-hover: #ff4940;
+  --fill-git-conflicting: var(--text-git-conflicting);
+  --fill-git-conflicting-hover: #f97a1f;
+  --fill-git-draft-hover: #999999;
+  --fill-primary-hover: var(--gray-100);
+  --fill-secondary: var(--alpha-2);
+  --fill-secondary-hover: hsl(0 0% 100% / 0.14);
+  --fill-secondary-ring: transparent;
+  --fill-field: var(--fill-secondary);
+  --bg-accent: var(--blue-800);
+  --bg-danger: var(--red-800);
+  --bg-success: var(--green-800);
+  --bg-warning: var(--yellow-800);
+  --bg-pro: var(--violet-800);
+  --backdrop: rgb(0 0 0 / 0.5);
+  --text-accent: var(--blue-300);
+  --text-danger: var(--red-300);
+  --text-success: var(--green-400);
+  --text-warning: var(--yellow-300);
+  --text-pro: var(--violet-300);
+  --text-git-added: #32d74b;
+  --text-git-removed: #ff2c56;
+  --text-git-modified: #ffd014;
+  --text-git-merged: #b796ff;
+  --text-git-closed: #ff6159;
+  --text-git-conflicting: #fa832e;
+  --text-git-draft: #a6a6a6;
+  --text-secondary: var(--gray-200);
+  --text-muted: var(--gray-400);
+  --on-git-added: var(--gray-900);
+  --on-git-removed: var(--gray-900);
+  --on-git-modified: var(--gray-900);
+  --on-git-merged: var(--gray-900);
+  --on-git-closed: var(--gray-900);
+  --on-git-conflicting: var(--gray-900);
+  --on-git-draft: var(--gray-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-mode="light"])) {
+    --border-accent: var(--blue-700);
+    --border-danger: var(--red-700);
+    --border-success: var(--green-700);
+    --border-warning: var(--yellow-700);
+    --border-pro: var(--violet-700);
+    --shadow-color: hsl(0 0% 0% / 0.24);
+    --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.32), 0 2px 6px rgb(0 0 0 / 0.2);
+    --ring-outer: 0px;
+    --ring-inner: 1px;
+    --ring-color: var(--alpha-2);
+    --focus-shadow: inset 0 0 0 1px var(--page-bg), 0 0 0 1px var(--fill-accent), 0 0 6px 1px hsl(from var(--blue-600) h s l / 60%);
+    --pictogram-highlight-default: var(--gray-650);
+    --pictogram-highlight-heather: var(--plum);
+    --pictogram-highlight-cactus: var(--mineral);
+    --pictogram-highlight-peach: var(--clay-emphasized);
+    --neutral-0: var(--gray-900);
+    --neutral-10: var(--gray-890);
+    --neutral-20: var(--gray-880);
+    --neutral-30: var(--gray-870);
+    --neutral-40: var(--gray-860);
+    --neutral-50: var(--gray-850);
+    --neutral-60: var(--gray-840);
+    --neutral-70: var(--gray-830);
+    --neutral-80: var(--gray-820);
+    --neutral-90: var(--gray-810);
+    --neutral-100: var(--gray-800);
+    --neutral-150: var(--gray-750);
+    --neutral-200: var(--gray-700);
+    --neutral-250: var(--gray-650);
+    --neutral-300: var(--gray-600);
+    --neutral-350: var(--gray-550);
+    --neutral-400: var(--gray-500);
+    --neutral-450: var(--gray-450);
+    --neutral-500: var(--gray-400);
+    --neutral-550: var(--gray-350);
+    --neutral-600: var(--gray-300);
+    --neutral-650: var(--gray-250);
+    --neutral-700: var(--gray-200);
+    --neutral-750: var(--gray-150);
+    --neutral-800: var(--gray-100);
+    --neutral-810: var(--gray-90);
+    --neutral-820: var(--gray-80);
+    --neutral-830: var(--gray-70);
+    --neutral-840: var(--gray-60);
+    --neutral-850: var(--gray-50);
+    --neutral-860: var(--gray-40);
+    --neutral-870: var(--gray-30);
+    --neutral-880: var(--gray-20);
+    --neutral-890: var(--gray-10);
+    --neutral-900: var(--gray-0);
+    --surface-0: var(--gray-890);
+    --surface-1: var(--gray-830);
+    --surface-2: var(--gray-750);
+    --surface-3: var(--gray-700);
+    --fill-git-added: var(--text-git-added);
+    --fill-git-added-hover: #27c840;
+    --fill-git-removed-hover: #ff1342;
+    --fill-git-modified: var(--text-git-modified);
+    --fill-git-modified-hover: #fac800;
+    --fill-git-merged: var(--text-git-merged);
+    --fill-git-merged-hover: #a67dff;
+    --fill-git-closed: var(--text-git-closed);
+    --fill-git-closed-hover: #ff4940;
+    --fill-git-conflicting: var(--text-git-conflicting);
+    --fill-git-conflicting-hover: #f97a1f;
+    --fill-git-draft-hover: #999999;
+    --fill-primary-hover: var(--gray-100);
+    --fill-secondary: var(--alpha-2);
+    --fill-secondary-hover: hsl(0 0% 100% / 0.14);
+    --fill-secondary-ring: transparent;
+    --fill-field: var(--fill-secondary);
+    --bg-accent: var(--blue-800);
+    --bg-danger: var(--red-800);
+    --bg-success: var(--green-800);
+    --bg-warning: var(--yellow-800);
+    --bg-pro: var(--violet-800);
+    --backdrop: rgb(0 0 0 / 0.5);
+    --text-accent: var(--blue-300);
+    --text-danger: var(--red-300);
+    --text-success: var(--green-400);
+    --text-warning: var(--yellow-300);
+    --text-pro: var(--violet-300);
+    --text-git-added: #32d74b;
+    --text-git-removed: #ff2c56;
+    --text-git-modified: #ffd014;
+    --text-git-merged: #b796ff;
+    --text-git-closed: #ff6159;
+    --text-git-conflicting: #fa832e;
+    --text-git-draft: #a6a6a6;
+    --text-secondary: var(--gray-200);
+    --text-muted: var(--gray-400);
+    --on-git-added: var(--gray-900);
+    --on-git-removed: var(--gray-900);
+    --on-git-modified: var(--gray-900);
+    --on-git-merged: var(--gray-900);
+    --on-git-closed: var(--gray-900);
+    --on-git-conflicting: var(--gray-900);
+    --on-git-draft: var(--gray-900);
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.wrap { padding: 1rem 0; }
+.nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.nav button { font-size: 13px; padding: 6px 14px; border-radius: var(--radius); border: 0.5px solid var(--border-strong); background: transparent; color: var(--text-secondary); cursor: pointer; transition: background .15s, color .15s; }
+.nav button.active { background: var(--bg-accent); color: var(--text-accent); border-color: var(--border-accent); }
+.nav button:hover:not(.active) { background: var(--surface-1); }
+.section { display: none; }
+.section.active { display: block; }
+.prose { font-size: 14px; line-height: 1.75; color: var(--text-secondary); margin-bottom: 1rem; }
+.prose strong { color: var(--text-primary); font-weight: 500; }
+.key-box { background: var(--surface-1); border: 0.5px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+.key-box .label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 6px; }
+canvas { display: block; width: 100%; border-radius: 12px; background: var(--surface-1); border: 0.5px solid var(--border); margin: 1rem 0; cursor: grab; }
+canvas:active { cursor: grabbing; }
+.controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: .5rem; }
+.controls label { font-size: 13px; color: var(--text-secondary); }
+.controls input[type=range] { flex: 1; min-width: 100px; }
+.controls span { font-size: 13px; font-weight: 500; color: var(--text-primary); min-width: 36px; }
+.btn { font-size: 13px; padding: 6px 14px; border-radius: var(--radius); border: 0.5px solid var(--border-strong); background: transparent; color: var(--text-secondary); cursor: pointer; }
+.btn:hover { background: var(--surface-1); }
+.btn.accent { background: var(--bg-accent); color: var(--text-accent); border-color: var(--border-accent); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
+@media (max-width: 480px) { .grid2 { grid-template-columns: 1fr; } }
+.tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; margin-right: 4px; }
+.tag-blue { background: var(--bg-accent); color: var(--text-accent); }
+.tag-amber { background: #FAEEDA; color: #854F0B; }
+.tag-teal { background: #E1F5EE; color: #0F6E56; }
+.formula { font-family: var(--font-mono); font-size: 13px; background: var(--surface-1); border: 0.5px solid var(--border); border-radius: 6px; padding: 8px 12px; margin: 8px 0; color: var(--text-primary); }
+.step-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+.step-num { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; background: var(--bg-accent); color: var(--text-accent); flex-shrink: 0; margin-top: 2px; }
+</style>
+
+<div class="wrap">
+<h2 style="font-size:18px;font-weight:500;color:var(--text-primary);margin-bottom:4px">A Primer of Quaternions — Chapter 2</h2>
+<p style="font-size:13px;color:var(--text-muted);margin-bottom:1.25rem">Rotations · Turns · Arc Steps — Hathaway (1896)</p>
+
+<div class="nav">
+  <button class="active" onclick="show('defs')">1. Definitions</button>
+  <button onclick="show('comp')">2. Composition of turns</button>
+  <button onclick="show('tri')">3. Spherical triangle</button>
+  <button onclick="show('nc')">4. Non-commutativity</button>
+  <button onclick="show('demo')">5. Interactive demo</button>
+</div>
+
+<!-- SECTION 1: DEFINITIONS -->
+<div id="s-defs" class="section active">
+  <p class="prose">Hathaway opens Chapter 2 by carefully distinguishing three related but distinct ideas: <strong>rotations</strong>, <strong>turns</strong>, and <strong>arc steps</strong>. Each is a more refined notion than the previous.</p>
+  <div class="grid2">
+    <div class="key-box">
+      <div class="label">Rotation (Art. 23)</div>
+      A rotation is specified by an <strong>axis</strong> through the origin and a <strong>dihedral angle</strong>. Applied to the unit sphere, the sphere turns as a rigid body about the diameter PP′. The equator is the great circle perpendicular to the axis. The <em>arc of the rotation</em> is a directed arc of the equator from A to A′ — either of the two directed arcs (they differ by a full circle).
+    </div>
+    <div class="key-box">
+      <div class="label">Half-arc and the fundamental choice</div>
+      If the two possible equatorial arcs are bisected at L and M, the two <em>half-arcs</em> ĀL and ĀM are supplementary arcs in <strong>opposite directions</strong>, each less than a semicircle. The rotation is completely determined by either half-arc. This is the seed of the quaternion: a quaternion encodes a half-arc.
+    </div>
+    <div class="key-box">
+      <div class="label">Turn (Art. 28–29)</div>
+      Let radius OA rotate into radius OB. The <strong>turn</strong> is the operator that performs this rotation — and its arc is the great-circle arc from A to B on the sphere. The arc uniquely determines the turn (up to the ambiguity of full rotations). Hathaway writes: "the great circle AB, the arc of the turn."
+    </div>
+    <div class="key-box">
+      <div class="label">Arc Step</div>
+      An <strong>arc step</strong> generalises the flat "step" of Chapter 1 to the sphere. It is a directed arc on a great circle. Addition of arc steps means placing them end-to-end: if arc BC follows arc AB, then AB + BC = AC (just as for flat steps, but on great circles). The sum of two arc steps is in general another arc step on a <em>different</em> great circle.
+    </div>
+  </div>
+  <svg width="100%" viewBox="0 0 680 200" role="img"><title>Rotation definitions on the unit sphere</title><desc>Diagram showing axis PP', equator, arc of rotation from A to A', and half-arc AL</desc>
+    <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+    <!-- sphere outline -->
+    <ellipse cx="200" cy="100" rx="80" ry="80" fill="var(--surface-1)" stroke="var(--border-strong)" stroke-width="1"/>
+    <!-- equator ellipse -->
+    <ellipse cx="200" cy="100" rx="80" ry="22" fill="none" stroke="#378ADD" stroke-width="1" stroke-dasharray="4 3"/>
+    <!-- axis PP' -->
+    <line x1="200" y1="20" x2="200" y2="180" stroke="var(--border-stronger)" stroke-width="1.5" marker-end="url(#arr)" marker-start="url(#arr)"/>
+    <text x="206" y="18" font-size="12" fill="var(--text-muted)" font-family="var(--font-sans)">P</text>
+    <text x="206" y="188" font-size="12" fill="var(--text-muted)" font-family="var(--font-sans)">P′</text>
+    <!-- O -->
+    <circle cx="200" cy="100" r="2.5" fill="var(--text-secondary)"/>
+    <text x="205" y="104" font-size="12" fill="var(--text-secondary)" font-family="var(--font-sans)">O</text>
+    <!-- A and A' on equator -->
+    <circle cx="142" cy="109" r="4" fill="#378ADD"/>
+    <text x="130" y="107" font-size="12" fill="#0C447C" font-family="var(--font-sans)" font-weight="500">A</text>
+    <circle cx="258" cy="109" r="4" fill="#378ADD"/>
+    <text x="263" y="107" font-size="12" fill="#0C447C" font-family="var(--font-sans)" font-weight="500">A′</text>
+    <!-- L midpoint -->
+    <circle cx="200" cy="122" r="3.5" fill="#EF9F27"/>
+    <text x="206" y="126" font-size="12" fill="#854F0B" font-family="var(--font-sans)" font-weight="500">L</text>
+    <!-- arc labels -->
+    <path d="M145 107 Q170 130 197 122" fill="none" stroke="#378ADD" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="160" y="130" font-size="11" fill="#0C447C" font-family="var(--font-sans)">ĀL (half-arc)</text>
+
+    <!-- right side: turn diagram -->
+    <ellipse cx="500" cy="100" rx="80" ry="80" fill="var(--surface-1)" stroke="var(--border-strong)" stroke-width="1"/>
+    <circle cx="500" cy="100" r="2.5" fill="var(--text-secondary)"/>
+    <text x="505" y="104" font-size="12" fill="var(--text-secondary)" font-family="var(--font-sans)">O</text>
+    <!-- OA, OB radii -->
+    <line x1="500" y1="100" x2="440" y2="60" stroke="var(--border-stronger)" stroke-width="1.5"/>
+    <line x1="500" y1="100" x2="560" y2="60" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arr)"/>
+    <circle cx="440" cy="60" r="4" fill="var(--text-muted)"/>
+    <text x="428" y="54" font-size="12" fill="var(--text-secondary)" font-family="var(--font-sans)" font-weight="500">A</text>
+    <circle cx="560" cy="60" r="4" fill="#1D9E75"/>
+    <text x="564" y="54" font-size="12" fill="#0F6E56" font-family="var(--font-sans)" font-weight="500">B</text>
+    <!-- great circle arc A to B -->
+    <path d="M440 60 Q500 30 560 60" fill="none" stroke="#1D9E75" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+    <text x="490" y="26" font-size="11" fill="#0F6E56" font-family="var(--font-sans)">arc of turn</text>
+
+    <text x="200" y="172" font-size="12" fill="var(--text-muted)" font-family="var(--font-sans)" text-anchor="middle">Rotation: axis PP′, half-arc ĀL</text>
+    <text x="500" y="172" font-size="12" fill="var(--text-muted)" font-family="var(--font-sans)" text-anchor="middle">Turn: OA → OB, arc AB</text>
+  </svg>
+</div>
+
+<!-- SECTION 2: COMPOSITION -->
+<div id="s-comp" class="section">
+  <p class="prose">The central theorem of the chapter: <strong>the resultant of two successive turns is itself a turn</strong>, and its arc is the "sum" of the two arcs — placed end-to-end on the sphere (Art. 29–30).</p>
+  <p class="prose">Hathaway first proves that two successive rotations compose into a single rotation (Art. 24–25), then translates this into the language of turns and arc steps.</p>
+  <div class="step-row"><div class="step-num">1</div><div style="font-size:14px;color:var(--text-secondary);line-height:1.7"><strong>Finding the resultant axis.</strong> Art. 24: Let radii OB, OC rotate into OB′, OC′. Any axis rotating OB→OB′ must lie on the great circle PKL that bisects great arc BB′ at right angles. Likewise any axis rotating OC→OC′ lies on the great circle PN bisecting CC′. <em>Their unique intersection OP</em> is the axis of the resultant rotation.</div></div>
+  <div class="step-row"><div class="step-num">2</div><div style="font-size:14px;color:var(--text-secondary);line-height:1.7"><strong>Determining the resultant angle.</strong> The angle of the resultant rotation is found by constructing the marked half-arcs of the two component rotations and placing them sequentially on the sphere (Art. 25–26). The resultant half-arc is their "sum."</div></div>
+  <div class="step-row"><div class="step-num">3</div><div style="font-size:14px;color:var(--text-secondary);line-height:1.7"><strong>Turns (Art. 29).</strong> The resultant of two successive turns is the turn whose arc is the sum of the two arcs. Formally: if arc AB is the first turn and arc BC is the second, the resultant turn has arc AC — where A, B, C are points on the sphere and the arcs are great-circle arcs placed end-to-end.</div></div>
+  <div class="step-row"><div class="step-num">4</div><div style="font-size:14px;color:var(--text-secondary);line-height:1.7"><strong>Arc steps (Art. 30).</strong> The half-arc of the resultant rotation equals the sum of the half-arcs of its components. The sum of several arcs is found by replacing any two successive arcs by their resultant arc, continuing until one arc remains — exactly the associative rule for steps from Chapter 1, now on the sphere.</div></div>
+  <div class="key-box">
+    <div class="label">Key theorem — Art. 30</div>
+    The half-arc of a resultant rotation is the sum of the half-arcs of its components, and the arc of a resultant turn is the sum of the arcs of the components. <strong>The sum of several arcs is independent of the order in which pairs are combined</strong> (associativity) — but <em>not</em> independent of which arc comes first (non-commutativity, proved in Art. 31).
+  </div>
+  <svg width="100%" viewBox="0 0 680 220" role="img"><title>Composition of two turns on the sphere</title><desc>Arc AB followed by arc BC gives resultant arc AC</desc>
+    <defs><marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+    <ellipse cx="340" cy="110" rx="90" ry="90" fill="var(--surface-1)" stroke="var(--border-strong)" stroke-width="1"/>
+    <!-- three points on sphere -->
+    <circle cx="260" cy="130" r="5" fill="#378ADD"/>
+    <text x="244" y="128" font-size="13" fill="#0C447C" font-family="var(--font-sans)" font-weight="500">A</text>
+    <circle cx="340" cy="40" r="5" fill="#EF9F27"/>
+    <text x="346" y="36" font-size="13" fill="#854F0B" font-family="var(--font-sans)" font-weight="500">B</text>
+    <circle cx="420" cy="130" r="5" fill="#1D9E75"/>
+    <text x="426" y="128" font-size="13" fill="#0F6E56" font-family="var(--font-sans)" font-weight="500">C</text>
+    <!-- Arc AB (blue, turn 1) -->
+    <path d="M263 126 Q290 60 337 45" fill="none" stroke="#378ADD" stroke-width="2.5" marker-end="url(#arr2)"/>
+    <text x="276" y="72" font-size="12" fill="#185FA5" font-family="var(--font-sans)" font-weight="500">turn 1: arc AB</text>
+    <!-- Arc BC (amber, turn 2) -->
+    <path d="M343 45 Q390 60 417 127" fill="none" stroke="#EF9F27" stroke-width="2.5" marker-end="url(#arr2)"/>
+    <text x="388" y="76" font-size="12" fill="#854F0B" font-family="var(--font-sans)" font-weight="500">turn 2: arc BC</text>
+    <!-- Arc AC (green, resultant) -->
+    <path d="M263 132 Q340 175 417 132" fill="none" stroke="#1D9E75" stroke-width="2" stroke-dasharray="6 3" marker-end="url(#arr2)"/>
+    <text x="340" y="180" font-size="12" fill="#0F6E56" font-family="var(--font-sans)" font-weight="500" text-anchor="middle">resultant: arc AC</text>
+    <!-- O -->
+    <circle cx="340" cy="110" r="3" fill="var(--text-muted)"/>
+    <text x="346" y="114" font-size="12" fill="var(--text-secondary)" font-family="var(--font-sans)">O</text>
+    <!-- legend -->
+    <rect x="40" y="30" width="140" height="76" rx="6" fill="var(--surface-1)" stroke="var(--border)" stroke-width="0.5"/>
+    <text x="54" y="50" font-size="12" fill="#185FA5" font-family="var(--font-sans)">— arc AB (first turn)</text>
+    <text x="54" y="68" font-size="12" fill="#854F0B" font-family="var(--font-sans)">— arc BC (second turn)</text>
+    <text x="54" y="86" font-size="12" fill="#0F6E56" font-family="var(--font-sans)">– – arc AC (resultant)</text>
+    <text x="54" y="98" font-size="11" fill="var(--text-muted)" font-family="var(--font-sans)">AB + BC = AC</text>
+  </svg>
+</div>
+
+<!-- SECTION 3: SPHERICAL TRIANGLE -->
+<div id="s-tri" class="section">
+  <p class="prose">The deepest geometric result in Chapter 2 is the <strong>Spherical Triangle Construction</strong> (Art. 27). Hathaway shows how the composition of two successive rotations can be read off from a spherical triangle whose vertices are the axes of the two rotations and the resultant.</p>
+  <div class="key-box">
+    <div class="label">The construction (Art. 27)</div>
+    Let rotation R₁ have half-arc from A₀ to B₀ on great circle AB, and rotation R₂ have half-arc from B₀ to C on great circle BC. Place the half-arcs end-to-end. The spherical triangles A₀B₀C and A₁B′C turn out to be <strong>equal (congruent)</strong>, since corresponding sides about the equal vertical angles at C are equal. This congruence proves that the resultant rotation has a specific axis and angle determined by the triangle.
+  </div>
+  <div class="grid2">
+    <div class="key-box">
+      <div class="label">Vertices of the spherical triangle</div>
+      The three vertices of the key spherical triangle are:
+      <ul style="list-style:disc;padding-left:1.2em;margin-top:6px;font-size:13px">
+        <li><strong>C</strong> — axis of rotation R₁</li>
+        <li><strong>A</strong> — axis of rotation R₂</li>
+        <li><strong>B</strong> — axis of the resultant rotation R = R₂∘R₁</li>
+      </ul>
+    </div>
+    <div class="key-box">
+      <div class="label">Angles and arcs</div>
+      If the spherical triangle has vertex angles A, B, C and opposite arc-sides a, b, c, then:
+      <ul style="list-style:disc;padding-left:1.2em;margin-top:6px;font-size:13px">
+        <li>R₁ rotates by angle <strong>2C</strong></li>
+        <li>R₂ rotates by angle <strong>2A</strong></li>
+        <li>R = R₂∘R₁ rotates by angle <strong>2π − 2B</strong></li>
+      </ul>
+      This is the quaternion multiplication rule in geometric form.
+    </div>
+  </div>
+  <svg width="100%" viewBox="0 0 680 260" role="img"><title>Spherical triangle construction for composition of rotations</title><desc>Spherical triangle with vertices A B C on unit sphere. C is axis of R1, A is axis of R2, B is axis of resultant.</desc>
+    <defs><marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+    <!-- sphere -->
+    <ellipse cx="340" cy="130" rx="105" ry="105" fill="var(--surface-1)" stroke="var(--border-strong)" stroke-width="1"/>
+    <!-- O -->
+    <circle cx="340" cy="130" r="3" fill="var(--text-muted)"/>
+    <!-- the three axes / vertices on sphere -->
+    <!-- C (top, R1 axis) -->
+    <circle cx="340" cy="40" r="6" fill="#D85A30"/>
+    <text x="349" y="38" font-size="13" fill="#993C1D" font-family="var(--font-sans)" font-weight="500">C <tspan font-size="10">(axis R₁, ∠2C)</tspan></text>
+    <!-- A (bottom-left, R2 axis) -->
+    <circle cx="258" cy="190" r="6" fill="#378ADD"/>
+    <text x="222" y="210" font-size="13" fill="#0C447C" font-family="var(--font-sans)" font-weight="500">A <tspan font-size="10">(axis R₂, ∠2A)</tspan></text>
+    <!-- B (bottom-right, resultant) -->
+    <circle cx="422" cy="190" r="6" fill="#1D9E75"/>
+    <text x="428" y="210" font-size="13" fill="#0F6E56" font-family="var(--font-sans)" font-weight="500">B <tspan font-size="10">(axis R, ∠2π−2B)</tspan></text>
+    <!-- sides of spherical triangle (great circle arcs approximated) -->
+    <!-- arc CA (side b) -->
+    <path d="M338 46 Q280 110 262 186" fill="none" stroke="#378ADD" stroke-width="2" stroke-dasharray="6 3"/>
+    <text x="280" y="118" font-size="11" fill="#185FA5" font-family="var(--font-sans)" font-style="italic">b</text>
+    <!-- arc AB (side c) -->
+    <path d="M262 192 Q340 222 418 192" fill="none" stroke="#EF9F27" stroke-width="2" stroke-dasharray="6 3"/>
+    <text x="340" y="224" font-size="11" fill="#854F0B" font-family="var(--font-sans)" font-style="italic" text-anchor="middle">c</text>
+    <!-- arc CB (side a) -->
+    <path d="M342 46 Q400 110 420 186" fill="none" stroke="#D85A30" stroke-width="2" stroke-dasharray="6 3"/>
+    <text x="402" y="118" font-size="11" fill="#993C1D" font-family="var(--font-sans)" font-style="italic">a</text>
+    <!-- radii from O -->
+    <line x1="340" y1="130" x2="340" y2="46" stroke="var(--border)" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <line x1="340" y1="130" x2="262" y2="188" stroke="var(--border)" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <line x1="340" y1="130" x2="418" y2="188" stroke="var(--border)" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <!-- annotation box -->
+    <rect x="30" y="30" width="170" height="90" rx="8" fill="var(--surface-1)" stroke="var(--border)" stroke-width="0.5"/>
+    <text x="40" y="52" font-size="12" fill="var(--text-secondary)" font-family="var(--font-sans)" font-weight="500">Spherical triangle rule</text>
+    <text x="40" y="70" font-size="12" fill="#993C1D" font-family="var(--font-sans)">R₁: rotation by 2C</text>
+    <text x="40" y="86" font-size="12" fill="#185FA5" font-family="var(--font-sans)">R₂: rotation by 2A</text>
+    <text x="40" y="102" font-size="12" fill="#0F6E56" font-family="var(--font-sans)">R₂∘R₁: rotation by 2π−2B</text>
+    <!-- note -->
+    <text x="340" y="248" font-size="12" fill="var(--text-muted)" font-family="var(--font-sans)" text-anchor="middle">The triangle on the sphere encodes all three rotations simultaneously.</text>
+  </svg>
+  <div class="key-box" style="margin-top:0">
+    <div class="label">Why this matters</div>
+    This theorem — known in modern terms as Euler's rotation theorem via spherical triangles — is exactly what quaternion multiplication encodes algebraically. When Hathaway writes q = q₂q₁, the quaternions encode the half-turns (half-arcs), and their product corresponds to "adding" the arcs by placing the triangle together at B. The <em>Note</em> in Art. 27 says: "This theorem enables one to find the resultant of any number of successive rotations, by replacing any two successive rotations by their resultant, and continuing."
+  </div>
+</div>
+
+<!-- SECTION 4: NON-COMMUTATIVITY -->
+<div id="s-nc" class="section">
+  <p class="prose">Art. 31 proves geometrically that the composition of two rotations (arc steps) is <strong>not commutative in general</strong> — doing rotation R₁ then R₂ gives a different result from doing R₂ then R₁ — unless the two arcs lie on the same great circle.</p>
+  <div class="key-box">
+    <div class="label">Hathaway's proof (Art. 31)</div>
+    Let the half-arcs of two rotations be arcs α and β. Form both sums α+β and β+α. The resultant arc C′A′ of α+β and the arc CA of β+α are in general <strong>different arcs</strong> — same magnitude but opposite direction — which means the two resultant rotations have the <em>same axis</em> but <em>opposite angles</em>. Corollary 2 states: the magnitudes of the resultant arcs in both orders are equal. The only case where α+β = β+α is when the arcs are <em>cocircular</em> (lie on the same great circle).
+  </div>
+  <div class="formula">arc α + arc β ≠ arc β + arc α  (in general)</div>
+  <div class="formula">|arc α + arc β| = |arc β + arc α|  (magnitudes are always equal)</div>
+  <div class="grid2">
+    <div class="key-box">
+      <div class="label">Geometric intuition</div>
+      Imagine rotating a book: first rotate 90° around the vertical axis, then 90° around the horizontal axis. Reverse the order: first horizontal, then vertical. The final orientations differ. On the sphere, the two triangles ABC and A′B′C have the same side lengths but the vertex B (resultant axis) moves to a different location.
+    </div>
+    <div class="key-box">
+      <div class="label">The commutative exception</div>
+      Two rotations commute if and only if their rotation axes are <strong>parallel</strong> (both arcs lie on the same great circle). This is the spherical analogue of the flat fact that two translations commute. Rotations about the same axis always commute (they are just additions of angles).
+    </div>
+  </div>
+  <svg width="100%" viewBox="0 0 680 230" role="img"><title>Non-commutativity of arc steps on a sphere</title><desc>Two orderings of arcs alpha and beta give different resultants: C'A' vs CA</desc>
+    <defs><marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+    <!-- Left sphere: α then β -->
+    <ellipse cx="180" cy="115" rx="90" ry="90" fill="var(--surface-1)" stroke="var(--border-strong)" stroke-width="1"/>
+    <text x="180" y="20" font-size="13" fill="var(--text-secondary)" font-family="var(--font-sans)" font-weight="500" text-anchor="middle">Order: α then β</text>
+    <circle cx="120" cy="140" r="5" fill="var(--text-muted)"/>
+    <text x="104" y="136" font-size="12" fill="var(--text-secondary)" font-family="var(--font-sans)" font-weight="500">P</text>
+    <circle cx="195" cy="50" r="5" fill="#378ADD"/>
+    <text x="200" y="45" font-size="12" fill="#0C447C" font-family="var(--font-sans)" font-weight="500">Q</text>
+    <circle cx="240" cy="148" r="5" fill="#EF9F27"/>
+    <text x="246" y="146" font-size="12" fill="#854F0B" font-family="var(--font-sans)" font-weight="500">R</text>
+    <!-- resultant arc C'A' -->
+    <circle cx="145" cy="200" r="5" fill="#1D9E75"/>
+    <text x="136" y="218" font-size="11" fill="#0F6E56" font-family="var(--font-sans)" font-weight="500">C′A′</text>
+    <!-- α: P to Q -->
+    <path d="M122 137 Q150 80 192 55" fill="none" stroke="#378ADD" stroke-width="2" marker-end="url(#arr4)"/>
+    <text x="140" y="80" font-size="11" fill="#185FA5" font-family="var(--font-sans)">α</text>
+    <!-- β: Q to R -->
+    <path d="M198 55 Q230 90 238 145" fill="none" stroke="#EF9F27" stroke-width="2" marker-end="url(#arr4)"/>
+    <text x="228" y="95" font-size="11" fill="#854F0B" font-family="var(--font-sans)">β</text>
+    <!-- resultant P to C'A' -->
+    <path d="M122 142 Q125 175 143 197" fill="none" stroke="#1D9E75" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arr4)"/>
+
+    <!-- Right sphere: β then α -->
+    <ellipse cx="500" cy="115" rx="90" ry="90" fill="var(--surface-1)" stroke="var(--border-strong)" stroke-width="1"/>
+    <text x="500" y="20" font-size="13" fill="var(--text-secondary)" font-family="var(--font-sans)" font-weight="500" text-anchor="middle">Order: β then α</text>
+    <circle cx="440" cy="140" r="5" fill="var(--text-muted)"/>
+    <text x="424" y="136" font-size="12" fill="var(--text-secondary)" font-family="var(--font-sans)" font-weight="500">P</text>
+    <circle cx="560" cy="140" r="5" fill="#EF9F27"/>
+    <text x="566" y="136" font-size="12" fill="#854F0B" font-family="var(--font-sans)" font-weight="500">Q′</text>
+    <circle cx="510" cy="55" r="5" fill="#378ADD"/>
+    <text x="515" y="48" font-size="12" fill="#0C447C" font-family="var(--font-sans)" font-weight="500">R′</text>
+    <!-- different resultant CA -->
+    <circle cx="555" cy="198" r="5" fill="#D85A30"/>
+    <text x="558" y="216" font-size="11" fill="#993C1D" font-family="var(--font-sans)" font-weight="500">CA</text>
+    <!-- β: P to Q' -->
+    <path d="M444 138 Q490 140 556 140" fill="none" stroke="#EF9F27" stroke-width="2" marker-end="url(#arr4)"/>
+    <text x="494" y="154" font-size="11" fill="#854F0B" font-family="var(--font-sans)">β</text>
+    <!-- α: Q' to R' -->
+    <path d="M558 137 Q545 90 514 58" fill="none" stroke="#378ADD" stroke-width="2" marker-end="url(#arr4)"/>
+    <text x="546" y="90" font-size="11" fill="#185FA5" font-family="var(--font-sans)">α</text>
+    <!-- resultant P to CA (different from C'A') -->
+    <path d="M442 142 Q500 180 552 196" fill="none" stroke="#D85A30" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arr4)"/>
+
+    <!-- arrow between spheres -->
+    <text x="340" y="110" font-size="18" fill="var(--text-muted)" font-family="var(--font-sans)" text-anchor="middle">≠</text>
+    <text x="340" y="128" font-size="11" fill="var(--text-muted)" font-family="var(--font-sans)" text-anchor="middle">resultants differ</text>
+    <!-- bottom legend -->
+    <text x="180" y="222" font-size="11" fill="#0F6E56" font-family="var(--font-sans)" text-anchor="middle">resultant: C′A′</text>
+    <text x="500" y="222" font-size="11" fill="#993C1D" font-family="var(--font-sans)" text-anchor="middle">resultant: CA (different axis!)</text>
+  </svg>
+</div>
+
+<!-- SECTION 5: INTERACTIVE DEMO -->
+<div id="s-demo" class="section">
+  <p class="prose">Rotate two great-circle arcs on a sphere and see how their composition changes order. Drag the sphere to inspect from different angles.</p>
+  <div class="controls">
+    <label>Arc α (°)</label>
+    <input type="range" min="10" max="170" value="90" id="sl-alpha" oninput="redraw()">
+    <span id="lbl-alpha">90°</span>
+  </div>
+  <div class="controls">
+    <label>Arc β (°)</label>
+    <input type="range" min="10" max="170" value="90" id="sl-beta" oninput="redraw()">
+    <span id="lbl-beta">90°</span>
+  </div>
+  <div class="controls">
+    <label>Angle between axes (°)</label>
+    <input type="range" min="0" max="180" value="60" id="sl-theta" oninput="redraw()">
+    <span id="lbl-theta">60°</span>
+  </div>
+  <div class="controls" style="gap:8px">
+    <button class="btn accent" onclick="showOrder(1)">Show α then β</button>
+    <button class="btn" onclick="showOrder(2)">Show β then α</button>
+    <button class="btn" onclick="showOrder(0)">Show both</button>
+  </div>
+  <canvas id="demo-canvas" height="320"></canvas>
+  <div id="demo-info" class="key-box" style="font-size:13px"></div>
+</div>
+
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+  const btns = document.querySelectorAll('.nav button');
+  const map = {defs:0,comp:1,tri:2,nc:3,demo:4};
+  btns[map[id]].classList.add('active');
+  if(id==='demo') setTimeout(initDemo,50);
+}
+
+let orderMode = 0;
+function showOrder(m){ orderMode=m; redraw(); }
+
+let demoReady = false;
+function initDemo() { if(demoReady) return; demoReady=true; setupCanvas(); redraw(); }
+
+const toRad = d => d*Math.PI/180;
+
+function project(v, rx, ry) {
+  // simple orthographic projection with tilt
+  const cosX = Math.cos(rx), sinX = Math.sin(rx);
+  const cosY = Math.cos(ry), sinY = Math.sin(ry);
+  let [x,y,z] = v;
+  let ny = cosX*y - sinX*z, nz = sinX*y + cosX*z;
+  let nx = cosY*x + sinY*nz, nnz = -sinY*x + cosY*nz;
+  return [nx, ny, nnz];
+}
+
+function rotateAround(v, axis, angle) {
+  const [ax,ay,az] = axis;
+  const cos = Math.cos(angle), sin = Math.sin(angle), t = 1-cos;
+  const [x,y,z] = v;
+  return [
+    (t*ax*ax+cos)*x + (t*ax*ay-sin*az)*y + (t*ax*az+sin*ay)*z,
+    (t*ax*ay+sin*az)*x + (t*ay*ay+cos)*y + (t*ay*az-sin*ax)*z,
+    (t*ax*az-sin*ay)*x + (t*ay*az+sin*ax)*y + (t*az*az+cos)*z
+  ];
+}
+
+function normalize(v) {
+  const l = Math.sqrt(v[0]**2+v[1]**2+v[2]**2);
+  return [v[0]/l,v[1]/l,v[2]/l];
+}
+
+let rotX = 0.35, rotY = -0.4;
+let dragging=false, lastMx=0, lastMy=0;
+
+function setupCanvas() {
+  const c = document.getElementById('demo-canvas');
+  c.addEventListener('mousedown', e=>{dragging=true;lastMx=e.clientX;lastMy=e.clientY;});
+  c.addEventListener('mousemove', e=>{if(!dragging)return;rotY+=(e.clientX-lastMx)*0.012;rotX+=(e.clientY-lastMy)*0.012;lastMx=e.clientX;lastMy=e.clientY;redraw();});
+  c.addEventListener('mouseup',()=>dragging=false);
+  c.addEventListener('touchstart',e=>{const t=e.touches[0];lastMx=t.clientX;lastMy=t.clientY;},{passive:true});
+  c.addEventListener('touchmove',e=>{const t=e.touches[0];rotY+=(t.clientX-lastMx)*0.012;rotX+=(t.clientY-lastMy)*0.012;lastMx=t.clientX;lastMy=t.clientY;redraw();},{passive:true});
+}
+
+function getStyle(varName) {
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || '#888';
+}
+
+function redraw() {
+  const canvas = document.getElementById('demo-canvas');
+  if(!canvas) return;
+  const alpha_deg = parseInt(document.getElementById('sl-alpha').value);
+  const beta_deg = parseInt(document.getElementById('sl-beta').value);
+  const theta_deg = parseInt(document.getElementById('sl-theta').value);
+  document.getElementById('lbl-alpha').textContent = alpha_deg+'°';
+  document.getElementById('lbl-beta').textContent = beta_deg+'°';
+  document.getElementById('lbl-theta').textContent = theta_deg+'°';
+
+  const W = canvas.offsetWidth || 680;
+  canvas.width = W * window.devicePixelRatio;
+  canvas.height = 320 * window.devicePixelRatio;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  const w=W, h=320, R=110, cx=w/2, cy=h/2;
+
+  ctx.clearRect(0,0,w,h);
+
+  // Axes of the two rotations
+  const axis1 = [0,0,1]; // first rotation around Z
+  const theta = toRad(theta_deg);
+  const axis2 = [Math.sin(theta),0,Math.cos(theta)]; // second axis at angle theta from axis1
+
+  const alpha = toRad(alpha_deg);
+  const beta = toRad(beta_deg);
+
+  // Draw sphere outline
+  ctx.beginPath();
+  ctx.arc(cx,cy,R,0,Math.PI*2);
+  ctx.strokeStyle = getStyle('--border-strong');
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  // light fill
+  ctx.fillStyle = getStyle('--surface-1');
+  ctx.fill();
+
+  function toScreen(v3d) {
+    const [px,py,pz] = project(v3d, rotX, rotY);
+    return [cx+px*R, cy-py*R, pz];
+  }
+
+  function drawArc(startPt, axis, angle, color, dashed) {
+    const steps = 48;
+    ctx.beginPath();
+    for(let i=0;i<=steps;i++) {
+      const a = angle*i/steps;
+      const pt = rotateAround(startPt, axis, a);
+      const [sx,sy,sz] = toScreen(pt);
+      if(i===0) ctx.moveTo(sx,sy); else ctx.lineTo(sx,sy);
+    }
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.5;
+    if(dashed) ctx.setLineDash([6,4]); else ctx.setLineDash([]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // arrowhead
+    const ptEnd = rotateAround(startPt, axis, angle);
+    const ptPre = rotateAround(startPt, axis, angle-0.06);
+    const [ex,ey] = toScreen(ptEnd);
+    const [px,py] = toScreen(ptPre);
+    const dx=ex-px, dy=ey-py;
+    const len=Math.sqrt(dx*dx+dy*dy);
+    if(len>0) {
+      ctx.beginPath();
+      ctx.moveTo(ex,ey);
+      ctx.lineTo(ex-dx/len*10+dy/len*5, ey-dy/len*10-dx/len*5);
+      ctx.lineTo(ex-dx/len*10-dy/len*5, ey-dy/len*10+dx/len*5);
+      ctx.closePath();
+      ctx.fillStyle=color; ctx.fill();
+    }
+    return rotateAround(startPt, axis, angle);
+  }
+
+  function drawDot(pt, color, label, offx, offy) {
+    const [sx,sy] = toScreen(pt);
+    ctx.beginPath(); ctx.arc(sx,sy,5,0,Math.PI*2);
+    ctx.fillStyle=color; ctx.fill();
+    if(label) {
+      ctx.fillStyle=color; ctx.font='bold 13px var(--font-sans)';
+      ctx.fillText(label, sx+offx, sy+offy);
+    }
+  }
+
+  // Starting point
+  const startPt = normalize([1,0,0]);
+
+  if(orderMode===0 || orderMode===1) {
+    // α then β
+    const midPt1 = drawArc(startPt, axis1, alpha, '#378ADD', false);
+    drawArc(midPt1, axis2, beta, '#EF9F27', false);
+    // resultant for α then β
+    const endPt1 = rotateAround(midPt1, axis2, beta);
+    drawArc(startPt, normalize(endPt1), 0, '#1D9E75', true); // just mark end
+    drawDot(startPt, getStyle('--text-muted'), 'P', 8, -4);
+    drawDot(midPt1, '#378ADD', 'Q', 8, -4);
+    drawDot(endPt1, '#1D9E75', 'C′A′', 8, -4);
+  }
+
+  if(orderMode===0 || orderMode===2) {
+    // β then α
+    const mid2 = drawArc(startPt, axis2, beta, '#EF9F27', orderMode===0);
+    const end2 = drawArc(mid2, axis1, alpha, '#D85A30', orderMode===0);
+    drawDot(mid2, '#EF9F27', orderMode===2?'Q′':'', 8, -4);
+    drawDot(end2, '#D85A30', orderMode===2?'CA':'', 8, -4);
+    if(orderMode===2) drawDot(startPt, getStyle('--text-muted'), 'P', 8, -4);
+  }
+
+  // Axes indicators
+  function drawAxis(ax, label, color) {
+    const p = toScreen(ax);
+    const n = toScreen([-ax[0],-ax[1],-ax[2]]);
+    ctx.beginPath(); ctx.moveTo(p[0],p[1]); ctx.lineTo(n[0],n[1]);
+    ctx.strokeStyle=color; ctx.lineWidth=0.8; ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]);
+    const [sx,sy] = toScreen(ax);
+    ctx.fillStyle=color; ctx.font='11px var(--font-sans)';
+    ctx.fillText(label, sx+6, sy-4);
+  }
+  drawAxis(axis1, 'axis₁', '#185FA5');
+  drawAxis(axis2, 'axis₂', '#854F0B');
+
+  // Info panel
+  const comm = theta_deg===0 ? 'Yes (axes parallel — arcs are cocircular)' : 'No (axes at '+theta_deg+'°)';
+  document.getElementById('demo-info').innerHTML =
+    '<div class="label">Current configuration</div>' +
+    'Arc α = '+alpha_deg+'°, arc β = '+beta_deg+'°, angle between axes = '+theta_deg+'°<br>' +
+    'Commutative? <strong>'+comm+'</strong><br>' +
+    (theta_deg===0 ? 'Both orderings give the same resultant arc.' :
+      'The two orderings yield different resultant arcs (same length, different axis).');
+}
+</script>
