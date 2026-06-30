@@ -21,3 +21,18 @@ This is Hathaway's statement of the **identity**:
 - For **rotations**: a half-arc of **0°** similarly represents the identity rotation (no rotation at all), and a half-arc of **180°** represents a full 360° rotation, which also returns the sphere to its original position. Both are indeterminate in their axis and may be placed on any great circle.
 
 The key insight is that the identity is a *degenerate* arc — it is arc-less (zero length), so it doesn't belong to any particular plane or axis, and can be appended to any sequence of arcs without changing the result.
+
+
+## Inverse Turns (and Inverse Rotations)
+
+From the definition of arc step composition: the resultant of arc steps ⌢AB followed by ⌢BC is ⌢AC. The **inverse** of a turn ⌢AB is simply ⌢BA — the same arc traversed in the opposite direction.
+
+When the arc of the turns are not given with the first ending where the second begins, each arc may be moved as a rigid arc round its great circle until they do so end and begin, without altering their turning value.
+
+So the inverse of a turn with arc ⌢AB is the turn with arc ⌢BA, since:
+
+> ⌢AB + ⌢BA = ⌢AA = 0° (the identity)
+
+For **rotations**, the same logic holds at the level of half-arcs: the inverse rotation has its half-arc reversed. Geometrically, to undo a rotation, you apply the same rotation in the opposite direction about the same axis. In terms of the great-circle arc, negating the arc's direction negates the rotation.
+
+This directly anticipates the quaternion result: if *q* represents a unit quaternion (a turn/rotation), then *q*⁻¹ is obtained by reversing its vector part (negating its arc), giving *q*⁻¹ = *q*\* (the conjugate) for unit quaternions.
