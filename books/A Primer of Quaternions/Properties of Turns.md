@@ -36,3 +36,18 @@ So the inverse of a turn with arc ⌢AB is the turn with arc ⌢BA, since:
 For **rotations**, the same logic holds at the level of half-arcs: the inverse rotation has its half-arc reversed. Geometrically, to undo a rotation, you apply the same rotation in the opposite direction about the same axis. In terms of the great-circle arc, negating the arc's direction negates the rotation.
 
 This directly anticipates the quaternion result: if *q* represents a unit quaternion (a turn/rotation), then *q*⁻¹ is obtained by reversing its vector part (negating its arc), giving *q*⁻¹ = *q*\* (the conjugate) for unit quaternions.
+
+
+## Conjugate Rotations
+
+Art. 30 addresses non-commutativity, which is the gateway to conjugate rotations:
+
+The resultant of two successive rotations or turns (i.e., the sum of two arc steps) is commutative only when the arcs lie on the same great circle (are *cocircular*). In general, the order of two rotations about different axes matters — this is why conjugation is necessary.
+
+**Conjugate rotations** in Hathaway's sense refers to two rotations that are *mirror images* of each other through a common plane, or equivalently, related by reversing the arc's direction on the sphere. He develops this directly out of the spherical triangle theorem (Art. 26):
+
+If the sphere O be given a rotation 2⌢A₀C followed by a rotation 2⌢CB₀, the resultant rotation of the sphere is 2⌢A₀B₀.
+
+This theorem on composition of rotations shows that three arcs meeting at a common vertex C on the sphere determine the resultant. The **conjugate** of a rotation (by another rotation *q*) is the construction *qrq*⁻¹ — you rotate into a new frame with *q*, apply *r*, then rotate back with *q*⁻¹. This is precisely what becomes the quaternion rotator formula in Chapter 3, where Hathaway shows that the rotator *q*( )*q*⁻¹ rotates any step through twice the arc of *q*.
+
+The geometric picture from Chapter 2 makes this transparent: conjugating a rotation *r* by *q* simply relabels which great circle arc is being applied — it changes the *axis* of rotation while keeping the rotation *angle* the same.
