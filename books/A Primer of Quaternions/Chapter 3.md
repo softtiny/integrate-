@@ -14,3 +14,4 @@
 * **Multiplication and Expansion Formulas:** Developing formulas for the products of sums and the expansion of complex expressions.
     * Formulating how the product of two pure vectors results in a scalar part (related to the cosine of the angle between them) and a vector part (related to the sine of the angle and perpendicular to their plane).
 * **Trigonometric Identifications:** Showing how fundamental formulas of plane and spherical trigonometry naturally unfold from the algebraic expansions of quaternion multiplication and addition.
+* **Connections to Semi-Cartesian Geometry:** Bridging quaternion formulas directly into standard coordinates, demonstrating how solid analytical geometry can be executed more fluidly through the algebraic rules established in this chapter.
