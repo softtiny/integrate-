@@ -1,0 +1,10 @@
+**The setup.** Take an ordinary belt. One person holds one end fixed. The other end is rotated by 360° while keeping the belt from twisting around its own long axis (no extra spin). When you do this, the belt ends up with a visible half-twist in it — even though the far end has "returned" to the same orientation it started in. If you then rotate that same end another full 360° in the *same direction* (for a total of 720°), something surprising happens: the twist can be undone completely, without moving either end, just by looping the belt around. The belt returns to its untwisted state only after two full turns, not one.
+
+**Why quaternions explain this.** This is a physical demonstration of the fact that the group of unit quaternions, $SU(2)$, is a *double cover* of the rotation group $SO(3)$. A 360° rotation in ordinary 3D space corresponds to the quaternion $q = -1$ (not $q=1$), and it takes a full 720° rotation to bring you back to $q = +1$, the true identity. In quaternion terms, $q$ and $-q$ represent the *same* physical rotation, so the "identity" of rotation space is reached twice as slowly as you'd naively expect by tracing a path on the unit quaternion sphere.
+
+**What the chapter does with this.** Hanson formalizes the belt as a path in the space of unit quaternions (a curve on the 3-sphere $S^3$), and shows that:
+- A single 360° twist corresponds to a path from $q=1$ to $q=-1$ — these are different points on $S^3$ even though they map to the same rotation matrix.
+- The apparent "twist" in the belt is a physical manifestation of that path not being closed (not a loop) after only 360°.
+- Only after 720° does the quaternion path close back up at $q=1$, which is why the belt can be untangled.
+- This connects to the topological fact that $S^3$ is simply connected (loops can be contracted to a point), while $SO(3)$ (which can be thought of as $S^3$ with antipodal points $q$ and $-q$ identified) is *not* simply connected — a loop that goes "halfway around" (360° rotation) can't be contracted, but one that goes all the way around twice (720°) can.
+
