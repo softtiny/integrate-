@@ -1,0 +1,6 @@
+
+- When you move a coordinate frame (like a camera orientation, or a tube's cross-section) along a curve in 3D, there are many valid ways to choose how the frame rotates as it travels — the frame isn't uniquely determined by the curve alone.
+- The classic **Frenet frame** (tangent, normal, binormal) is one choice, but it behaves badly wherever curvature vanishes or the curve has near-straight segments — the frame can flip or spin unpredictably.
+- An **"optimal" frame** is instead chosen to minimize unnecessary twisting/rotation as it moves along the curve — this is closely related to **parallel transport** (also called Bishop frames in the differential-geometry literature), which avoids the instabilities of Frenet frames.
+- Quaternions are a natural tool here because a frame's orientation at each curve point is a point on the unit quaternion hypersphere, and "minimizing rotation" along the curve becomes a geometric optimization on that hypersphere (essentially finding the smoothest, least-twisted quaternion path connecting the frame orientations).
+- Applications include generating smooth, non-twisting tubes/ribbons for visualization, camera paths in animation, and robot end-effector orientation paths.
