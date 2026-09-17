@@ -1,0 +1,6 @@
+
+
+- Frames quaternions as a mathematical discovery with a distinctive, well-documented origin story — famously tied to William Rowan Hamilton's flash of insight while walking along the Royal Canal in Dublin in 1843, when he scratched the fundamental formula for quaternion multiplication into the stone of Broom Bridge.
+- Signals that the chapter will trace not just Hamilton's own path to the discovery, but the broader intellectual context: earlier work on complex numbers and attempts to extend them to three dimensions, and the parallel/competing contributions of figures like Olinde Rodrigues, whose formulas for rotation are closely related to quaternion mathematics.
+- Previews the tension and rivalry in the story — including the priority disputes and differing notations that arose (e.g., the vector algebra developed by Gibbs and Heaviside), which affected how quaternions were used, taught, and gradually displaced in mainstream physics and engineering despite their elegance for representing rotations.
+- Establishes why this history matters for the rest of the book: understanding the origins and early struggles of quaternions helps motivate their modern revival in fields like aerospace, robotics, and computer graphics, where representing rotations efficiently and without singularities (unlike Euler angles) is essential.
