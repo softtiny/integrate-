@@ -1,0 +1,7 @@
+
+
+- **The progression of number systems**: real numbers → complex numbers (2D) → the search for a 3D extension → quaternions (4D) as Hamilton's resolution to that search.
+- **Why 3D failed**: Hamilton spent years trying to construct a three-dimensional analog of complex numbers (a "triplet" system) for representing rotations/vectors in 3D space, but ran into fundamental algebraic obstructions — no consistent multiplication rule could be found for triplets that preserved the properties he wanted.
+- **The jump to 4D**: His breakthrough was realizing he needed four components (one scalar + three imaginary units i, j, k) rather than three, giving up commutativity of multiplication in exchange for a consistent, well-behaved algebraic system.
+- **Comparison of algebraic systems**: likely a discussion contrasting quaternion algebra with ordinary vector algebra and complex number algebra — highlighting properties like non-commutativity (ij ≠ ji) as a novel and controversial feature at the time.
+- **Context among 19th-century algebraic innovations**: quaternions as part of a broader mathematical movement exploring hypercomplex number systems (later including octonions, Clifford algebras, etc.).
