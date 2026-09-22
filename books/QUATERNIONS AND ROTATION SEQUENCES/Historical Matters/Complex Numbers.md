@@ -1,0 +1,7 @@
+
+
+- **Origins**: Complex numbers arose in the 16th century (Cardano, Bombelli) from attempts to solve cubic equations, requiring square roots of negative numbers even when the final answers were real.
+- **The imaginary unit**: Defined as i, where i² = -1, allowing numbers of the form a + bi (a, b real).
+- **Geometric interpretation**: Wessel, Argand, and Gauss showed complex numbers correspond to points in a 2D plane, with multiplication by i representing a 90° rotation — this is the key link to Kuipers' theme, since it shows complex numbers can encode rotations in 2D.
+- **Complex number algebra**: Addition, multiplication, and the algebraic properties (commutativity, associativity, distributivity) all behave like ordinary real-number algebra, just extended to two dimensions.
+- **The motivation for extension**: Once mathematicians saw that complex numbers could represent 2D rotations so elegantly, the natural question became whether a similar 3D number system could represent 3D rotations — this is exactly the problem Hamilton spent over a decade trying to solve, and this "Complex Numbers" section likely sets up that motivation before moving into his search for a 3D analog and the eventual quaternion breakthrough.
