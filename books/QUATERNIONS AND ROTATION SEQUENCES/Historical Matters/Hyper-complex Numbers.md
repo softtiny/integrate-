@@ -1,0 +1,6 @@
+
+- **The generalization problem**: once complex numbers (2D) were understood, mathematicians in the early-to-mid 1800s naturally asked whether "numbers" could be extended to three or more dimensions while keeping useful algebraic properties (addition, multiplication, division).
+- **Hamilton's triplet attempts**: his years-long effort to construct a 3D number system of the form a + bi + cj (a "triplet"), intended to represent points/vectors in 3D space the way complex numbers represent points in 2D — and his repeated failure to find a consistent multiplication rule for such triplets.
+- **The core obstruction**: any attempt to define multiplication for 3D triplets ran into problems with division and consistency — a result later formalized (Hurwitz's theorem: normed division algebras over the reals only exist in dimensions 1, 2, 4, and 8).
+- **The term "hypercomplex numbers"**: used broadly for number systems that generalize complex numbers to more than two components — quaternions (4D) being the most famous example, but also things like octonions (8D) discovered shortly after by Cayley/Graves.
+- **Setting up the quaternion breakthrough**: this section likely ends by setting the stage for Hamilton's realization that four dimensions — not three — was the key.
